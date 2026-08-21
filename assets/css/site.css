@@ -8,13 +8,16 @@
 
 /* ------------------------------------------------------------ tokens */
 :root {
-  /* Brand Guidelines v1.0 (2026) — heritage orange leads, mint cools,
-     carbon and chalk carry everything else. Ratio 60/30/7/3. */
-  --brand: #f47920;        /* VITAS Orange — graphics, large areas, never small text */
-  --brand-deep: #c6531a;   /* Ember — AA text and buttons on light */
-  --brand-dark: #a8480f;   /* orange-700 — hover */
-  --brand-tint: #fbcea9;   /* orange-200 */
-  --brand-wash: #fef6ef;   /* orange-50 */
+  /* Brand Guidelines v1.1 (2026) — Pantone Orange 021 / #FE5000, mint cools,
+     carbon and chalk carry everything else. Ratio 60/30/7/3.
+     Deep/dark shades are the same hue at lower lightness, recomputed for
+     AA contrast (>=4.5:1) on --paper and #fff — --brand itself is a
+     graphics-only color and must never carry small text. */
+  --brand: #fe5000;        /* Pantone Orange 021 — graphics, large areas, never small text */
+  --brand-deep: #c23d00;   /* AA text and buttons on light (4.9:1 on --paper) */
+  --brand-dark: #993000;   /* hover / active (7:1 on --paper) */
+  --brand-tint: #fac2a8;   /* orange-200 */
+  --brand-wash: #fdf2ec;   /* orange-50 */
 
   --green: #2e8b57;        /* New Green — purity accent (Repositioning v3.0) */
   --green-deep: #226b42;   /* text-safe green */
@@ -402,6 +405,16 @@ img { max-width: 100%; height: auto; display: block; }
 .safety__list li { padding-left: 1.5rem; position: relative; }
 .safety__list li::before { content: ''; position: absolute; left: 0; top: 0.75em; width: 0.6rem; height: 1.5px; background: var(--brand); }
 
+/* --------------------------------------------------- legal / terms-privacy */
+.legal-doc__intro { color: var(--muted); margin-bottom: 2rem; }
+.legal-doc h2 { margin-top: 2.5rem; margin-bottom: 0.75rem; font-size: 1.25rem; }
+.legal-doc p { margin: 0 0 0.85rem; }
+.legal-doc__caution {
+  margin-top: 3rem; padding: 1rem 1.25rem; background: var(--brand-wash);
+  border-left: 3px solid var(--brand); border-radius: var(--radius);
+  color: var(--brand-deep); font-size: 0.88rem;
+}
+
 /* --------------------------------------------------------- plant page */
 .plant { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
 .plant__latin { font-style: italic; color: var(--muted); margin-bottom: 1.25rem; }
@@ -416,6 +429,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .stockist:hover { border-color: var(--brand); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
 .stockist--featured { background: var(--brand-wash); }
+.stockist__logo { max-width: 220px; max-height: 72px; width: auto; height: auto; object-fit: contain; margin-bottom: 0.25rem; }
 .stockist__name { font-size: 1.65rem; }
 .stockist__kind {
   font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--brand-deep); }
@@ -483,7 +497,19 @@ img { max-width: 100%; height: auto; display: block; }
   display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(2rem, 5vw, 4rem);
 }
 .footer__intro p { color: var(--muted); max-width: 42ch; margin-top: 0.75rem; }
-.footer__social { display: flex; flex-wrap: wrap; gap: 1.25rem; font-size: 0.85rem; }
+.footer__address { color: var(--steel); font-size: 0.85rem; margin: 0.5rem 0 1rem; max-width: 40ch; }
+.footer__social { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; font-size: 0.85rem; }
+.footer__social a { color: var(--muted); text-decoration: none; }
+.footer__social a:hover { color: var(--ink); }
+.footer__icon-link { display: inline-flex; align-items: center; gap: 0.4rem; }
+.footer__whatsapp {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 1rem; padding: 0.65rem 1.1rem;
+  background: #25d366; color: #ffffff; text-decoration: none;
+  font-family: var(--font-ui); font-size: 0.88rem; font-weight: 600;
+  border-radius: var(--radius); transition: filter 0.2s var(--ease);
+}
+.footer__whatsapp:hover { filter: brightness(0.94); }
 .footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .footer__heading {
   font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brand-deep); margin-bottom: 1rem; }
@@ -709,6 +735,7 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--paper-warm); border: 1px solid var(--line); border-radius: var(--radius);
   padding: clamp(1.5rem, 3vw, 2.25rem) 1.5rem;
 }
+.partner__logo { max-width: 180px; max-height: 60px; width: auto; height: auto; object-fit: contain; }
 .partner__name { font-family: var(--font-display); font-size: 1.7rem; font-weight: 600; letter-spacing: -0.01em; }
 .partner__zh { font-family: var(--font-zh); font-size: 1.05rem; color: var(--brand-deep); }
 .partner__note {
@@ -718,6 +745,17 @@ img { max-width: 100%; height: auto; display: block; }
 .partners__note { text-align: center; color: var(--steel); font-size: 0.82rem; margin: 2rem auto 0; max-width: 62ch; }
 
 /* --------------------------------------------------------- about page */
+.compare__note { color: var(--muted); max-width: 68ch; margin-bottom: 1.75rem; }
+.compare__disclaimer { color: var(--steel); font-size: 0.85rem; max-width: 78ch; margin-top: 1.5rem; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+.table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 0.92rem; }
+.table th, .table td { text-align: left; padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table th { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-deep); background: var(--brand-wash); }
+.table th:first-child { color: var(--steel); background: var(--paper-warm); }
+.table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+.table tbody tr:nth-child(even) { background: var(--paper-warm); }
+.table tbody tr:last-child td { border-bottom: 0; }
+
 .founder { background: var(--paper-deep); }
 .founder__inner { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
 .founder__title { margin-bottom: 1rem; }
