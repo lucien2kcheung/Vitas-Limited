@@ -23,10 +23,15 @@ export const SITE = {
   brandZh: '紓適寧',
   youtube: 'https://www.youtube.com/@VITASHK',
   facebook: 'https://www.facebook.com/vitashk/',
-  email: 'hello@vitas.com.hk',
+  instagram: 'https://www.instagram.com/vitashongkong',
+  email: 'info@vitas.com.hk',
+  phone: '(852) 3167 7081',
+  phoneHref: 'tel:+85231677081',
+  whatsapp: '85291069760',
+  whatsappHref: 'https://wa.me/85291069760',
   address: {
-    en: 'Hong Kong',
-    zh: '香港',
+    en: 'Unit 411, Lippo Sun Plaza, 28 Canton Road, Tsim Sha Tsui, Kowloon, Hong Kong',
+    zh: '香港九龍尖沙咀廣東道28號麗新大廈411室',
   },
 };
 
@@ -74,9 +79,10 @@ const navItems = [
   { href: '/shop/', label: { en: 'Shop', zh: '網上商店' } },
   { href: '/product/', label: { en: 'The Cream', zh: '產品' } },
   { href: '/ingredients/', label: { en: 'Ingredients', zh: '成分' } },
+  { href: '/lymph-101/', label: { en: 'Lymph 101', zh: '淋巴 101' } },
   { href: '/how-to-use/', label: { en: 'How to Use', zh: '使用方法' } },
   { href: '/for/', label: { en: 'Your Sport', zh: '你的運動' } },
-  { href: '/about/', label: { en: 'About VITAS', zh: '關於 VITAS' } },
+  { href: '/about/', label: { en: 'Why VITAS', zh: '為何是 VITAS' } },
   { href: '/faq/', label: { en: 'FAQ', zh: '常見問題' } },
 ];
 
@@ -154,11 +160,27 @@ function footer() {
           en: 'The clean performance gel — grape seed, niaouli and eucalyptus, formulated in France. Zero toxins, trusted in Hong Kong since 2003.',
           zh: '純淨表現凝膠——葡萄籽、綠花白千層與尤加利，法國研製。零毒素，2003 年起獲香港信賴。',
         })}
+        <p class="footer__address">${t(SITE.address)}</p>
         <div class="footer__social">
           <a href="${SITE.youtube}" target="_blank" rel="noopener">YouTube</a>
           <a href="${SITE.facebook}" target="_blank" rel="noopener">Facebook</a>
+          <a href="${SITE.instagram}" target="_blank" rel="noopener" class="footer__icon-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="3" y="3" width="18" height="18" rx="5"/>
+              <circle cx="12" cy="12" r="4.2"/>
+              <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
           <a href="mailto:${SITE.email}">${SITE.email}</a>
+          <a href="${SITE.phoneHref}">${SITE.phone}</a>
         </div>
+        <a class="footer__whatsapp" href="${SITE.whatsappHref}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+            <path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.85-1.27A9.5 9.5 0 1 0 12 2.5Zm0 1.8a7.7 7.7 0 0 1 6.5 11.85l-.2.32.46 1.66-1.7-.45-.32.19A7.7 7.7 0 1 1 12 4.3Zm-2.9 3.6c-.2 0-.5.07-.77.36-.26.28-1 .98-1 2.38s1.03 2.76 1.17 2.95c.14.19 1.99 3.16 4.9 4.3 2.42.96 2.91.77 3.44.72.53-.05 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.12-.26-.19-.53-.33-.28-.14-1.66-.82-1.92-.91-.26-.1-.44-.14-.63.14-.18.28-.72.9-.88 1.09-.16.19-.32.21-.6.07-.28-.14-1.16-.43-2.22-1.37-.82-.73-1.37-1.63-1.53-1.91-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.5.14-.17.19-.29.28-.48.1-.19.05-.36-.02-.5-.07-.14-.63-1.55-.88-2.12-.22-.53-.46-.48-.63-.49h-.5Z"/>
+          </svg>
+          <span>${t({ en: 'Chat on WhatsApp', zh: 'WhatsApp 對話' })}</span>
+        </a>
       </div>
       <div class="footer__cols">
         ${col({ en: 'Shop', zh: '購買' }, [
@@ -168,9 +190,10 @@ function footer() {
           { href: '/stockists/', label: { en: 'Where to buy', zh: '購買地點' } },
         ])}
         ${col({ en: 'Brand', zh: '品牌' }, [
-          { href: '/about/', label: { en: 'About VITAS', zh: '關於 VITAS' } },
+          { href: '/about/', label: { en: 'Why VITAS', zh: '為何是 VITAS' } },
           { href: '/approach/', label: { en: 'Our approach', zh: '我們的取態' } },
           { href: '/ingredients/', label: { en: 'Ingredients', zh: '成分' } },
+          { href: '/lymph-101/', label: { en: 'Lymph 101', zh: '淋巴 101' } },
           { href: '/how-to-use/', label: { en: 'How to use', zh: '使用方法' } },
           { href: '/journal/', label: { en: 'Journal', zh: '專欄' } },
           { href: '/faq/', label: { en: 'FAQ', zh: '常見問題' } },

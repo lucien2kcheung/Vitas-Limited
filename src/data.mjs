@@ -350,6 +350,9 @@ export const STOCKISTS = [
       en: 'Healthcare aisle, external muscle care. In store and online.',
       zh: '健與美貨架，外用肌肉護理區。門市及網店有售。',
     },
+    // Drop the official logo file at this path (svg preferred; png also fine —
+    // just update the extension here to match).
+    logo: '/assets/img/logo/retailers/watsons.png',
     featured: true,
   },
   {
@@ -357,25 +360,8 @@ export const STOCKISTS = [
     kind: { en: 'Stores across Hong Kong', zh: '全港分店' },
     url: 'https://www.mannings.com.hk/vitas-soothing-cream-gel-100ml/p/816504',
     note: { en: 'In store and online.', zh: '門市及網店有售。' },
+    logo: '/assets/img/logo/retailers/mannings.png',
     featured: true,
-  },
-  {
-    name: 'HKTVmall',
-    kind: { en: 'Online, next-day delivery', zh: '網購，翌日送達' },
-    url: 'https://www.hktvmall.com/hktv/en/search?q=VITAS',
-    note: { en: 'Search "VITAS 紓適寧".', zh: '搜尋「VITAS 紓適寧」。' },
-  },
-  {
-    name: 'Gogo Herbs',
-    kind: { en: 'Online health store', zh: '網上健康產品店' },
-    url: 'https://gogoherbs.com/en/product/vts001',
-    note: { en: 'Ships within Hong Kong.', zh: '香港境內配送。' },
-  },
-  {
-    name: 'HK Medical Store',
-    kind: { en: 'Online pharmacy', zh: '網上藥房' },
-    url: 'https://hkmedicalstore.com/products/vitas-cream-100ml',
-    note: { en: 'Ships within Hong Kong.', zh: '香港境內配送。' },
   },
 ];
 
@@ -680,6 +666,286 @@ export const ABOUT = {
       {
         en: 'The hardest decision of the last year was to say less about what this cream does. It is a good product, honestly described: it cools, it absorbs, it makes a ten-minute massage possible, and it does not follow you around. That is the whole promise, and I would rather earn a customer with it than sell one a story.',
         zh: '過去一年最艱難的決定，是少說一點這支膏的功效。它是一支好產品，值得被誠實地描述：它清涼、吸收快、讓十分鐘的按摩成為可能，而且不會跟著你到處走。這就是全部的承諾——我寧願用它換來一位顧客，也不想用一個故事賣出一支產品。',
+      },
+    ],
+  },
+};
+
+/**
+ * Terms of Use and Privacy Statement.
+ *
+ * Chinese text is transcribed verbatim from the live vitas.com.hk pages.
+ * English text is a translation for this rebuild, NOT a substitute for
+ * legal review — clause 9 of the Terms below even says the English
+ * version should govern in case of conflict, which makes getting a
+ * lawyer to check this translation before launch more important, not
+ * less.
+ *
+ * KNOWN GAP: the Privacy source cuts off mid-sentence at "...或可將閣下的
+ * 要求以書面方式寄送至下列地址：" ("...or send your request in writing to
+ * the following address:") — the actual postal address was never
+ * captured. Placeholder left below; fill in before launch.
+ */
+export const LEGAL = {
+  terms: {
+    intro: {
+      en: 'If you intend to use VITAS\u2019s online shopping service, please read these Terms and Conditions carefully before use. By using the online shopping service, you confirm that you accept and agree to be bound by these Terms and Conditions, and that you use it entirely at your own risk.',
+      zh: '若閣下擬使用紓適寧網上購物服務，請在使用前仔細閱讀本條款及條件。閣下使用網上購物服務，即表示閣下已接受和同意受本條款及條件約束，並就其使用，自承風險。',
+    },
+    sections: [
+      {
+        h: { en: '1. General', zh: '1. 一般規定' },
+        p: [
+          {
+            en: '1.1 In these Terms and Conditions, the following terms have the meanings set out below:',
+            zh: '1.1 在本條款及條件內，下列詞語定義如下：',
+          },
+          {
+            en: '\u201cCustomer\u201d means you, and any person who uses your website login to purchase goods through the online shop.',
+            zh: '「顧客」指閣下及所有以閣下的網頁登入網上購物購買貨品的人士。',
+          },
+          {
+            en: '\u201cVITAS\u201d (referred to as \u201cwe\u201d or \u201cus\u201d) means the seller of the goods offered on the VITAS website.',
+            zh: '「紓適寧」(下稱〝我司〞)為紓適寧網頁上出售貨品的賣方。',
+          },
+          {
+            en: '\u201cPersonal Data and Privacy Statement\u201d means VITAS\u2019s policy on handling personal data collected through this website, and VITAS\u2019s policy on handling the personal privacy of customers and visitors to this website.',
+            zh: '「個人資料及私隱聲明」指紓適寧就處理從本網頁收集所得的個人資料所採用的政策，和紓適寧就處理顧客和本網頁訪客的個人私隱所採用的政策。',
+          },
+          { en: '\u201cPrice\u201d means the price of the goods on the day the order is placed.', zh: '「價格」指貨品於訂購當日的價格。' },
+          {
+            en: '\u201cGoods\u201d means any and all goods offered for sale on the VITAS website.',
+            zh: '「貨品」指在紓適寧網頁上提供出售的任何及所有貨品。',
+          },
+          {
+            en: '1.2 All goods sold by us through this website are sold subject to these Terms and Conditions. By placing an order on the VITAS website and asking us to process it, you confirm that you have read, understood and agreed to the Terms and Conditions in effect at the time the order was placed.',
+            zh: '1.2 我司透過本網頁銷售的所有貨品均在本條款及條件的規限下進行銷售。閣下在紓適寧網頁上發出購貨單，要求我們處理，即表示閣下確認閣下已經閱讀、明白並同意發出購貨單時所列示的條款及條件。',
+          },
+          {
+            en: '1.3 These Terms and Conditions incorporate the Personal Data and Privacy Statement. In the event of any inconsistency with any other document purporting to have contractual effect, these Terms and Conditions shall prevail.',
+            zh: '1.3 本條款及條件包括「個人資料及私隱聲明」；如與任何其他據稱具有合約效力的文件有任何不符之處，概以本條款及條件為準。',
+          },
+          {
+            en: '1.4 The Customer agrees to provide complete and up-to-date information in order to complete registration to purchase through this website.',
+            zh: '1.4 顧客同意提供完整和最新的資料，以辦理本網頁購買登記手續。',
+          },
+          {
+            en: '1.5 We have absolute discretion to refuse to register any prospective customer, or to terminate any customer\u2019s registration, for any reason.',
+            zh: '1.5 我司擁有絕對酌情權，可以任何理由拒絕為任何準顧客進行交易登記或以任何理由終止任何顧客的交易登記。',
+          },
+          {
+            en: '1.6 The Customer agrees to pay for any order placed under their website login account, and agrees to indemnify VITAS against all claims, losses and damages brought by any third party arising from any person\u2019s use of that Customer\u2019s login account to order goods.',
+            zh: '1.6 顧客同意支付任何以其網頁登入戶口發出的購貨單，並且同意就由於任何人士使用該顧客的網頁登入戶口訂購貨品而致任何第三方提出的一切索償、損失及損害賠償，向紓適寧作出賠償。',
+          },
+          {
+            en: '1.7 We will make every effort to fulfil each order placed by a Customer through the VITAS website. However, if we refuse or are unable to fulfil an order for any reason (including shortage of stock or changes in supply), we shall not be liable to any person for this.',
+            zh: '1.7 我司須盡一切努力完成顧客透過紓適寧網頁所發出的每份購貨單，但倘若我司於任何理由 (包括貨品短缺或供應情況變化) 拒絕或無法完成任何一份購貨單，我司概毋須就此向任何人士承擔任何責任。',
+          },
+          {
+            en: '1.8 Notwithstanding clause 1.7, we reserve the right to decline to accept any order we consider unreliable.',
+            zh: '1.8 儘管有第1.7條的規定，我司保留權利在認為任何購貨單不可靠時，可拒絕接納該份購貨單。',
+          },
+          {
+            en: '1.9 Logging in to the VITAS website does not require a personal password. The Customer must prevent any unauthorised person from using their website login account to access the VITAS website. However, if a third party uses a Customer\u2019s login account without authorisation, we shall not be liable for any resulting loss or damage.',
+            zh: '1.9 登入紓適寧網頁毋須使用個人密碼。顧客須防止任何未經授權的人士利用其網頁登入戶口登入紓適寧網頁。但倘若任何第三者在未獲授權的情況下使用顧客的網頁登入戶口登入紓適寧網頁，我司概毋須就任何有關的損失或損害賠償承擔任何責任。',
+          },
+        ],
+      },
+      {
+        h: { en: '2. Price', zh: '2. 價格' },
+        p: [
+          {
+            en: 'We will make reasonable efforts to keep the prices and information for goods listed on the VITAS website up to date. However, we reserve the right to change the price of goods and other information without notice.',
+            zh: '我司會盡力確保紓適寧網頁上載列的貨品價格、資料的更新，但我司保留權利可變更貨品的價格及其他資料，毋須作出通知。',
+          },
+        ],
+      },
+      {
+        h: { en: '3. Payment', zh: '3. 付款' },
+        p: [
+          {
+            en: 'Goods ordered on the VITAS website must be paid for through the payment channels provided on the payment page.',
+            zh: '在紓適寧網頁訂購的貨品需通過付款頁上的付款渠道結賬。',
+          },
+        ],
+      },
+      {
+        h: { en: '4. Delivery', zh: '4. 付貨' },
+        p: [
+          {
+            en: '4.1 We will make reasonable efforts to deliver goods by post or courier to the Customer\u2019s registered delivery address within a reasonable time. However, we shall not be liable for any delay in, or failure of, delivery caused by circumstances beyond our control.',
+            zh: '4.1 我司須盡力在合理時間內通過郵寄或快遞方式將貨品寄遞往顧客所登記的收貨地址；但如因我司無法控制的原因導致寄貨服務有任何延誤或未能送達，我司概毋須承擔任何責任。',
+          },
+          {
+            en: '4.2 If we can provide courier information showing that paid goods have been delivered to the Customer\u2019s registered delivery address, the goods shall be deemed delivered to the Customer. If the recipient is not present to receive the goods and re-delivery needs to be arranged, we reserve the right to charge the Customer an additional delivery fee.',
+            zh: '4.2 如我司能提供快遞資料已將已支付貨款的貨品送達顧客所登記的收貨地址，貨品即視作送達顧客。如收貨人士並不在場收貨而又需要安排再次送貨的，我司保留權利可向該顧客收取額外的送貨費用。',
+          },
+        ],
+      },
+      {
+        h: { en: '5. Taxes and Import Procedures', zh: '5. 稅費和進口手續' },
+        p: [
+          {
+            en: 'Import procedures and taxes at the buyer\u2019s specified delivery destination are entirely the buyer\u2019s responsibility and are of no concern to us.',
+            zh: '買家指定送貨目的地之進口手續及稅費概由買家負責，一概與我司無關。',
+          },
+        ],
+      },
+      {
+        h: { en: '6. Title', zh: '6. 所有權' },
+        p: [
+          {
+            en: 'All risk in the goods passes to the Customer upon delivery. However, we retain title to the goods until payment for them has been paid in full.',
+            zh: '貨品的所有風險在貨品送達後轉移給顧客，但我司保留該等貨品的所有權，直至有關貨品的價款結清為止。',
+          },
+        ],
+      },
+      {
+        h: { en: '7. Force Majeure', zh: '7. 不可抗力' },
+        p: [
+          {
+            en: 'If we are prevented from performing our obligations under the VITAS website by an event of \u201cforce majeure\u201d \u2014 including fire, disaster, accident, act of God, natural disaster, any law, order, proclamation, regulation, request or requirement issued by the Government of the Hong Kong Special Administrative Region or any of its authorities, strikes, labour disputes, shortage of workers or skilled labour, shortage or insufficient supply of goods or raw materials, delivery delays, or any other cause beyond our reasonable control, whether or not similar to the foregoing \u2014 we shall be excused from performing our obligations to the extent of that prevention.',
+            zh: '若我司由於「不可抗力」而受到妨礙，不能履行其根據紓適寧網頁規定的責任時(包括因火災、災難事故、意外、天災、自然災害、香港特別行政區政府或其任何政府機構頒布的法律、命令、公告、條例、要求或規定、罷工、勞資爭議、工人短缺或缺乏熟練工人、貨物或原料短缺或供應不足、運送延誤或我司無法合理控制的其他原因不論是否與前述各項類似)而造成的妨礙，我司應獲豁免於履行責任。',
+          },
+        ],
+      },
+      {
+        h: { en: '8. Changes to these Terms and Conditions', zh: '8. 條款及條件的變更' },
+        p: [
+          {
+            en: 'We reserve the right to amend these Terms and Conditions. The Customer should review the Terms and Conditions in effect before placing any order. Once an order is placed, the Customer will be deemed to have accepted the Terms and Conditions in effect at that time.',
+            zh: '我司保留權利修改本條款及條件。顧客須在發出任何購貨單前先查閱當時的條款及條件。購貨單一經發出，顧客即須視作已接受當時有效的條款及條件。',
+          },
+        ],
+      },
+      {
+        h: { en: '9. Governing Language', zh: '9. 準據文字' },
+        p: [
+          {
+            en: 'In the event of any discrepancy between the Chinese and English versions of this document, the English version shall prevail.',
+            zh: '若本文之中、英文本有任何歧異，須以英文本為準。',
+          },
+        ],
+      },
+      {
+        h: { en: '10. Governing Law', zh: '10. 適用法律' },
+        p: [
+          {
+            en: 'These Terms and Conditions are governed by the laws of the Hong Kong Special Administrative Region, and the Customer and we agree to their enforcement under the laws of the Hong Kong Special Administrative Region.',
+            zh: '本條款及條件受香港特別行政區法律的管轄，顧客及我司同意以香港特別行政區法律執行。',
+          },
+        ],
+      },
+    ],
+  },
+
+  privacy: {
+    intro: {
+      en: 'VITAS\u2019s (\u201cwe\u201d or \u201cus\u201d) Personal Data and Privacy Policy is prepared in accordance with the requirements of the Personal Data (Privacy) Ordinance (Cap. 486 of the Laws of Hong Kong).',
+      zh: '紓適寧(下稱〝我司〞)的個人資料及私隱政策乃依照《個人資料(私隱)條例》(香港法例第486章)的規定而編製。',
+    },
+    sections: [
+      {
+        h: { en: 'Purposes of Collecting Personal Data', zh: '收集個人資料的目的' },
+        p: [],
+      },
+      {
+        h: { en: 'A. Personal Data (Privacy) Ordinance', zh: 'A. 個人資料(私隱)條例' },
+        p: [
+          {
+            en: 'A1. The Customer authorises us to collect, retain and use the Customer\u2019s personal data for the following purposes:',
+            zh: 'A1. 顧客授權我司為下列目的收集、保留及使用顧客的個人資料：',
+          },
+          { en: 'a. providing online shopping services to the Customer;', zh: 'a. 向顧客提供網上購物服務；' },
+          { en: 'b. processing the Customer\u2019s transactions and payments;', zh: 'b. 辦理顧客的交易及付款事宜；' },
+          {
+            en: 'c. handling dealings or transactions with the Customer and providing ongoing services to the Customer;',
+            zh: 'c. 辦理與顧客的往來或交易事宜，向顧客提供持續服務；',
+          },
+          {
+            en: 'd. exercising any legal or other rights we may have against the Customer, including credit checks and debt recovery;',
+            zh: 'd. 執行我司對顧客可能享有的任何法律上或其他權利，包括信用調查及追收欠款；',
+          },
+          { en: 'e. sending the Customer any advertising and/or promotional material;', zh: 'e. 向顧客發出任何廣告及／或宣傳材料；' },
+          { en: 'f. conducting research for the purpose of launching new services to Customers;', zh: 'f. 為顧客推出新服務進行研究；' },
+          {
+            en: 'g. tailoring the content of this website to the Customer\u2019s needs and compiling the Customer\u2019s orders;',
+            zh: 'g. 按顧客的需要編製本網頁的內容及整合顧客的購物單；',
+          },
+          {
+            en: 'h. notifying the Customer of special offers or new goods, website updates and promotional activities;',
+            zh: 'h. 就特別優惠或新貨品、本網頁的更新資料及推廣活動通知顧客；',
+          },
+          {
+            en: 'i. carrying out statistical analysis of Customer behaviour and characteristics in order to measure interest in and use of different parts of this website, and providing such analysis \u2014 together with data on the number of users who have been shown or have clicked on an advertiser\u2019s link \u2014 to the relevant advertisers;',
+            zh: 'i. 就顧客的行為和特徵進行統計分析，以便量度對本網頁不同部分的興趣和使用程度，並向有關廣告商提供該等分析資料以及有關曾經獲展示或曾經點選其連線欄目的使用者數目的資料；',
+          },
+          { en: 'j. making such disclosures as we consider necessary for any of the above purposes.', zh: 'j. 作出我司認為為上述任何目的所需的披露。' },
+          {
+            en: 'A2. The Customer further authorises us to collect personal data about the Customer from the Customer or from any other source available to us, including but not limited to credit reference agencies, the Customer\u2019s banks (current and former), suppliers of products and services to the Customer, and other persons or companies connected with the Customer.',
+            zh: 'A2. 顧客進一步授權我司從顧客或我司可獲得的任何其他資料來源收集有關顧客的個人資料，該等資料來源包括但不限於信貸資料機構、顧客的銀行(現時及以前的)、向顧客提供產品及服務的供應商及與客戶有聯繫的其他人士或公司。',
+          },
+          {
+            en: 'A3. The Customer acknowledges that if the personal data provided is insufficient, or not to our satisfaction, their registration for VITAS online shopping may not be accepted.',
+            zh: 'A3. 顧客知道，倘若其提供的個人資料不足夠或未獲我司信納，其在紓適寧網上購物登記可能不獲接納。',
+          },
+          {
+            en: 'A4. The Customer acknowledges that any personal data provided by the Customer will be retained by us and may be accessed by our employees and other persons or bodies engaged by us for the purposes set out in A1, or by third parties referred to in this Personal Data and Privacy Statement. The Customer authorises us to disclose all or any part of the Customer\u2019s personal data to such third parties.',
+            zh: 'A4. 顧客知道，顧客提供的任何個人資料將由我司保留，並可由我司的僱員及我司聘用的其他人士或法團為A.1所述目的而查閱，或由個人資料及私隱聲明所述的第三方查閱，顧客並授權我司向該等第三方披露顧客所提供的全部或任何部分個人資料。',
+          },
+          {
+            en: 'A5. The Customer acknowledges that we may retain all personal data provided by the Customer, and that even after the Customer\u2019s registration has been cancelled or withdrawn, we may continue to contact the Customer with marketing material.',
+            zh: 'A5. 顧客承認我司可保留顧客提供的所有個人資料，即使在顧客的登記已取消或撤回之後，我司仍可繼續以市務推廣資料與顧客聯絡。',
+          },
+        ],
+      },
+      {
+        h: { en: 'B. Confidentiality', zh: 'B. 保密' },
+        p: [
+          {
+            en: 'B1. Personal data held by us regarding our online customers or visitors to this website will be treated as confidential. However, we may provide such data to third parties, including but not limited to our advertisers, affiliated companies, or contractors/agents or other network operators who handle matters on our behalf in connection with the services we provide to our online customers and website visitors.',
+            zh: 'B1. 由我司持有關於其網上顧客或本網頁訪客的個人資料將保密處理，但我司可將此等資料提供予第三方，包括但不限於我司的廣告商、關聯公司或就我司向其網上顧客及本網頁訪客提供的服務而為我司經辦有關事務的承辦商／代理或其他網絡營運商。',
+          },
+          {
+            en: 'B2. Any questions, comments, suggestions or information (other than personal data) submitted or posted by online customers or visitors on this website, or any part of it, are deemed to be voluntarily provided to us on a non-confidential and non-proprietary basis. We reserve the right to freely use, copy, disclose, transmit, publish, broadcast and/or post such information elsewhere, including providing it to any affiliated company for the development, manufacture and promotion of products and services and to meet Customer needs.',
+            zh: 'B2. 任何由網上顧客及訪客傳送或登載於本網頁或其中任何部分的問題(個人資料除外)、意見、建議或資料，均視作以非保密及非專有資料的形式自願提供予我司。我司保留權利在其他地方自由使用、複製、披露、傳送、刊載、廣播及／或登載該等資料，包括為產品及服務的開發、製造和推廣及為滿足顧客的需要等目的而將該等資料提供給任何關聯公司。',
+          },
+        ],
+      },
+      {
+        h: { en: 'C. Security of Personal Data', zh: 'C. 個人資料的安全' },
+        p: [
+          {
+            en: 'We will make all reasonable efforts to ensure that all personal data held by us on this website is stored in a properly safeguarded and secure location. We may use \u201ccookies\u201d on this website in order to: strengthen security measures; allow online customers to continue browsing the website and keep items stored in their shopping basket; tailor web pages to individual customers\u2019 needs for their personal use; and build a profile of online customers or visitors.',
+            zh: '我司將合理地盡一切努力以確保我司於本網頁持有的所有個人資料均儲存於妥善保管和安全的地方。我司可在本網頁使用「曲奇」檔案，以便：使安全措施更為嚴密；使網上顧客可繼續瀏覽網頁並將貨品存記於其購物籃內；按個別顧客的需要為其編製網頁以供其個別使用；建立網上顧客或訪客的簡介。',
+          },
+          {
+            en: 'If you do not wish to allow the use of \u201ccookies\u201d, you may adjust the settings in your internet browser.',
+            zh: '假如閣下不允許「曲奇」檔案的使用，可在閣下的互聯網瀏覽器上作出調整。',
+          },
+        ],
+      },
+      {
+        h: { en: 'D. Linked Websites', zh: 'D. 連線網頁' },
+        p: [
+          {
+            en: 'This website may contain links to other websites and web pages. Whenever you activate such a link \u2014 for example, by clicking on an advertiser\u2019s link \u2014 you leave this website, and any personal data or other information you provide to any other party after leaving this website is entirely outside our control.',
+            zh: '本網頁可能載有通往其他網址及網頁的連線點。每當閣下啟動任何此等連線網址時，例如點選任何廣告商的連線欄目，閣下即已離開了本網頁，而閣下在離開本網頁後向任何其他團體提供的任何個人資料或任何其他資料，一概不在我司的管控範圍內。',
+          },
+        ],
+      },
+      {
+        h: { en: 'E. Right to Access Personal Data', zh: 'E. 查閱個人資料的權利' },
+        p: [
+          {
+            en: 'E1. The Customer acknowledges that, under the Personal Data (Privacy) Ordinance, they have the right to access personal data held by us, to request correction of such data, to be notified of the action taken in response to such a request, and/or to require that such data be accompanied by a statement \u2014 provided by the Customer to us \u2014 that the Customer has requested correction of the data. If we incur time and administrative costs in complying with such a request, the Customer agrees to pay us a reasonable fee for this.',
+            zh: 'E1. 顧客知道其根據《個人資料(私隱)條例》有權查閱我司持有的個人資料，要求更正該等資料並獲通知就上述要求已採取的相應行動，及／或要求在該等資料附有一份由顧客向我司提供的有關顧客已要求更正資料的陳述。我司若因為配合顧客這方面的要求所付出的時間及行政工作而收取合理費用，顧客同意向我司支付該等費用。',
+          },
+          {
+            en: 'E2. If you have any questions about our Personal Data and Privacy Policy, or wish to request access to or correction of your personal data, you may email our Data Protection Officer at info@vitas.com.hk, or send your request in writing to the following address: Unit 411, Lippo Sun Plaza, 28 Canton Road, Tsim Sha Tsui, Kowloon, Hong Kong.',
+            zh: 'E2. 閣下如對我司的個人資料及私隱政策有任何疑問，或如欲要求查閱閣下的個人資料或更正該等資料，可以電郵方式致函個人資料主任 info@vitas.com.hk 或可將閣下的要求以書面方式寄送至下列地址：香港九龍尖沙咀廣東道28號麗新大廈411室。',
+          },
+        ],
       },
     ],
   },

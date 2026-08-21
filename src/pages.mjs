@@ -31,6 +31,7 @@ import {
   ARTICLES,
   FAQS,
   ABOUT,
+  LEGAL,
 } from './data.mjs';
 
 /* --------------------------------------------------------- shared partials */
@@ -324,12 +325,11 @@ function shopCard(p) {
         </article>`;
 }
 
-/** Retail partners — names only, no outbound links. */
+/** Retail partners — logo, name, no outbound links (see stockists() for links). */
 function retailPartners() {
-  const partner = (name, zh, note) => `<div class="partner">
-            <span class="partner__name">${name}</span>
-            <span class="partner__zh">${zh}</span>
-            <span class="partner__note">${t(note)}</span>
+  const partner = (s) => `<div class="partner">
+            ${s.logo ? `<img class="partner__logo" src="${s.logo}" alt="${attr(s.name)}" loading="lazy">` : ''}
+            <span class="partner__note">${t(s.kind)}</span>
           </div>`;
 
   return `    <section class="section partners reveal">
@@ -344,8 +344,7 @@ ${sectionHead({
   align: 'center',
 })}
         <div class="partners__row">
-          ${partner('Watsons', '屈臣氏', { en: '600+ stores', zh: '600 多間分店' })}
-          ${partner('Mannings', '萬寧', { en: 'Stores citywide', zh: '全港分店' })}
+          ${STOCKISTS.map(partner).join('\n          ')}
         </div>
         ${blk(
           'p',
@@ -999,6 +998,81 @@ ${buyStrip()}`;
   };
 }
 
+/**
+ * General education about the lymphatic system. Deliberately contains no
+ * product-efficacy claims — see the "What changed in 2026" chapter on the
+ * Why VITAS page for why that line matters to this brand specifically.
+ */
+export function lymph101() {
+  const body = `${pageHero({
+    eyebrow: { en: 'Lymph 101', zh: '淋巴 101' },
+    title: { en: 'What the lymphatic system actually does', zh: '淋巴系統到底在做甚麼' },
+    lede: {
+      en: 'A plain-language explainer on the lymphatic system — what it is, how it moves, and where the "detox" language you see on other sites overstates things.',
+      zh: '用淺白語言講解淋巴系統——它是甚麼、如何運作，以及坊間「排毒」說法誇大之處。',
+    },
+    trail: [HOME_CRUMB, { name: { en: 'Lymph 101', zh: '淋巴 101' }, path: '/lymph-101/' }],
+  })}
+
+    <section class="section">
+      <div class="wrap prose">
+        ${blk('h2', { en: 'A second circulation system', zh: '第二套循環系統' })}
+        ${blk('p', {
+          en: 'Alongside your blood vessels runs a second network: the lymphatic system. It carries a clear fluid called lymph, which is mostly fluid that has leaked out of blood vessels into surrounding tissue and needs a way back. Lymph also carries white blood cells, which is why the system is closely tied to immune function.',
+          zh: '在血管旁邊，還有另一套網絡——淋巴系統。它輸送一種透明液體，稱為淋巴液，主要是從血管滲出到周邊組織、需要途徑回流的液體。淋巴液亦帶有白血球，這正是淋巴系統與免疫功能密切相關的原因。',
+        })}
+        ${blk('p', {
+          en: 'The key structural difference from blood circulation: the heart pumps blood, but nothing pumps lymph. The lymphatic system relies on one-way valves and the squeeze of nearby skeletal muscle, plus breathing movement, to push fluid slowly toward the neck, where it eventually drains back into the bloodstream.',
+          zh: '與血液循環最大的結構性分別，是心臟會泵送血液，但沒有器官為淋巴液提供泵力。淋巴系統依靠單向瓣膜，配合鄰近骨骼肌的擠壓，以及呼吸時的動作，緩慢地把淋巴液推向頸部，最終流回血液循環。',
+        })}
+
+        ${blk('h2', { en: 'Lymph nodes', zh: '淋巴結' })}
+        ${blk('p', {
+          en: 'Lymph passes through small bean-shaped structures called lymph nodes on its way back to the bloodstream — clustered in the neck, armpits and groin, with smaller groups elsewhere. Nodes filter the fluid and are where immune cells encounter and respond to anything that should not be there, which is why they can feel swollen or tender when your body is fighting an infection.',
+          zh: '淋巴液回流途中，會經過稱為淋巴結的豆狀小結構——主要集中於頸部、腋下及腹股溝，其他部位亦有較小的群組。淋巴結負責過濾淋巴液，也是免疫細胞辨識並應對異常物質的地方；這正是身體對抗感染時，淋巴結有時會腫脹或觸痛的原因。',
+        })}
+
+        ${blk('h2', { en: 'Where "detox" claims overstate things', zh: '「排毒」說法誇大之處' })}
+        ${blk('p', {
+          en: 'You will see the lymphatic system invoked in a lot of wellness marketing — "lymphatic drainage" massages, brushes and wraps promising to flush toxins or reduce bloating. The lymphatic system genuinely does clear metabolic waste and excess fluid as part of its normal, ongoing job. What is overstated is the idea that a specific product or a single massage session dramatically accelerates that process for a healthy person, or "detoxes" the body in the sweeping sense the marketing implies.',
+          zh: '你會在不少保健產品的宣傳中見到「淋巴排毒」的說法——聲稱按摩、刷具或纏裹產品能沖走毒素或消腫。淋巴系統確實會作為日常運作的一部分，清除代謝廢物及多餘體液。但誇大之處在於：對一個健康的人來說，單一產品或一次按摩就能大幅加速這個過程，或如宣傳般全面「排毒」身體。',
+        })}
+        ${blk('p', {
+          en: 'Manual lymphatic drainage is a real, trained physiotherapy technique — but it is used clinically for specific medical conditions, such as lymphedema after lymph node removal, under the guidance of a trained practitioner. That is a different thing from a general wellness massage or a cosmetic product, and it is not something we offer or claim to replicate.',
+          zh: '「徒手淋巴引流」是一項真實存在、需要受訓的物理治療技術——但它是在受訓治療師指導下，用於治療特定醫療狀況（例如淋巴結切除後的淋巴水腫）。這與一般紓緩按摩或化妝品截然不同，本網站亦沒有提供或聲稱能達致這種效果。',
+        })}
+
+        ${blk('h2', { en: 'What generally helps day-to-day lymph flow', zh: '日常有助淋巴流動的一般方法' })}
+        ${blk('p', {
+          en: 'Because the system relies on muscle movement rather than a pump, general, unremarkable habits are what actually support it: moving regularly rather than sitting still for long stretches, staying hydrated, and elevating a limb if it is swollen. None of this is specific medical advice — if you have persistent or unexplained swelling, that is a conversation for a doctor, not a cream.',
+          zh: '由於淋巴系統依靠肌肉活動而非泵力運作，真正有幫助的是一些平凡的日常習慣：避免長時間久坐、多活動身體、保持水分充足，如有肢體腫脹亦可將患處抬高。以上僅為一般資訊，並非特定醫療建議——如出現持續或原因不明的腫脹，應諮詢醫生，而非依賴任何護理產品。',
+        })}
+
+        ${blk(
+          'p',
+          {
+            en: 'A note on why this page exists: this is general anatomy education, written to be accurate and checkable. It is not a claim about what VITAS Soothing Cream Gel does — for that, see our approach page.',
+            zh: '關於本頁的說明：這是一般人體解剖學教育內容，力求準確可查證，並非對 VITAS 舒緩啫喱膏功效的宣稱——有關產品功效，請參閱「我們的取態」頁面。',
+          },
+          'note'
+        )}
+        <p>${arrow('/approach/', { en: 'Read our approach in full', zh: '閱讀完整的取態說明' })}</p>
+      </div>
+    </section>`;
+
+  return {
+    title: { en: 'Lymph 101', zh: '淋巴 101' },
+    description: {
+      en: 'A plain-language explainer on how the lymphatic system works, what lymph nodes do, and where common "lymphatic detox" marketing claims overstate the science.',
+      zh: '淺白講解淋巴系統的運作方式、淋巴結的作用，以及坊間「淋巴排毒」宣傳誇大科學根據之處。',
+    },
+    path: '/lymph-101/',
+    active: '/lymph-101/',
+    body,
+    jsonLd: [breadcrumb([HOME_CRUMB, { name: { en: 'Lymph 101', zh: '淋巴 101' }, path: '/lymph-101/' }])],
+  };
+}
+
 export function approach() {
   const body = `${pageHero({
     eyebrow: { en: 'Our approach', zh: '我們的取態' },
@@ -1086,6 +1160,7 @@ export function stockists() {
             (s) => `<a class="stockist reveal${s.featured ? ' stockist--featured' : ''}" href="${
               s.url
             }" target="_blank" rel="noopener">
+            ${s.logo ? `<img class="stockist__logo" src="${s.logo}" alt="${attr(s.name)}" loading="lazy">` : ''}
             <span class="stockist__name">${s.name}</span>
             <span class="stockist__kind">${t(s.kind)}</span>
             <span class="stockist__note">${t(s.note)}</span>
@@ -1123,8 +1198,8 @@ export function stockists() {
   return {
     title: { en: 'Where to buy', zh: '購買地點' },
     description: {
-      en: 'Buy VITAS Soothing Cream Gel 100ml (HK$250) at Watsons and Mannings across Hong Kong, or online through HKTVmall, Gogo Herbs and HK Medical Store.',
-      zh: '於全港屈臣氏及萬寧選購 VITAS 舒緩啫喱膏 100毫升（HK$250），或經 HKTVmall、Gogo Herbs 及網上藥房購買。',
+      en: 'Buy VITAS Soothing Cream Gel 100ml (HK$250) at Watsons and Mannings across Hong Kong, in store and online.',
+      zh: '於全港屈臣氏及萬寧選購 VITAS 舒緩啫喱膏 100毫升（HK$250），門市及網店均有售。',
     },
     path: '/stockists/',
     active: '/stockists/',
@@ -1554,8 +1629,8 @@ export function checkoutResult(kind) {
               blk(
                 'p',
                 {
-                  en: 'Questions about your order? Email hello@vitas.com.hk and a person will answer.',
-                  zh: '對訂單有疑問？請電郵 hello@vitas.com.hk，會有真人回覆。',
+                  en: 'Questions about your order? Email info@vitas.com.hk and a person will answer.',
+                  zh: '對訂單有疑問？請電郵 info@vitas.com.hk，會有真人回覆。',
                 },
                 'note'
               )
@@ -1584,13 +1659,13 @@ export function checkoutResult(kind) {
 
 export function about() {
   const body = `${pageHero({
-    eyebrow: { en: 'About VITAS', zh: '關於 VITAS' },
+    eyebrow: { en: 'Why VITAS', zh: '為何是 VITAS' },
     title: { en: 'A small brand with one product', zh: '一個只有一支產品的小品牌' },
     lede: {
       en: 'Why VITAS exists, where it is made, and what changed when we stopped saying things we could not prove.',
       zh: 'VITAS 為何存在、在哪裡生產，以及當我們停止說無法證明的話之後，改變了甚麼。',
     },
-    trail: [HOME_CRUMB, { name: { en: 'About VITAS', zh: '關於 VITAS' }, path: '/about/' }],
+    trail: [HOME_CRUMB, { name: { en: 'Why VITAS', zh: '為何是 VITAS' }, path: '/about/' }],
   })}
 
     <section class="section">
@@ -1598,6 +1673,71 @@ export function about() {
         ${ABOUT.chapters
           .map((c) => `${blk('h2', c.h)}\n        ${c.p.map((para) => blk('p', para)).join('\n        ')}`)
           .join('\n        ')}
+      </div>
+    </section>
+
+    <section class="section compare reveal">
+      <div class="wrap">
+        ${blk('h2', { en: 'How it compares', zh: '與同類產品比較' })}
+        ${blk(
+          'p',
+          {
+            en: 'A general look at how VITAS Soothing Cream Gel differs from other common types of muscle-relief product on the shelf. This describes typical characteristics of each category, not any specific competitor brand or product.',
+            zh: '概括說明 VITAS 舒緩啫喱膏與貨架上其他常見肌肉護理產品的分別。以下描述各類別的一般特徵，並非針對任何特定競爭品牌或產品。',
+          },
+          'compare__note'
+        )}
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>${t({ en: '', zh: '' })}</th>
+                <th>${t({ en: 'VITAS Soothing Cream Gel', zh: 'VITAS 舒緩啫喱膏' })}</th>
+                <th>${t({ en: 'Medicated rub (menthol / methyl salicylate)', zh: '藥性按摩膏（薄荷腦／水楊酸甲酯）' })}</th>
+                <th>${t({ en: 'NSAID gel (e.g. diclofenac)', zh: 'NSAID 消炎啫喱（如雙氯芬酸）' })}</th>
+                <th>${t({ en: 'Ice / heat patch', zh: '冷熱敷貼' })}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>${t({ en: 'How it works', zh: '作用方式' })}</td>
+                <td>${t({ en: 'Massage-in cream gel; cooling sensation from plant oils', zh: '按摩用凝膠；植物油帶來清涼感' })}</td>
+                <td>${t({ en: 'Counter-irritant — creates a hot or cold sensation that distracts from soreness', zh: '刺激感覺神經末梢，以熱或冷的感覺轉移痠痛注意力' })}</td>
+                <td>${t({ en: 'Anti-inflammatory drug absorbed through the skin', zh: '透過皮膚吸收的消炎藥物' })}</td>
+                <td>${t({ en: 'Passive temperature applied to the skin surface', zh: '被動地在皮膚表面施加溫度' })}</td>
+              </tr>
+              <tr>
+                <td>${t({ en: 'Scent', zh: '氣味' })}</td>
+                <td>${t({ en: 'Light — eucalyptus and niaouli', zh: '清淡——尤加利與綠花白千層' })}</td>
+                <td>${t({ en: 'Strong, medicinal, lingers on skin and clothing', zh: '味道濃烈帶藥味，會殘留於皮膚及衣物' })}</td>
+                <td>${t({ en: 'Usually mild or unscented', zh: '通常氣味淡或無味' })}</td>
+                <td>${t({ en: 'None', zh: '無' })}</td>
+              </tr>
+              <tr>
+                <td>${t({ en: 'Common cautions', zh: '常見注意事項' })}</td>
+                <td>${t({ en: 'Cosmetic product — check the ingredient list if you have known plant-oil allergies', zh: '屬化妝品——如對植物油成分有已知過敏，請先查看成分表' })}</td>
+                <td>${t({ en: 'Not for broken skin; can irritate sensitive skin', zh: '不適用於破損皮膚；敏感肌膚可能受刺激' })}</td>
+                <td>${t({ en: 'Prescription-strength versions require medical advice; not for long-term unsupervised use', zh: '處方級別產品需遵醫囑；不宜長期自行使用' })}</td>
+                <td>${t({ en: 'Risk of skin burns if left on too long', zh: '敷貼過久有機會造成皮膚灼傷' })}</td>
+              </tr>
+              <tr>
+                <td>${t({ en: 'Usable at a desk / in public', zh: '可於辦公室／公共場合使用' })}</td>
+                <td>${t({ en: 'Yes — low odour, absorbs quickly', zh: '可以——氣味低，吸收快' })}</td>
+                <td>${t({ en: 'Not really — smell is noticeable to others', zh: '不太適合——氣味明顯' })}</td>
+                <td>${t({ en: 'Yes, once absorbed', zh: '吸收後可以' })}</td>
+                <td>${t({ en: 'Awkward — visible patch', zh: '較不方便——敷貼外露' })}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        ${blk(
+          'p',
+          {
+            en: 'This table describes general product categories for comparison only. It is not medical advice — if you are managing an injury or a medical condition, speak to a doctor or physiotherapist about what is appropriate for you.',
+            zh: '此表僅為一般產品類別的比較，並非醫療建議。如你正處理受傷或其他醫療狀況，請諮詢醫生或物理治療師的意見。',
+          },
+          'compare__disclaimer'
+        )}
       </div>
     </section>
 
@@ -1632,20 +1772,20 @@ ${freeFromBand()}
 ${buyStrip()}`;
 
   return {
-    title: { en: 'About VITAS', zh: '關於 VITAS' },
+    title: { en: 'Why VITAS', zh: '為何是 VITAS' },
     description: {
-      en: 'The story behind VITAS 紓適寧: why it was created in Hong Kong, why the cream is made in France, and a note from founder Rosana Li.',
-      zh: 'VITAS 紓適寧的故事：為何在香港創立、為何於法國生產，以及創辦人 Rosana Li 的話。',
+      en: 'The story behind VITAS 紓適寧: why it was created in Hong Kong, why the cream is made in France, a note from founder Rosana Li, and how it compares to other muscle-relief products.',
+      zh: 'VITAS 紓適寧的故事：為何在香港創立、為何於法國生產、創辦人 Rosana Li 的話，以及與其他肌肉護理產品的比較。',
     },
     path: '/about/',
     active: '/about/',
     body,
     jsonLd: [
-      breadcrumb([HOME_CRUMB, { name: { en: 'About VITAS', zh: '關於 VITAS' }, path: '/about/' }]),
+      breadcrumb([HOME_CRUMB, { name: { en: 'Why VITAS', zh: '為何是 VITAS' }, path: '/about/' }]),
       {
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
-        name: t({ en: 'About VITAS', zh: '關於 VITAS' }),
+        name: t({ en: 'Why VITAS', zh: '為何是 VITAS' }),
         inLanguage: getLang() === 'zh' ? 'zh-Hant-HK' : 'en-HK',
         mainEntity: {
           '@type': 'Organization',
@@ -1758,6 +1898,11 @@ export function contact() {
         <aside class="contact__aside">
           ${blk('h2', { en: 'Direct', zh: '直接聯絡' }, 'contact__h')}
           <p><a href="mailto:${SITE.email}">${SITE.email}</a></p>
+          <p><a href="${SITE.phoneHref}">${SITE.phone}</a></p>
+          <p><a href="${SITE.whatsappHref}" target="_blank" rel="noopener">${t({
+    en: 'WhatsApp — ',
+    zh: 'WhatsApp — ',
+  })}${SITE.whatsapp}</a></p>
           ${blk('h2', { en: 'Watch', zh: '影片' }, 'contact__h')}
           <p><a href="${SITE.youtube}" target="_blank" rel="noopener">YouTube — @VITASHK</a></p>
           <p><a href="${SITE.facebook}" target="_blank" rel="noopener">Facebook — VITAS 紓適寧</a></p>
@@ -1787,6 +1932,7 @@ export function legal(kind) {
   const isPrivacy = kind === 'privacy';
   const path = isPrivacy ? '/legal/privacy/' : '/legal/terms/';
   const title = isPrivacy ? { en: 'Privacy', zh: '私隱政策' } : { en: 'Terms of use', zh: '使用條款' };
+  const doc = isPrivacy ? LEGAL.privacy : LEGAL.terms;
 
   const body = `${pageHero({
     eyebrow: { en: 'Legal', zh: '條款' },
@@ -1794,26 +1940,22 @@ export function legal(kind) {
     trail: [HOME_CRUMB, { name: title, path }],
   })}
     <section class="section">
-      <div class="wrap prose">
-        ${
-          isPrivacy
-            ? blk('p', {
-                en: 'This site collects no analytics cookies and runs no third-party trackers. If you submit the contact or newsletter form, the details you type are sent to us and used only to reply to you or to send the newsletter you asked for. Ask us to delete them at any time and we will.',
-                zh: '本網站不使用分析 cookie，亦沒有第三方追蹤程式。如你提交聯絡或訂閱表格，所填資料只會用於回覆你，或發送你要求的通訊。你可隨時要求我們刪除相關資料。',
-              }) +
-              blk('p', {
-                en: 'PLACEHOLDER: before launch, replace this page with a Personal Data (Privacy) Ordinance compliant notice reviewed by your legal adviser, covering data classes collected, purpose, transfer, retention and the data access / correction request channel.',
-                zh: '（待補：發布前，請由法律顧問審閱並替換為符合《個人資料（私隱）條例》的完整聲明，涵蓋收集的資料類別、用途、轉移、保留期及查閱／更正途徑。）',
-              })
-            : blk('p', {
-                en: 'The information on this site describes a cosmetic massage product. It is general information, not medical advice, and it does not replace an assessment by a doctor or physiotherapist. Product availability, packaging and pricing at third-party retailers are set by those retailers and may differ from what is described here.',
-                zh: '本網站資料描述的是一款按摩護理產品，屬一般資訊，並非醫療建議，亦不能取代醫生或物理治療師的評估。第三方零售商的供應情況、包裝及售價由該零售商決定，可能與本網站所述不同。',
-              }) +
-              blk('p', {
-                en: 'PLACEHOLDER: before launch, replace with full terms reviewed by your legal adviser, covering intellectual property, limitation of liability, governing law (Hong Kong SAR) and how disputes are handled.',
-                zh: '（待補：發布前，請由法律顧問審閱並替換為完整條款，涵蓋知識產權、責任限制、適用法律（香港特別行政區）及爭議處理方式。）',
-              })
-        }
+      <div class="wrap prose legal-doc">
+        ${blk('p', doc.intro, 'legal-doc__intro')}
+        ${doc.sections
+          .map(
+            (s) =>
+              `${blk('h2', s.h)}\n        ${s.p.map((para) => blk('p', para)).join('\n        ')}`
+          )
+          .join('\n        ')}
+        ${blk(
+          'p',
+          {
+            en: 'This page is a translation of the VITAS 紓適寧 Terms and Privacy documents for this website. It has not yet been reviewed by a lawyer — do that before launch, particularly given clause 9 of the Terms (English governs in case of conflict).',
+            zh: '本頁為 VITAS 紓適寧使用條款及私隱政策的翻譯版本，尚未經法律顧問審閱——發布前請務必審閱，特別是條款第 9 條（如中英文本有歧異，以英文本為準）。',
+          },
+          'legal-doc__caution'
+        )}
       </div>
     </section>`;
 
