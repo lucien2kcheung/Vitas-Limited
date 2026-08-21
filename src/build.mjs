@@ -4,17 +4,20 @@
  *
  *   node src/build.mjs
  *
- * Writes plain HTML into this folder — one file per page, per language:
+ * Writes plain HTML into dist/ — one file per page, per language:
  *
- *   /index.html              /zh/index.html
- *   /product/index.html      /zh/product/index.html
- *   /ingredients/eucalyptus/index.html …
+ *   dist/index.html              dist/zh/index.html
+ *   dist/product/index.html      dist/zh/product/index.html
+ *   dist/ingredients/eucalyptus/index.html …
+ *
+ * Also copies the static assets/ folder into dist/assets/.
  *
  * Every page is its own URL. There is no framework and no runtime dependency:
- * commit the output and Vercel serves it as-is.
+ * dist/ is not committed — Vercel runs this script on every deploy and
+ * serves dist/ as the output directory (see vercel.json → outputDirectory).
  */
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { cp, mkdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -22,8 +25,13 @@ import { page, setLang, urlIn, SITE } from './layout.mjs';
 import { ARTICLES, PLANTS, SPORTS } from './data.mjs';
 import * as pages from './pages.mjs';
 
-const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
+const root = join(projectRoot, 'dist');
 const LANGS = ['en', 'zh'];
+
+// Start clean so removed/renamed pages don't linger from a previous build.
+await rm(root, { recursive: true, force: true });
+await mkdir(root, { recursive: true });
 
 /** Build the page list for whichever language is currently set. */
 const buildSpecs = () => [
@@ -70,6 +78,10 @@ for (const lang of LANGS) {
   }
 }
 
+/* ------------------------------------------------------------ static assets */
+
+await cp(join(projectRoot, 'assets'), join(root, 'assets'), { recursive: true });
+
 /* -------------------------------------------------------------- sitemap.xml */
 
 const today = new Date().toISOString().slice(0, 10);
@@ -99,4 +111,5 @@ ${urls}
 
 console.log(`Built ${written.length} pages (${canonicalPaths.length} × ${LANGS.length} languages + 404):`);
 for (const p of written) console.log('  ' + p);
+console.log('Copied assets/ → dist/assets/');
 console.log('Wrote sitemap.xml');
