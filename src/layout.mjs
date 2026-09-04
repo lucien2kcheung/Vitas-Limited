@@ -24,6 +24,8 @@ export const SITE = {
   youtube: 'https://www.youtube.com/@VITASHK',
   facebook: 'https://www.facebook.com/vitashk/',
   instagram: 'https://www.instagram.com/vitashk/',
+  // PLACEHOLDER — replace with the real Xiaohongshu (小紅書) profile URL.
+  xiaohongshu: '#',
   email: 'hello@vitas.com.hk',
   address: {
     en: 'Hong Kong',
@@ -150,8 +152,8 @@ function footer() {
         </span>
         <p class="footer__slogan">${t(BRAND.slogan)[0]}<br>${t(BRAND.slogan)[1]}</p>
         ${blk('p', {
-          en: 'The clean performance gel — grape seed, niaouli and eucalyptus, formulated in France. Zero toxins, trusted in Hong Kong since 2003.',
-          zh: '純淨表現凝膠——葡萄籽、綠花白千層與尤加利，法國研製。零毒素，2003 年起獲香港信賴。',
+          en: 'The clean performance cream gel — grape seed, niaouli and eucalyptus, made in France for your pre- and post-training ritual. Trusted in Hong Kong for over 20 years.',
+          zh: '乾淨表現霜凝膠——葡萄籽、綠花白千層與尤加利，法國製造，融入你的運動前後流程。逾 20 年獲香港信賴。',
         })}
         <div class="footer__social">
           <a class="social-icon" href="${SITE.facebook}" target="_blank" rel="noopener" aria-label="Facebook">
@@ -159,6 +161,9 @@ function footer() {
           </a>
           <a class="social-icon" href="${SITE.instagram}" target="_blank" rel="noopener" aria-label="Instagram">
             <img src="/assets/img/social/instagram.svg" alt="" width="30" height="30" loading="lazy">
+          </a>
+          <a class="social-icon" href="${SITE.xiaohongshu}" target="_blank" rel="noopener" aria-label="Xiaohongshu">
+            <img src="/assets/img/social/xiaohongshu.svg" alt="" width="30" height="30" loading="lazy">
           </a>
           <a class="social-icon" href="${SITE.youtube}" target="_blank" rel="noopener" aria-label="YouTube">
             <img src="/assets/img/social/youtube.svg" alt="" width="30" height="30" loading="lazy">
@@ -189,6 +194,7 @@ function footer() {
       </div>
     </div>
     <div class="footer__bottom">
+      ${blk('p', BRAND.safety, 'footer__safety')}
       ${blk('p', BRAND.disclaimer, 'footer__disclaimer')}
       <p class="footer__copy">© ${new Date().getFullYear()} VITAS 紓適寧. ${t({
         en: 'All rights reserved.',

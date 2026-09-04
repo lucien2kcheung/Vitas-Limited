@@ -23,6 +23,7 @@ import {
   BRAND,
   SPORTS,
   PURITY,
+  STANDARD,
   PRODUCT,
   PRODUCTS,
   SHOP,
@@ -269,8 +270,8 @@ ${sectionHead({
   eyebrow: { en: 'Ingredient purity', zh: '成分純淨' },
   heading: { en: "What's inside matters.", zh: '成分，才是重點。' },
   lede: {
-    en: 'Grape seed. Niaouli. Eucalyptus. Three plant-based actives, formulated in France over 22 years — and a list of things we left out.',
-    zh: '葡萄籽、綠花白千層、尤加利：三種植物成分，法國 22 年研製——以及一張我們選擇不加入的清單。',
+    en: 'Grape seed. Niaouli. Eucalyptus. Three plant-based actives, formulated in France — and a list of things we left out.',
+    zh: '葡萄籽、綠花白千層、尤加利：三種植物成分，法國研製——以及一張我們選擇不加入的清單。',
   },
 })}
         <div class="purity__grid">
@@ -290,6 +291,30 @@ ${sectionHead({
         <ul class="marks">
           ${PURITY.marks.map((m) => `<li class="mark">${t(m)}</li>`).join('\n          ')}
         </ul>
+      </div>
+    </section>`;
+}
+
+/** The VITAS Standard — spec table from the repositioning doc's "Why VITAS". */
+function vitasStandard() {
+  return `    <section class="section standard reveal" id="why-vitas">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'Why VITAS', zh: '為何選擇 VITAS' },
+  heading: { en: 'Clean performance. No unnecessary noise.', zh: '乾淨配方．簡單直接。' },
+  lede: {
+    en: 'A pre + post workout cream gel with three plant-based actives, a fast-absorbing non-greasy texture, and a clean formulation built around the modern training ritual.',
+    zh: 'VITAS 的定位很簡單：一款運動前後使用的霜凝膠，蘊含三種植物活性成分，質地快速吸收、不黏膩，以乾淨配方融入現代訓練流程。',
+  },
+})}
+        <dl class="standard__table">
+          ${STANDARD.map(
+            (row) => `<div class="standard__row">
+            <dt class="standard__feature">${t(row.feature)}</dt>
+            <dd class="standard__value">${t(row.value)}</dd>
+          </div>`
+          ).join('\n          ')}
+        </dl>
       </div>
     </section>`;
 }
@@ -368,7 +393,7 @@ export function home() {
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="wrap hero__inner">
         <div class="hero__copy">
-          ${blk('p', { en: 'Since 2003 · Made in France', zh: '2003 年起 · 法國製造' }, 'eyebrow')}
+          ${blk('p', { en: 'Pre + Post Workout', zh: '運動前後' }, 'eyebrow')}
 ${sloganBlock('hero__slogan')}
           ${blk('p', BRAND.heroLede, 'hero__lede')}
           ${triptych()}
@@ -456,6 +481,8 @@ ${sectionHead({
     </section>
 
 ${puritySection()}
+
+${vitasStandard()}
 
 ${freeFromBand()}
 
@@ -818,6 +845,42 @@ export function howToUse() {
     },
     trail: [HOME_CRUMB, { name: { en: 'How to Use', zh: '使用方法' }, path: '/how-to-use/' }],
   })}
+
+    <section class="section ppr reveal">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'Prime · Perform · Recover', zh: '喚醒 · 投入 · 收操' },
+  heading: { en: 'Prime. Perform. Recover.', zh: '喚醒．投入．收操。' },
+  align: 'center',
+})}
+        <ol class="ppr__steps">
+          <li class="ppr__step">
+            <span class="ppr__num">01</span>
+            ${blk('h3', { en: 'Prime — before training', zh: '喚醒 — 運動前' }, 'ppr__title')}
+            ${blk('p', {
+              en: 'Apply a thin layer to thighs, calves, shoulders or other target areas. Massage in circular motions as part of your warm-up and experience the warming sensation.',
+              zh: '取適量薄薄塗抹於大腿、小腿、肩膊或其他目標部位。以打圈方式按摩，融入熱身流程並感受溫熱體感。',
+            }, 'ppr__text')}
+          </li>
+          <li class="ppr__step">
+            <span class="ppr__num">02</span>
+            ${blk('h3', { en: 'Perform — move', zh: '投入 — 運動中' }, 'ppr__title')}
+            ${blk('p', {
+              en: 'Move. Train. Run. Lift. Play.',
+              zh: '投入運動。跑步、訓練、舉重、比賽，專注於當下。',
+            }, 'ppr__text')}
+          </li>
+          <li class="ppr__step">
+            <span class="ppr__num">03</span>
+            ${blk('h3', { en: 'Recover — after training', zh: '收操 — 運動後' }, 'ppr__title')}
+            ${blk('p', {
+              en: 'Reapply and massage into tired areas after training. Enjoy the cooling sensation as part of your post-workout wind-down.',
+              zh: '運動後再次塗抹於疲累部位並按摩，享受清涼體感，完成運動後收操。',
+            }, 'ppr__text')}
+          </li>
+        </ol>
+      </div>
+    </section>
 
     <section class="section routines">
       <div class="wrap">

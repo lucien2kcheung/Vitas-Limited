@@ -22,29 +22,42 @@
  */
 export const BRAND = {
   slogan: {
-    en: ['Activate Circulation.', 'Accelerate Recovery.'],
-    zh: ['激活循環，', '加速重生。'],
+    en: ['Warm up.', 'Wind down.'],
+    zh: ['熱身備戰．', '放鬆收操。'],
   },
   triptych: [
-    { en: 'Prime', zh: '啟動' },
-    { en: 'Perform', zh: '發揮' },
-    { en: 'Recover', zh: '恢復' },
+    { en: 'Prime', zh: '喚醒' },
+    { en: 'Perform', zh: '投入' },
+    { en: 'Recover', zh: '收操' },
   ],
   heroLede: {
-    en: 'The clean performance gel for athletes who care about what goes on their body. Warm up. Cool down. One French-made formula. Zero toxins.',
-    zh: '為在意「塗在身上的是甚麼」的運動員而設的純淨表現凝膠。賽前熱身，賽後放鬆。一支法國配方，零毒素。',
+    en: 'A fast-absorbing, non-greasy cream gel with three plant-based actives, made in France for your pre- and post-training ritual.',
+    zh: '蘊含三種植物活性成分的快速吸收、不黏膩霜凝膠。法國製造，融入你的運動前後按摩流程。',
   },
   proof: {
-    en: 'French-made · Zero toxins · Trusted since 2003',
-    zh: '法國製造 · 純淨配方 · 2003 年起信賴',
+    en: 'Grape seed · Niaouli · Eucalyptus · Made in France · EEC GMP standard',
+    zh: '葡萄籽 · 綠花白千層 · 尤加利 · 法國製造 · 按 EEC GMP 標準生產',
+  },
+  // Vague, per brand decision: no hard dates. Confirm a defensible incorporation
+  // or first-formulation date before this graduates back into a number.
+  trust: {
+    en: 'Trusted for over 20 years',
+    zh: '逾 20 年信賴',
   },
   sensory: {
     en: 'VITAS provides a warming sensation when massaged into muscles before training, and a cooling sensation afterwards. These sensory experiences are part of your active warm-up and wind-down routine.',
     zh: 'VITAS 於按摩時帶來溫熱觸感（賽前）與清涼觸感（賽後），融入你的熱身與放鬆步驟。',
   },
+  // Mandatory safety caution (compliance guide §10). Kept at "under 6" to match
+  // the fuller cautions on /how-to-use/ — stricter than the guide's "under 3",
+  // which is allowed.
+  safety: {
+    en: 'For external use only. Avoid contact with eyes. Discontinue use if irritation occurs. Not suitable for children under 6, pregnant or breastfeeding women.',
+    zh: '僅供外用。避免接觸眼睛。如出現刺激或不適，請停止使用。不適合 6 歲以下兒童、孕婦或哺乳期婦女使用。',
+  },
   disclaimer: {
-    en: 'Disclaimer: VITAS is a cosmetic product for external massage use. Statements regarding circulation and recovery refer to the sensory experience during and after massage routines, not medical outcomes. This product is not a medicine and makes no medical claims. If you experience persistent pain, consult a healthcare professional.',
-    zh: '免責聲明：VITAS 為外用按摩用途化妝品。「循環」及「恢復」等陳述僅指按摩期間及之後的感受，並非醫療效果。本產品非藥物，不作醫療聲稱。如持續不適，請諮詢醫生。',
+    en: 'Disclaimer: VITAS is a cosmetic product for massage and external use. References to "warm-up", "wind-down", "prime", "perform", "recover", and warming/cooling describe the intended training ritual and sensory experience during massage. They do not represent medical, therapeutic or performance-enhancement claims. This product is not intended to diagnose, treat, cure or prevent any disease.',
+    zh: '免責聲明：本產品為供按摩及外用的化妝品。「熱身」、「收操」、「Prime」、「Perform」、「Recover」以及溫熱／清涼等字眼，只用作描述運動流程及按摩時的感官體驗，並不代表任何醫療、治療或提升運動表現的聲稱。本產品並非用作診斷、治療、治癒或預防任何疾病。',
   },
 };
 
@@ -214,7 +227,8 @@ export const PRODUCT = {
     { en: 'No camphor', zh: '不含樟腦' },
     { en: 'No hormones', zh: '不含激素' },
     { en: 'No steroids', zh: '不含類固醇' },
-    { en: 'No medicinal smell', zh: '沒有藥油氣味' },
+    { en: 'No parabens', zh: '不含對羥基苯甲酸酯' },
+    { en: 'No synthetic dyes', zh: '不含合成色素' },
   ],
 };
 
@@ -283,9 +297,44 @@ export const PURITY = {
   marks: [
     { en: 'Clean', zh: '純淨' },
     { en: 'Transparent', zh: '透明' },
-    { en: 'Trusted since 2003', zh: '2003 年起信賴' },
+    { en: 'Trusted for over 20 years', zh: '逾 20 年信賴' },
   ],
 };
+
+/**
+ * The VITAS Standard — the spec table from the repositioning document's
+ * "Why VITAS" section. Every row is a verifiable fact or a sensory/ritual
+ * statement; no outcome or mechanism claims. Compliance guide §10 wording.
+ */
+export const STANDARD = [
+  {
+    feature: { en: 'Purpose', zh: '用途' },
+    value: { en: 'Pre + post workout massage ritual', zh: '運動前後按摩流程' },
+  },
+  {
+    feature: { en: 'Texture', zh: '質地' },
+    value: { en: 'Fast-absorbing, non-greasy', zh: '快速吸收、不黏膩' },
+  },
+  {
+    feature: { en: 'Plant-based actives', zh: '植物活性成分' },
+    value: { en: 'Grape Seed · Niaouli · Eucalyptus', zh: '葡萄籽 · 綠花白千層 · 尤加利' },
+  },
+  {
+    feature: { en: 'Formulated without', zh: '配方不含' },
+    value: {
+      en: 'Methyl salicylate · Camphor · Hormones · Steroids · Parabens · Synthetic dyes',
+      zh: '水楊酸甲酯 · 樟腦 · 激素 · 類固醇 · 對羥基苯甲酸酯 · 合成色素',
+    },
+  },
+  {
+    feature: { en: 'Origin', zh: '產地' },
+    value: { en: 'Made in France', zh: '法國製造' },
+  },
+  {
+    feature: { en: 'Production', zh: '生產標準' },
+    value: { en: 'Produced with EEC GMP standard', zh: '按 EEC GMP 標準生產' },
+  },
+];
 
 export const SHOP = {
   freeShippingOver: 30000,
@@ -582,6 +631,13 @@ export const ARTICLES = [
 ];
 
 export const FAQS = [
+  {
+    q: { en: 'Is VITAS a medicine?', zh: 'VITAS 是藥物嗎？' },
+    a: {
+      en: 'No. VITAS is a cosmetic product for massage and external use. It is not intended to diagnose, treat, cure or prevent any disease.',
+      zh: '不是。VITAS 是供按摩及外用的化妝品，並非用作診斷、治療、治癒或預防任何疾病。',
+    },
+  },
   {
     q: { en: 'What is the story behind VITAS?', zh: 'VITAS 紓適寧的歷史？' },
     a: {

@@ -370,16 +370,6 @@ ${runner(770, 330, 1.25, tone === 'cool' ? C.green : C.deep)}
   await write(`${name}.svg`, svg(1200, 800, art, ` aria-label="${label}"`));
 }
 
-/* --------------------------------------------------- zero-toxins badge */
-
-{
-  const art = `  <circle cx="100" cy="100" r="96" fill="${C.green}"/>
-  <circle cx="100" cy="100" r="82" fill="none" stroke="#FFFFFF" stroke-opacity="0.5" stroke-width="2"/>
-  <path d="M62,100 l24,26 l52,-56" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="100" y="150" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="17" letter-spacing="2.4" fill="#FFFFFF">ZERO TOXINS</text>`;
-  await write('badge-zero-toxins.svg', svg(200, 200, art, ' aria-label="Zero toxins"'));
-}
-
 /* ----------------------------------------------------- favicon & cover */
 
 await write(
@@ -403,9 +393,9 @@ await write(
   <text x="104" y="186" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="500" fill="#FFFFFF">V</text>
   <text x="152" y="196" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="300" letter-spacing="20" fill="${C.brand}">VITAS</text>
   <text x="80" y="270" font-family="'Noto Sans HK', sans-serif" font-size="36" letter-spacing="10" fill="${C.brand}">紓適寧</text>
-  <text x="80" y="352" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="${C.ink}">Activate Circulation.</text>
-  <text x="80" y="398" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="${C.ink}">Accelerate Recovery.</text>
-  <text x="80" y="452" font-family="Helvetica, Arial, sans-serif" font-size="21" letter-spacing="1.6" fill="${C.deep}">French-made · Zero toxins · Trusted since 2003</text>
+  <text x="80" y="352" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="${C.ink}">Warm up.</text>
+  <text x="80" y="398" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="${C.ink}">Wind down.</text>
+  <text x="80" y="452" font-family="Helvetica, Arial, sans-serif" font-size="21" letter-spacing="1.6" fill="${C.deep}">Grape seed · Niaouli · Eucalyptus · Made in France</text>
 ${leaf(880, 180, 220, 70, 24, C.tint, 0.95)}
 ${leaf(860, 240, 190, 60, 160, C.mid, 0.9)}`
   )
