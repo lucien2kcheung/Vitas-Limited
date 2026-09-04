@@ -504,6 +504,7 @@ img { max-width: 100%; height: auto; display: block; }
   width: min(var(--wrap), 100%); margin-inline: auto; padding: 2.5rem var(--gutter) 0;
   margin-top: 3rem; border-top: 1px solid var(--line);
 }
+.footer__safety { font-size: 0.82rem; color: var(--ink); max-width: 78ch; font-weight: 500; }
 .footer__disclaimer { font-size: 0.82rem; color: var(--muted); max-width: 78ch; }
 .footer__copy { font-size: 0.8rem; color: var(--muted); margin: 0; }
 
@@ -921,4 +922,40 @@ body.welcome-open { overflow: hidden; }
 @media print {
   .site-header, .nav, .signup, .site-footer, .welcome { display: none; }
   body { background: #fff; }
+}
+
+/* ---------------------------------------------------- The VITAS Standard */
+.standard__table {
+  margin: 2.5rem 0 0; border-top: 1px solid var(--line);
+}
+.standard__row {
+  display: grid; grid-template-columns: minmax(9rem, 15rem) 1fr; gap: 1rem 2rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--line); margin: 0;
+}
+.standard__feature {
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--brand-deep); margin: 0; align-self: center;
+}
+.standard__value { margin: 0; color: var(--ink); font-size: 1rem; align-self: center; }
+@media (max-width: 620px) {
+  .standard__row { grid-template-columns: 1fr; gap: 0.25rem; }
+}
+
+/* ---------------------------------------------------- Prime/Perform/Recover */
+.ppr__steps {
+  list-style: none; margin: 2.5rem 0 0; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.ppr__step {
+  background: var(--paper-warm); border: 1px solid var(--line);
+  border-radius: 14px; padding: 1.75rem 1.5rem;
+}
+.ppr__num {
+  font-family: var(--font-mono); font-size: 0.85rem; color: var(--brand);
+  display: block; margin-bottom: 0.75rem;
+}
+.ppr__title { font-size: 1.1rem; margin: 0 0 0.5rem; }
+.ppr__text { color: var(--muted); font-size: 0.96rem; margin: 0; }
+@media (max-width: 760px) {
+  .ppr__steps { grid-template-columns: 1fr; }
 }
