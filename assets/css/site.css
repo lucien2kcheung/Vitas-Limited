@@ -959,3 +959,20 @@ body.welcome-open { overflow: hidden; }
 @media (max-width: 760px) {
   .ppr__steps { grid-template-columns: 1fr; }
 }
+
+/* ------------------------------------------------- product photography */
+/* Photographs replaced the illustrated tube: keep them from rendering at
+   their intrinsic pixel width inside the art wells. */
+.buy__art img,
+.product-main__art img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 420px;
+}
+.buy__art img { filter: drop-shadow(0 26px 40px rgba(43, 26, 18, 0.14)); }
+.shop-card__art img { height: auto; }
+@media (max-width: 760px) {
+  .buy__art img,
+  .product-main__art img { max-height: 320px; }
+}
