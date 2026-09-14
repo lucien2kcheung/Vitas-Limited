@@ -33,8 +33,30 @@ import {
   FAQS,
   ABOUT,
   WHY_VITAS,
-  LYMPH_101,
 } from './data.mjs';
+
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const ASSET_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+/**
+ * Sport cards prefer a photograph but ship with an illustration. The photo
+ * paths are declared in data.mjs before the files exist, so resolve them at
+ * build time: if the file is not on disk, fall back to the SVG rather than
+ * deploying a broken image.
+ */
+function sportArt(sport) {
+  if (sport.photo && existsSync(join(ASSET_ROOT, sport.photo.replace(/^\//, '')))) {
+    const setParts = (sport.photoSet || '')
+      .split(',')
+      .map((part) => part.trim())
+      .filter((part) => existsSync(join(ASSET_ROOT, part.split(/\s+/)[0].replace(/^\//, ''))));
+    return { src: sport.photo, srcset: setParts.join(', '), w: 1600, h: 1067 };
+  }
+  return { src: sport.art, srcset: '', w: 1200, h: 800 };
+}
 
 /* --------------------------------------------------------- shared partials */
 
@@ -49,7 +71,10 @@ const productJsonLd = () => ({
     en: 'A low-odour, non-greasy plant-oil cream gel with eucalyptus, grape seed and niaouli. For warming up before training and massaging tired muscles afterwards. Made in France.',
     zh: '含尤加利、葡萄籽與綠花白千層的低氣味、不油膩植物油啫喱膏。適合訓練前熱身及訓練後按摩疲勞肌肉。法國製造。',
   }),
-  image: [SITE.url + '/assets/img/product-tube.svg'],
+  image: [
+    SITE.url + '/assets/img/product/tube-front-1240.webp',
+    SITE.url + '/assets/img/product/tube-angle-1240.webp',
+  ],
   countryOfOrigin: 'FR',
   offers: {
     '@type': 'Offer',
@@ -143,12 +168,14 @@ function buyStrip() {
   return `    <section class="buy reveal" id="buy">
       <div class="wrap buy__inner">
         <div class="buy__art">
-          <img src="/assets/img/product-tube.svg" alt="${attr(
+          <img src="/assets/img/product/tube-front-620.webp"
+               srcset="/assets/img/product/tube-front-620.webp 620w, /assets/img/product/tube-front-1240.webp 1240w"
+               sizes="(max-width: 900px) 55vw, 30vw" alt="${attr(
             t({
               en: 'VITAS Soothing Cream Gel 100ml tube',
               zh: 'VITAS 舒緩啫喱膏 100毫升',
             })
-          )}" width="520" height="700" loading="lazy" decoding="async">
+          )}" width="620" height="1500" loading="lazy" decoding="async">
         </div>
         <div class="buy__body">
           ${blk('p', { en: 'One product, one job', zh: '一支產品，一個用途' }, 'eyebrow')}
@@ -253,7 +280,7 @@ function triptych() {
 function sportCard(sport) {
   return `<article class="sport-card">
             <a class="sport-card__link" href="${url('/for/' + sport.id + '/')}">
-              <span class="sport-card__art"><img src="${sport.art}" alt="" width="1200" height="800" loading="lazy" decoding="async"></span>
+              <span class="sport-card__art"><img src="${sportArt(sport).src}"${sportArt(sport).srcset ? ` srcset="${sportArt(sport).srcset}" sizes="(max-width: 900px) 92vw, 30vw"` : ''} alt="" width="${sportArt(sport).w}" height="${sportArt(sport).h}" loading="lazy" decoding="async"></span>
               <span class="sport-card__who">${t(sport.who)}</span>
               ${blk('span', sport.name, 'sport-card__name')}
               ${blk('span', sport.hook, 'sport-card__hook')}
@@ -328,7 +355,7 @@ function sensoryNote(className = 'sensory-note') {
 function shopCard(p) {
   return `<article class="shop-card reveal" data-product="${p.id}">
           <div class="shop-card__art">
-            <img src="${p.art}" alt="${attr(t(p.name))}" width="520" height="700" loading="lazy" decoding="async">
+            <img src="${p.art}" alt="${attr(t(p.name))}" width="${p.artW || 620}" height="${p.artH || 1500}" loading="lazy" decoding="async">
             ${p.badge ? `<span class="shop-card__badge">${t(p.badge)}</span>` : ''}
           </div>
           <div class="shop-card__body">
@@ -404,12 +431,14 @@ ${sloganBlock('hero__slogan')}
           <p class="hero__meta">${t(BRAND.proof)}</p>
         </div>
         <div class="hero__art">
-          <img src="/assets/img/product-tube.svg" alt="${attr(
+          <img src="/assets/img/product/tube-angle-620.webp"
+               srcset="/assets/img/product/tube-angle-620.webp 620w, /assets/img/product/tube-angle-1240.webp 1240w"
+               sizes="(max-width: 900px) 62vw, 34vw" alt="${attr(
             t({
               en: 'VITAS Soothing Cream Gel, 100ml tube',
               zh: 'VITAS 舒緩啫喱膏 100毫升',
             })
-          )}" width="520" height="700" fetchpriority="high" decoding="async">
+          )}" width="620" height="1632" fetchpriority="high" decoding="async">
         </div>
       </div>
       <div class="wrap">
@@ -545,8 +574,8 @@ export function product() {
     eyebrow: { en: 'What is VITAS', zh: '甚麼是 VITAS' },
     title: { en: 'One tube, three plants, two moments', zh: '一支軟管，三種植物，兩個時刻' },
     lede: {
-      en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it is, why it exists, and the lymph question answered honestly.',
-      zh: '一支純淨、法國製造的啫喱膏，運動前熱身、運動後放鬆。100毫升，HK$250。以下說明它是甚麼、為何存在，以及對「淋巴」問題的誠實解答。',
+      en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it is, why it exists, and what it does and does not do.',
+      zh: '一支純淨、法國製造的啫喱膏，運動前熱身、運動後放鬆。100毫升，HK$250。以下說明它是甚麼、為何存在，以及它能做與不能做的事。',
     },
     trail: [HOME_CRUMB, { name: { en: 'What is VITAS', zh: '甚麼是 VITAS' }, path: '/product/' }],
   })}
@@ -554,9 +583,11 @@ export function product() {
     <section class="section product-main">
       <div class="wrap product-main__inner">
         <div class="product-main__art">
-          <img src="/assets/img/product-tube.svg" alt="${attr(
+          <img src="/assets/img/product/tube-angle-620.webp"
+               srcset="/assets/img/product/tube-angle-620.webp 620w, /assets/img/product/tube-angle-1240.webp 1240w"
+               sizes="(max-width: 900px) 70vw, 38vw" alt="${attr(
             t({ en: 'VITAS Soothing Cream Gel 100ml', zh: 'VITAS 舒緩啫喱膏 100毫升' })
-          )}" width="520" height="700" decoding="async">
+          )}" width="620" height="1632" loading="lazy" decoding="async">
         </div>
         <div class="product-main__body">
           <dl class="spec">
@@ -664,32 +695,6 @@ ${sectionHead({
       </div>
     </section>
 
-    <section class="section lymph reveal" id="lymph-101">
-      <div class="wrap">
-${sectionHead({
-  eyebrow: { en: 'Lymph 101', zh: '淋巴入門' },
-  heading: { en: 'The lymphatic system, explained plainly', zh: '簡單說明淋巴系統' },
-  lede: LYMPH_101.intro,
-})}
-        <div class="grid grid--3">
-          ${LYMPH_101.points.map(
-            (r) => `<div class="lymph__card">
-            ${blk('h3', r.h, 'lymph__title')}
-            ${blk('p', r.p, 'lymph__text')}
-          </div>`
-          ).join('\n          ')}
-        </div>
-        ${blk(
-          'p',
-          {
-            en: 'To be clear: VITAS does not drain, flush or "manage" your lymphatic system. It is a massage gel. Movement moves lymph — a cream cannot.',
-            zh: '必須說明：VITAS 不會排走、沖走或「管理」你的淋巴系統。它是一款按摩凝膠。推動淋巴的是活動，而非膏體。',
-          },
-          'note'
-        )}
-      </div>
-    </section>
-
     <section class="section moments reveal">
       <div class="wrap moments__inner">
         <article class="moment moment--warm">
@@ -747,8 +752,8 @@ ${newsletter()}`;
   return {
     title: { en: 'What is VITAS', zh: '甚麼是 VITAS' },
     description: {
-      en: 'What VITAS Soothing Cream Gel is (100ml, HK$250), why to choose it, and a plain-language "Lymph 101" — the lymphatic system explained honestly, without the old claims.',
-      zh: 'VITAS 舒緩啫喱膏是甚麼（100毫升，HK$250）、為何選擇它，以及「淋巴入門」——以誠實、不含舊宣稱的方式說明淋巴系統。',
+      en: 'What VITAS Soothing Cream Gel is (100ml, HK$250), why to choose it, and a plain account of what it does and does not do.',
+      zh: 'VITAS 舒緩啫喱膏是甚麼（100毫升，HK$250）、為何選擇它，以及它能做與不能做的事。',
     },
     path: '/product/',
     active: '/product/',
@@ -950,7 +955,7 @@ ${sectionHead({
               en: 'External use only. Keep away from eyes, mouth and broken skin.',
               zh: '只供外用。避免接觸眼睛、口腔及破損皮膚。',
             },
-            { en: 'Not recommended for children under 6.', zh: '不建議 6 歲以下兒童使用。' },
+            { en: 'Not recommended for children under 5.', zh: '不建議 5 歲以下兒童使用。' },
             {
               en: 'If pregnant or breastfeeding, ask your doctor before use.',
               zh: '懷孕或哺乳期間，請先諮詢醫生。',
@@ -1028,13 +1033,13 @@ ${freeFromBand()}
       <div class="wrap prose">
         ${blk('h2', { en: 'On "natural"', zh: '關於「天然」' })}
         ${blk('p', {
-          en: '"Natural" is not a regulated word and it is not, by itself, a benefit — poison ivy is natural. What we mean by it is narrower and checkable: the active character of this cream comes from three plant extracts rather than from methyl salicylate or camphor, the formula is made in France to EU cosmetic GMP, and the full INCI list is printed on the carton rather than hidden behind a marketing word.',
-          zh: '「天然」並非受規管的字眼，本身也不等於好處——毒藤同樣天然。我們所指的意思更狹窄、也可以查證：這支啫喱膏的感受來自三種植物萃取，而非水楊酸甲酯或樟腦；配方於法國按歐盟化妝品 GMP 生產；完整 INCI 成分表印在外盒上，而不是躲在一個營銷字眼背後。',
+          en: '"Natural" is not a regulated word and it is not, by itself, a benefit — poison ivy is natural. What we mean by it is narrower and checkable: the active character of this cream comes from three plant extracts rather than from methyl salicylate or camphor, the formula is made in France — produced with EEC GMP standard, and the full INCI list is printed on the carton rather than hidden behind a marketing word.',
+          zh: '「天然」並非受規管的字眼，本身也不等於好處——毒藤同樣天然。我們所指的意思更狹窄、也可以查證：這支啫喱膏的感受來自三種植物萃取，而非水楊酸甲酯或樟腦；配方法國製造，按 EEC GMP 標準生產；完整 INCI 成分表印在外盒上，而不是躲在一個營銷字眼背後。',
         })}
         ${blk('h2', { en: 'Sourcing and manufacture', zh: '來源與生產' })}
         ${blk('p', {
-          en: 'The cream is produced by a contract manufacturer in France working to EU GMP standards for cosmetics, and shipped to Hong Kong in finished retail packs. Batch numbers and expiry dates are printed on the crimp of each tube; if you ever want the documentation behind a specific batch, write to us and we will send it.',
-          zh: '產品由法國一間符合歐盟化妝品 GMP 標準的代工廠生產，以零售包裝形式運抵香港。每支軟管末端摺口均印有批號及有效期；如需查閱某一批次的相關文件，歡迎來信索取。',
+          en: 'The cream is produced by a contract manufacturer in France producing with EEC GMP standard for cosmetics, and shipped to Hong Kong in finished retail packs. Batch numbers and expiry dates are printed on the crimp of each tube; if you ever want the documentation behind a specific batch, write to us and we will send it.',
+          zh: '產品由法國一間按 EEC GMP 標準生產的代工廠製造，以零售包裝形式運抵香港。每支軟管末端摺口均印有批號及有效期；如需查閱某一批次的相關文件，歡迎來信索取。',
         })}
       </div>
     </section>
@@ -1148,8 +1153,8 @@ export function approach() {
         })}
         ${blk('h2', { en: 'What we will say', zh: '我們會說的' })}
         ${blk('p', {
-          en: 'That this is a light, low-odour cream gel built around eucalyptus, grape seed and niaouli. That it feels mildly cool, absorbs quickly and gives you enough glide for a proper massage. That it is made in France under EU cosmetic GMP. That it is pleasant enough to use daily, which matters more than any single application, because the useful part of recovery is the habit.',
-          zh: '這是一支以尤加利、葡萄籽與綠花白千層為核心的輕盈低氣味啫喱膏；它帶來溫和清涼感、吸收快，並提供足夠滑度作按摩；它於法國按歐盟化妝品 GMP 生產；它的膚感足以令人每天使用——而這比任何單次使用都重要，因為恢復真正有效的部分，是習慣。',
+          en: 'That this is a light, low-odour cream gel built around eucalyptus, grape seed and niaouli. That it feels mildly cool, absorbs quickly and gives you enough glide for a proper massage. That it is made in France, produced with EEC GMP standard. That it is pleasant enough to use daily, which matters more than any single application, because the useful part of recovery is the habit.',
+          zh: '這是一支以尤加利、葡萄籽與綠花白千層為核心的輕盈低氣味啫喱膏；它帶來溫和清涼感、吸收快，並提供足夠滑度作按摩；它法國製造，按 EEC GMP 標準生產；它的膚感足以令人每天使用——而這比任何單次使用都重要，因為恢復真正有效的部分，是習慣。',
         })}
         ${blk('h2', { en: 'What we will not say', zh: '我們不會說的' })}
         ${blk('p', {
@@ -1423,7 +1428,7 @@ export function sport(sp) {
 
     <section class="section">
       <div class="wrap sport-hero">
-        ${figure(sp.art, sp.name, 'tint')}
+        ${figure(sportArt(sp).src, sp.name, 'tint', { w: sportArt(sp).w, h: sportArt(sp).h })}
         <div class="sport-hero__body">
 ${sloganBlock('sport-hero__slogan')}
           ${sensoryNote('sensory-note')}

@@ -35,8 +35,8 @@ export const BRAND = {
     zh: '蘊含三種植物活性成分的快速吸收、不黏膩霜凝膠。法國製造，融入你的運動前後按摩流程。',
   },
   proof: {
-    en: 'Grape seed · Niaouli · Eucalyptus · Made in France · EEC GMP standard',
-    zh: '葡萄籽 · 綠花白千層 · 尤加利 · 法國製造 · 按 EEC GMP 標準生產',
+    en: 'Grape seed · Niaouli · Eucalyptus · Made in France — produced with EEC GMP standard',
+    zh: '葡萄籽 · 綠花白千層 · 尤加利 · 法國製造 — 按 EEC GMP 標準生產',
   },
   // Vague, per brand decision: no hard dates. Confirm a defensible incorporation
   // or first-formulation date before this graduates back into a number.
@@ -52,8 +52,8 @@ export const BRAND = {
   // the fuller cautions on /how-to-use/ — stricter than the guide's "under 3",
   // which is allowed.
   safety: {
-    en: 'For external use only. Avoid contact with eyes. Discontinue use if irritation occurs. Not suitable for children under 6, pregnant or breastfeeding women.',
-    zh: '僅供外用。避免接觸眼睛。如出現刺激或不適，請停止使用。不適合 6 歲以下兒童、孕婦或哺乳期婦女使用。',
+    en: 'For external use only. Avoid contact with eyes. Discontinue use if irritation occurs. Not suitable for children under 5, pregnant or breastfeeding women.',
+    zh: '僅供外用。避免接觸眼睛。如出現刺激或不適，請停止使用。不適合 5 歲以下兒童、孕婦或哺乳期婦女使用。',
   },
   disclaimer: {
     en: 'Disclaimer: VITAS is a cosmetic product for massage and external use. References to "warm-up", "wind-down", "prime", "perform", "recover", and warming/cooling describe the intended training ritual and sensory experience during massage. They do not represent medical, therapeutic or performance-enhancement claims. This product is not intended to diagnose, treat, cure or prevent any disease.',
@@ -69,6 +69,10 @@ export const SPORTS = [
   {
     id: 'hyrox',
     art: '/assets/img/sport-hyrox.svg',
+    // Drop a 1600x1067 JPEG/WebP at this path to replace the illustration.
+    // See assets/img/sport/README.txt for licensing and crop notes.
+    photo: '/assets/img/sport/hyrox.webp',
+    photoSet: '/assets/img/sport/hyrox-800.webp 800w, /assets/img/sport/hyrox.webp 1600w',
     name: { en: 'Hyrox', zh: 'Hyrox' },
     who: { en: 'For Hyrox athletes', zh: '給 Hyrox 選手' },
     hook: {
@@ -91,6 +95,10 @@ export const SPORTS = [
   {
     id: 'padel',
     art: '/assets/img/sport-padel.svg',
+    // Drop a 1600x1067 JPEG/WebP at this path to replace the illustration.
+    // See assets/img/sport/README.txt for licensing and crop notes.
+    photo: '/assets/img/sport/padel.webp',
+    photoSet: '/assets/img/sport/padel-800.webp 800w, /assets/img/sport/padel.webp 1600w',
     name: { en: 'Padel', zh: '板式網球' },
     who: { en: 'For padel players', zh: '給板式網球員' },
     hook: {
@@ -113,6 +121,10 @@ export const SPORTS = [
   {
     id: 'running',
     art: '/assets/img/sport-running.svg',
+    // Drop a 1600x1067 JPEG/WebP at this path to replace the illustration.
+    // See assets/img/sport/README.txt for licensing and crop notes.
+    photo: '/assets/img/sport/running.webp',
+    photoSet: '/assets/img/sport/running-800.webp 800w, /assets/img/sport/running.webp 1600w',
     name: { en: 'Running', zh: '跑步' },
     who: { en: 'For running clubs', zh: '給跑團' },
     hook: {
@@ -156,8 +168,8 @@ export const WHY_VITAS = [
   {
     h: { en: 'Clean by formulation, not by accident', zh: '純淨源於配方，而非偶然' },
     p: {
-      en: 'Three plant actives — grape seed, niaouli and eucalyptus — with no hormones, no steroids and no artificial fragrance. Made in France to EU cosmetic GMP, the same specification for over twenty years.',
-      zh: '三種植物成分——葡萄籽、綠花白千層與尤加利——不含激素、類固醇及人造香料。於法國按歐盟化妝品 GMP 生產，二十多年來同一規格。',
+      en: 'Three plant actives — grape seed, niaouli and eucalyptus — with no hormones, no steroids and no artificial fragrance. Made in France — produced with EEC GMP standard, the same specification for over twenty years.',
+      zh: '三種植物成分——葡萄籽、綠花白千層與尤加利——不含激素、類固醇及人造香料。法國製造，按 EEC GMP 標準生產，二十多年來同一規格。',
     },
   },
   {
@@ -169,44 +181,6 @@ export const WHY_VITAS = [
   },
 ];
 
-/**
- * "Lymph 101" — plain-language background on the lymphatic system, shown as a
- * sub-section on the "What is VITAS" page.
- *
- * COMPLIANCE: this is general education about the body, not a product claim. It
- * must never state or imply that VITAS drains, flushes, boosts or manages the
- * lymphatic system — the closing note says so explicitly. See docs/positioning.md.
- */
-export const LYMPH_101 = {
-  intro: {
-    en: 'The product used to be sold as a "lymphatic management" gel. We have dropped that claim — but the questions about the lymphatic system are fair ones, so here is a plain answer, separate from anything we sell.',
-    zh: '這支產品過去以「淋巴管理」凝膠作宣傳。我們已刪去這個說法——但關於淋巴系統的疑問是合理的，因此在此提供一個與銷售無關的簡單解釋。',
-  },
-  points: [
-    {
-      h: { en: 'What the lymphatic system is', zh: '淋巴系統是甚麼' },
-      p: {
-        en: 'A network of thin vessels and nodes that runs alongside your blood vessels. It carries a clear fluid called lymph, helps balance the body’s fluids, and is part of the immune system. Unlike blood, it has no pump of its own — it moves mainly when your muscles move.',
-        zh: '一個與血管並行的細管與淋巴結網絡。它輸送一種名為「淋巴液」的透明液體，協助平衡體液，並是免疫系統的一部分。與血液不同，它沒有自己的泵——主要靠肌肉活動來推動。',
-      },
-    },
-    {
-      h: { en: 'What actually moves it', zh: '真正推動它的是甚麼' },
-      p: {
-        en: 'Movement. Walking, training, calf contractions and deep breathing all help lymph circulate. This is why staying active matters, and why a long day sitting still can leave the legs feeling heavy. It is physiology, not a product.',
-        zh: '活動。步行、訓練、小腿收縮與深呼吸都有助淋巴流動。這正是保持活躍重要的原因，也解釋了為何久坐一整天後雙腿會感覺沉重。這是生理學，而非產品。',
-      },
-    },
-    {
-      h: { en: 'Where a massage cream fits', zh: '按摩膏的位置在哪裡' },
-      p: {
-        en: 'Massage itself is a hands-on ritual many active people enjoy, and a gel that glides and absorbs cleanly makes it more pleasant to do. That is the honest role of VITAS — a medium for massage. It does not act on your lymphatic system, and we no longer claim it does.',
-        zh: '按摩本身是許多活躍人士喜愛的親手儀式，而一款好推開、吸收乾淨的凝膠，會讓按摩更舒適。這就是 VITAS 誠實的角色——一種按摩介質。它不會對你的淋巴系統產生作用，我們亦不再作此宣稱。',
-      },
-    },
-  ],
-};
-
 export const PRODUCT = {
   slug: '/product/',
   nameEn: 'Soothing Cream Gel',
@@ -217,7 +191,7 @@ export const PRODUCT = {
   priceLabel: 'HK$250',
   sku: 'VTS001',
   origin: { en: 'Made in France', zh: '法國製造' },
-  gmp: { en: 'EU GMP manufacture', zh: '歐盟 GMP 生產' },
+  gmp: { en: 'Made in France — produced with EEC GMP standard', zh: '法國製造 · 按 EEC GMP 標準生產' },
   texture: {
     en: 'A cream-gel that absorbs in under a minute and leaves no shine.',
     zh: '啫喱質地，一分鐘內吸收，不留油光。',
@@ -244,7 +218,9 @@ export const PRODUCTS = [
   {
     id: 'cream-100',
     slug: '/product/',
-    art: '/assets/img/product-tube.svg',
+    art: '/assets/img/product/tube-front-620.webp',
+    artW: 620,
+    artH: 1500,
     name: { en: 'Soothing Cream Gel', zh: '舒緩啫喱膏' },
     variant: { en: '100ml tube', zh: '100毫升 軟管' },
     price: 25000,
@@ -257,13 +233,15 @@ export const PRODUCTS = [
     points: [
       { en: 'One to two applications a day', zh: '每日一至兩次' },
       { en: 'Roughly 6 weeks of daily use', zh: '每日使用約可用六星期' },
-      { en: 'Made in France · EU GMP', zh: '法國製造 · 歐盟 GMP' },
+      { en: 'Made in France — produced with EEC GMP standard', zh: '法國製造 — 按 EEC GMP 標準生產' },
     ],
   },
   {
     id: 'cream-duo',
     slug: '/product/',
-    art: '/assets/img/product-duo.svg',
+    art: '/assets/img/product/tube-duo-700.webp',
+    artW: 700,
+    artH: 1104,
     name: { en: 'Recovery Duo', zh: '雙支裝' },
     variant: { en: '2 × 100ml tubes', zh: '2 × 100毫升' },
     price: 45000,
@@ -651,8 +629,8 @@ export const FAQS = [
       zh: 'VITAS 紓適寧跟市面上的其他舒緩產品有什麼分別？',
     },
     a: {
-      en: 'Three practical differences. One: no methyl salicylate and no camphor, which is what gives traditional medicated rubs their carrying smell — you can use VITAS at your desk without announcing it. Two: a grape-seed base that absorbs in under a minute and leaves no shine, so you can dress straight after. Three: no hormones and no steroids, made in France to EU cosmetic GMP. What it is not is stronger than a HK$40 tube of something fierce — it is gentler on purpose.',
-      zh: '三個實際分別。第一：不含水楊酸甲酯及樟腦——這正是傳統藥膏氣味濃烈的來源，所以 VITAS 可以在辦公桌前使用而不會驚動旁人。第二：葡萄籽基底，一分鐘內吸收、不留油光，塗後可即時穿衣。第三：不含激素及類固醇，於法國按歐盟化妝品 GMP 生產。但它並不比一支四十元、氣味強烈的產品「更強效」——它是刻意做得溫和。',
+      en: 'Three practical differences. One: no methyl salicylate and no camphor, which is what gives traditional medicated rubs their carrying smell — you can use VITAS at your desk without announcing it. Two: a grape-seed base that absorbs in under a minute and leaves no shine, so you can dress straight after. Three: no hormones and no steroids, made in France — produced with EEC GMP standard. What it is not is stronger than a HK$40 tube of something fierce — it is gentler on purpose.',
+      zh: '三個實際分別。第一：不含水楊酸甲酯及樟腦——這正是傳統藥膏氣味濃烈的來源，所以 VITAS 可以在辦公桌前使用而不會驚動旁人。第二：葡萄籽基底，一分鐘內吸收、不留油光，塗後可即時穿衣。第三：不含激素及類固醇，法國製造，按 EEC GMP 標準生產。但它並不比一支四十元、氣味強烈的產品「更強效」——它是刻意做得溫和。',
     },
   },
   {
@@ -668,7 +646,7 @@ export const FAQS = [
   {
     q: {
       en: 'What is in the VITAS Soothing Cream Gel?',
-      zh: 'VITAS 紓適寧淋巴管理啫喱膏成分？',
+      zh: 'VITAS 紓適寧舒緩啫喱膏成分？',
     },
     a: {
       en: 'Three plant actives in a light water- and oil-based cream gel: grape seed (Vitis vinifera) as the carrier, eucalyptus (Eucalyptus globulus) for the cooling note, and niaouli (Melaleuca viridiflora) to round the scent. No hormones, no steroids, no methyl salicylate, no camphor. The full INCI list is printed on the carton — if you have a known essential-oil sensitivity, read it before you buy and patch test on the inner forearm.',
@@ -678,18 +656,18 @@ export const FAQS = [
   {
     q: { en: 'Where is VITAS made?', zh: 'VITAS 紓適寧是哪裡製造的呢？' },
     a: {
-      en: 'In France, by a contract manufacturer working to EU GMP standards for cosmetics, then imported to Hong Kong in finished retail packs. Batch number and expiry date are printed on the crimp at the end of each tube. If you want the documentation behind a specific batch, write to us and we will send it.',
-      zh: '於法國生產，由符合歐盟化妝品 GMP 標準的代工廠製造，再以零售包裝進口到香港。每支軟管末端摺口印有批號及有效期。如需查閱某一批次的相關文件，歡迎來信索取。',
+      en: 'In France, by a contract manufacturer producing with EEC GMP standard for cosmetics, then imported to Hong Kong in finished retail packs. Batch number and expiry date are printed on the crimp at the end of each tube. If you want the documentation behind a specific batch, write to us and we will send it.',
+      zh: '於法國生產，由按 EEC GMP 標準生產的代工廠製造，再以零售包裝進口到香港。每支軟管末端摺口印有批號及有效期。如需查閱某一批次的相關文件，歡迎來信索取。',
     },
   },
   {
     q: {
       en: 'Who should not use VITAS?',
-      zh: '哪些人士不宜使用 VITAS 紓適寧淋巴管理啫喱膏？',
+      zh: '哪些人士不宜使用 VITAS 紓適寧舒緩啫喱膏？',
     },
     a: {
-      en: 'Do not use it on broken skin, on the face or near the eyes. It is not recommended for children under 6. If you are pregnant or breastfeeding, check with your doctor or midwife first — the formula contains eucalyptus and niaouli essential oils. If you have sensitive skin or a known reaction to essential oils, patch test on the inner forearm and stop if the skin becomes red or irritated. Severe, sudden or post-injury pain needs a doctor or physiotherapist, not a cream.',
-      zh: '請勿用於破損皮膚、面部或眼睛附近。不建議 6 歲以下兒童使用。懷孕或哺乳期間請先諮詢醫生或助產士——配方含尤加利及綠花白千層精油。如屬敏感肌或對精油有已知反應，請先於前臂內側試用；若出現泛紅或不適應立即停用。劇烈、突發或受傷後的疼痛，請諮詢醫生或物理治療師，而非依賴按摩膏。',
+      en: 'Do not use it on broken skin, on the face or near the eyes. It is not recommended for children under 5. If you are pregnant or breastfeeding, check with your doctor or midwife first — the formula contains eucalyptus and niaouli essential oils. If you have sensitive skin or a known reaction to essential oils, patch test on the inner forearm and stop if the skin becomes red or irritated. Severe, sudden or post-injury pain needs a doctor or physiotherapist, not a cream.',
+      zh: '請勿用於破損皮膚、面部或眼睛附近。不建議 5 歲以下兒童使用。懷孕或哺乳期間請先諮詢醫生或助產士——配方含尤加利及綠花白千層精油。如屬敏感肌或對精油有已知反應，請先於前臂內側試用；若出現泛紅或不適應立即停用。劇烈、突發或受傷後的疼痛，請諮詢醫生或物理治療師，而非依賴按摩膏。',
     },
   },
   {
@@ -762,8 +740,8 @@ export const ABOUT = {
       h: { en: 'Why France', zh: '為甚麼是法國' },
       p: [
         {
-          en: 'The formula was developed and is still made in France, by a cosmetics manufacturer working to EU GMP standards. That decision cost more than making it closer to home, and it was made for two reasons: the regulatory framework for cosmetic manufacture in the EU is strict and documented, and the plant-oil expertise — grape seed in particular — sits there.',
-          zh: '配方在法國研發，至今仍於當地由符合歐盟 GMP 標準的化妝品廠生產。這個決定比就近生產昂貴，原因有二：歐盟對化妝品生產的規管嚴謹且有完整文件紀錄；而植物油——尤其是葡萄籽——的專業也在那裡。',
+          en: 'The formula was developed and is still made in France, by a cosmetics manufacturer producing with EEC GMP standard. That decision cost more than making it closer to home, and it was made for two reasons: the regulatory framework for cosmetic manufacture in the EU is strict and documented, and the plant-oil expertise — grape seed in particular — sits there.',
+          zh: '配方在法國研發，至今仍於當地由按 EEC GMP 標準生產的化妝品廠製造。這個決定比就近生產昂貴，原因有二：歐盟對化妝品生產的規管嚴謹且有完整文件紀錄；而植物油——尤其是葡萄籽——的專業也在那裡。',
         },
         {
           en: 'The result is a short list: grape seed to carry, eucalyptus to cool, niaouli to round the scent. No hormones, no steroids, no methyl salicylate, no camphor. It is a smaller promise than most of the shelf makes, and it is one we can keep.',
