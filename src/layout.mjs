@@ -97,8 +97,7 @@ function header(active, path) {
   <header class="site-header" id="site-header">
     <div class="site-header__inner">
       <a class="wordmark" href="${url('/')}" aria-label="VITAS 紓適寧">
-        <img src="/assets/img/logo/logo_horizontal.svg" alt="VITAS" width="180" height="50">
-        <span class="wordmark__zh">紓適寧</span>
+        <img src="/assets/img/logo/logo_lockup.svg" alt="VITAS 紓適寧" width="144" height="50">
       </a>
       <nav class="nav" id="primary-nav" aria-label="${attr(t({ en: 'Primary', zh: '主要' }))}">
         <div class="nav__links">
@@ -147,8 +146,7 @@ function footer() {
     <div class="footer__top">
       <div class="footer__intro">
         <span class="wordmark wordmark--footer">
-          <img src="/assets/img/logo/logo_horizontal.svg" alt="VITAS" width="200" height="56">
-          <span class="wordmark__zh">紓適寧</span>
+          <img src="/assets/img/logo/logo_lockup.svg" alt="VITAS 紓適寧" width="184" height="64">
         </span>
         <p class="footer__slogan">${t(BRAND.slogan)[0]}<br>${t(BRAND.slogan)[1]}</p>
         ${blk('p', {
@@ -300,8 +298,8 @@ export function page({ title, description, path, body, active, jsonLd = [], body
   <meta property="og:locale" content="${isZh ? 'zh_HK' : 'en_HK'}">
   <meta property="og:locale:alternate" content="${isZh ? 'en_HK' : 'zh_HK'}">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#F47920">
-  <link rel="icon" href="/assets/img/logo/mark_app_icon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#FE5000">
+  <link rel="icon" href="/assets/img/logo/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/assets/img/logo/mark_app_icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

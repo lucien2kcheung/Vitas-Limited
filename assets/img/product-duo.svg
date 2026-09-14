@@ -7,11 +7,11 @@
           fill="#FFFFFF" stroke="#E7E0D4" stroke-width="1.5"/>
     <path d="M160,610 h200 c8,0 12,5 12,12 v34 c0,8 -6,14 -14,14 H162 c-8,0 -14,-6 -14,-14 v-34 c0,-7 4,-12 12,-12 Z"
           fill="#FBF7F5" stroke="#E7E0D4" stroke-width="1.5"/>
-    <circle cx="260" cy="150" r="21" fill="#F47920"/>
+    <circle cx="260" cy="150" r="21" fill="#FE5000"/>
     <text x="260" y="158" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#FFFFFF">V</text>
-    <text x="260" y="205" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" letter-spacing="1.9" fill="#F47920">SOOTHING CREAM GEL</text>
-    <text x="262" y="300" text-anchor="start" transform="rotate(90 262 300)" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="300" letter-spacing="10" fill="#F47920">VITAS</text>
-    <text x="260" y="566" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#F47920">MADE IN FRANCE</text>
+    <text x="260" y="205" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" letter-spacing="1.9" fill="#FE5000">SOOTHING CREAM GEL</text>
+    <text x="262" y="300" text-anchor="start" transform="rotate(90 262 300)" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="300" letter-spacing="10" fill="#FE5000">VITAS</text>
+    <text x="260" y="566" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#FE5000">MADE IN FRANCE</text>
     <path d="M180,150 C176,260 174,420 176,560" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" fill="none"/>
   </g>
   <g transform="translate(90 0) scale(1)" opacity="1">
@@ -21,11 +21,11 @@
           fill="#FFFFFF" stroke="#E7E0D4" stroke-width="1.5"/>
     <path d="M160,610 h200 c8,0 12,5 12,12 v34 c0,8 -6,14 -14,14 H162 c-8,0 -14,-6 -14,-14 v-34 c0,-7 4,-12 12,-12 Z"
           fill="#FBF7F5" stroke="#E7E0D4" stroke-width="1.5"/>
-    <circle cx="260" cy="150" r="21" fill="#F47920"/>
+    <circle cx="260" cy="150" r="21" fill="#FE5000"/>
     <text x="260" y="158" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="500" fill="#FFFFFF">V</text>
-    <text x="260" y="205" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" letter-spacing="1.9" fill="#F47920">SOOTHING CREAM GEL</text>
-    <text x="262" y="300" text-anchor="start" transform="rotate(90 262 300)" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="300" letter-spacing="10" fill="#F47920">VITAS</text>
-    <text x="260" y="566" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#F47920">MADE IN FRANCE</text>
+    <text x="260" y="205" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="11" letter-spacing="1.9" fill="#FE5000">SOOTHING CREAM GEL</text>
+    <text x="262" y="300" text-anchor="start" transform="rotate(90 262 300)" font-family="Helvetica, Arial, sans-serif" font-size="86" font-weight="300" letter-spacing="10" fill="#FE5000">VITAS</text>
+    <text x="260" y="566" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="13" letter-spacing="3" fill="#FE5000">MADE IN FRANCE</text>
     <path d="M180,150 C176,260 174,420 176,560" stroke="#FFFFFF" stroke-opacity="0.9" stroke-width="16" stroke-linecap="round" fill="none"/>
   </g>
 </svg>

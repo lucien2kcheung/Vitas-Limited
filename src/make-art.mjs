@@ -25,7 +25,7 @@ const C = {
   wash: '#FEF6EF',    /* orange-50 */
   tint: '#FBCEA9',    /* orange-200 */
   mid: '#F9B078',     /* orange-300 */
-  brand: '#F47920',   /* VITAS Orange */
+  brand: '#FE5000',   /* PANTONE Orange 021 C */
   deep: '#C6531A',    /* Ember */
   mint: '#17B39A',    /* Cooling Mint */
   mintWash: '#D3F1EC',

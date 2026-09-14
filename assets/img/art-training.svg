@@ -6,7 +6,7 @@
   <path d="M222,640 C382,316 740,284 988,560" stroke="#C6531A" stroke-opacity="0.42" stroke-width="2.1999999999999997" fill="none" stroke-linecap="round"/>
   <path d="M248,640 C408,294 760,266 1002,560" stroke="#C6531A" stroke-opacity="0.32999999999999996" stroke-width="1.9" fill="none" stroke-linecap="round"/>
   <path d="M274,640 C434,272 780,248 1016,560" stroke="#C6531A" stroke-opacity="0.24" stroke-width="1.5999999999999999" fill="none" stroke-linecap="round"/>
-  <circle cx="960" cy="230" r="86" fill="#F47920" opacity="0.9"/>
+  <circle cx="960" cy="230" r="86" fill="#FE5000" opacity="0.9"/>
 <g transform="translate(200 690) rotate(-30)" opacity="0.95">
     <path d="M0,0 C42,-40 90,-40 120,0 C90,40 42,40 0,0 Z" fill="#FBCEA9" stroke="#C6531A" stroke-width="3" stroke-opacity="0.5"/>
     <path d="M7.199999999999999,0 L108,0" stroke="#C6531A" stroke-width="2.1599999999999997" stroke-opacity="0.4" fill="none"/>

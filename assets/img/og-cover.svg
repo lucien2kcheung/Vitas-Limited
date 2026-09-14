@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img">
   <rect width="1200" height="630" fill="#FFFFFF"/>
   <path d="M0,430 C240,340 420,500 660,390 C860,300 1040,360 1200,300 L1200,630 L0,630 Z" fill="#FEF6EF"/>
-  <circle cx="104" cy="176" r="26" fill="#F47920"/>
+  <circle cx="104" cy="176" r="26" fill="#FE5000"/>
   <text x="104" y="186" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="500" fill="#FFFFFF">V</text>
-  <text x="152" y="196" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="300" letter-spacing="20" fill="#F47920">VITAS</text>
-  <text x="80" y="270" font-family="'Noto Sans HK', sans-serif" font-size="36" letter-spacing="10" fill="#F47920">紓適寧</text>
+  <text x="152" y="196" font-family="Helvetica, Arial, sans-serif" font-size="76" font-weight="300" letter-spacing="20" fill="#FE5000">VITAS</text>
+  <text x="80" y="270" font-family="'Noto Sans HK', sans-serif" font-size="36" letter-spacing="10" fill="#FE5000">紓適寧</text>
   <text x="80" y="352" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#17181A">Warm up.</text>
   <text x="80" y="398" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="600" fill="#17181A">Wind down.</text>
   <text x="80" y="452" font-family="Helvetica, Arial, sans-serif" font-size="21" letter-spacing="1.6" fill="#C6531A">Grape seed · Niaouli · Eucalyptus · Made in France</text>

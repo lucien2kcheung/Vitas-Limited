@@ -10,11 +10,12 @@
 :root {
   /* Brand Guidelines v1.0 (2026) — heritage orange leads, mint cools,
      carbon and chalk carry everything else. Ratio 60/30/7/3. */
-  --brand: #f47920;        /* VITAS Orange — graphics, large areas, never small text */
-  --brand-deep: #c6531a;   /* Ember — AA text and buttons on light */
-  --brand-dark: #a8480f;   /* orange-700 — hover */
-  --brand-tint: #fbcea9;   /* orange-200 */
-  --brand-wash: #fef6ef;   /* orange-50 */
+  --brand: #fe5000;        /* PANTONE Orange 021 C — taken from the master logo artwork.
+                              Graphics and large areas only; 3.07:1 on chalk, never small text. */
+  --brand-deep: #cb4000;   /* AA text and buttons on light — 4.57:1 on chalk */
+  --brand-dark: #b23800;   /* hover — 5.64:1 on chalk */
+  --brand-tint: #ffc7ad;   /* orange-200 */
+  --brand-wash: #fbece0;   /* orange-50 */
 
   --green: #2e8b57;        /* New Green — purity accent (Repositioning v3.0) */
   --green-deep: #226b42;   /* text-safe green */
