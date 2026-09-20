@@ -472,9 +472,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .social-icon:hover { transform: translateY(-2px); }
 .social-icon img { width: 30px; height: 30px; display: block; }
-.footer__email { font-size: 0.85rem; margin: 0.9rem 0 0; }
-.footer__email a { color: var(--muted); }
-.footer__email a:hover { color: var(--brand-deep); }
 @media (prefers-reduced-motion: reduce) { .social-icon:hover { transform: none; } }
 .footer__cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .footer__heading {
@@ -485,7 +482,16 @@ img { max-width: 100%; height: auto; display: block; }
 .footer__bottom {
   width: min(var(--wrap), 100%); margin-inline: auto; padding: 2.5rem var(--gutter) 0;
   margin-top: 3rem; border-top: 1px solid var(--line);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(2rem, 5vw, 4rem); align-items: start;
 }
+.footer__contact { font-style: normal; font-size: 0.88rem; color: var(--muted); }
+.footer__contact dl { margin: 0; display: grid; gap: 0.55rem; }
+.footer__contact dl > div { display: grid; grid-template-columns: 6.4rem 1fr; gap: 0.75rem; }
+.footer__contact dt { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-deep); padding-top: 0.15rem; }
+.footer__contact dd { margin: 0; line-height: 1.55; }
+.footer__contact a { color: var(--ink); text-decoration: none; }
+.footer__contact a:hover { color: var(--brand-deep); }
+@media (max-width: 900px) { .footer__bottom { grid-template-columns: 1fr; } .footer__contact { order: -1; } }
 .footer__safety { font-size: 0.82rem; color: var(--ink); max-width: 78ch; font-weight: 500; }
 .footer__disclaimer { font-size: 0.82rem; color: var(--muted); max-width: 78ch; }
 .footer__copy { font-size: 0.8rem; color: var(--muted); margin: 0; }
@@ -951,3 +957,15 @@ body.welcome-open { overflow: hidden; }
 @media (max-width: 1024px) { .feel__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 720px) { .fit__list { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .feel__grid { grid-template-columns: 1fr; } }
+
+/* ---------------------------------------------------- whatsapp */
+.header-icons { display: flex; align-items: center; gap: 0.35rem; flex: none; }
+.wa-button {
+  display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  color: #25d366; text-decoration: none; flex: none;
+  transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.wa-button:hover { background: #e7f9ee; color: #128c4a; }
+.btn--wa { display: inline-flex; align-items: center; gap: 0.55rem; }
+.contact__hint { color: var(--steel); font-size: 0.88rem; margin: -0.5rem 0 0; }
+@media (max-width: 1080px) { .header-icons { margin-left: auto; } }

@@ -5,7 +5,7 @@
  * once per language and prefixes the Chinese one with /zh.
  */
 
-import {
+import { WA_ICON_PATH,
   SITE,
   t,
   blk,
@@ -89,10 +89,17 @@ const orgJsonLd = {
   name: 'VITAS 紓適寧',
   url: SITE.url,
   logo: SITE.url + '/assets/img/favicon.svg',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Unit 411, Lippo Sun Plaza, 28 Canton Road',
+    addressLocality: 'Tsim Sha Tsui, Kowloon',
+    addressCountry: 'HK',
+  },
   sameAs: [SITE.youtube, SITE.facebook, SITE.instagram],
   contactPoint: {
     '@type': 'ContactPoint',
     email: SITE.email,
+    telephone: '+852-3167-7081',
     contactType: 'customer service',
     areaServed: 'HK',
     availableLanguage: ['en', 'zh-Hant'],
@@ -1578,7 +1585,9 @@ export function contact() {
 
     <section class="section">
       <div class="wrap contact__inner">
-        <form class="contact__form" data-contact novalidate>
+        <form class="contact__form" data-contact data-wa="${SITE.whatsapp}" data-wa-title="${attr(
+          t({ en: 'Enquiry to VITAS', zh: 'VITAS 查詢' })
+        )}" novalidate>
           <div class="field">
             <label for="name">${t({ en: 'Name', zh: '稱呼' })}</label>
             <input id="name" name="name" type="text" required autocomplete="name">
@@ -1599,12 +1608,24 @@ export function contact() {
             <label for="message">${t({ en: 'Message', zh: '訊息' })}</label>
             <textarea id="message" name="message" rows="6" required></textarea>
           </div>
-          <button class="btn" type="submit">${t({ en: 'Send', zh: '傳送' })}</button>
+          <button class="btn btn--wa" type="submit">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="${WA_ICON_PATH}"/></svg>
+            ${t({ en: 'Send via WhatsApp', zh: '透過 WhatsApp 傳送' })}
+          </button>
+          ${blk(
+            'p',
+            {
+              en: 'This opens WhatsApp with your message ready — just tap send.',
+              zh: '按下後會開啟 WhatsApp 並預先填好訊息，你只需按「傳送」。',
+            },
+            'contact__hint'
+          )}
           <p class="signup__note" data-contact-note hidden></p>
         </form>
         <aside class="contact__aside">
           ${blk('h2', { en: 'Direct', zh: '直接聯絡' }, 'contact__h')}
           <p><a href="mailto:${SITE.email}">${SITE.email}</a></p>
+          <p><a href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">WhatsApp — ${SITE.whatsappDisplay}</a></p>
           ${blk('h2', { en: 'Watch', zh: '影片' }, 'contact__h')}
           <p><a href="${SITE.youtube}" target="_blank" rel="noopener">YouTube — @VITASHK</a></p>
           <p><a href="${SITE.facebook}" target="_blank" rel="noopener">Facebook — VITAS 紓適寧</a></p>

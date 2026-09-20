@@ -185,5 +185,34 @@
   }
 
   wire(document.querySelector('[data-newsletter]'), '[data-newsletter-note]');
-  wire(document.querySelector('[data-contact]'), '[data-contact-note]');
+
+  /* Contact form → a pre-filled WhatsApp message to the company number. */
+  var contact = document.querySelector('[data-contact]');
+  if (contact) {
+    contact.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!contact.checkValidity()) {
+        contact.reportValidity();
+        return;
+      }
+      var sep = pageLang === 'zh' ? '：' : ': ';
+      var line = function (id) {
+        var field = contact.querySelector('#' + id);
+        var label = contact.querySelector('label[for="' + id + '"]');
+        var value = field.tagName === 'SELECT' ? field.options[field.selectedIndex].text : field.value.trim();
+        return label.textContent.trim() + sep + value;
+      };
+      var text = [
+        contact.getAttribute('data-wa-title'),
+        line('name'),
+        line('cemail'),
+        line('topic'),
+        line('message'),
+      ].join('\n');
+      var href = 'https://wa.me/' + contact.getAttribute('data-wa') + '?text=' + encodeURIComponent(text);
+      var win = window.open(href, '_blank');
+      if (win) win.opener = null;
+      else window.location.href = href;
+    });
+  }
 })();
