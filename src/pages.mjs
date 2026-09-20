@@ -28,7 +28,6 @@ import {
   SHOP,
   PLANTS,
   STOCKISTS,
-  ARTICLES,
   FAQS,
   ABOUT,
 } from './data.mjs';
@@ -184,8 +183,8 @@ function buyStrip() {
           ${blk(
             'p',
             {
-              en: 'Order online with free delivery over HK$300, or pick it up at Watsons and Mannings across Hong Kong.',
-              zh: '網上訂購，滿 HK$300 免運費；亦可於全港屈臣氏及萬寧門市選購。',
+              en: 'Order online with free delivery from HK$250, or pick it up at Watsons and Mannings across Hong Kong.',
+              zh: '網上訂購，滿 HK$250 免運費；亦可於全港屈臣氏及萬寧門市選購。',
             },
             'buy__text'
           )}
@@ -222,20 +221,6 @@ function newsletter() {
         </form>
       </div>
     </section>`;
-}
-
-function journalCard(article) {
-  return `<article class="card card--journal">
-            <a class="card__link" href="${url('/journal/' + article.slug + '/')}">
-              <span class="card__art"><img src="${article.art}" alt="" width="1200" height="800" loading="lazy" decoding="async"></span>
-              <span class="card__meta">${t(article.tag)} · ${t({
-                en: article.readEn,
-                zh: article.readZh,
-              })}</span>
-              ${blk('span', article.title, 'card__title')}
-              ${blk('span', article.lede, 'card__lede')}
-            </a>
-          </article>`;
 }
 
 function plantCard(p, { role = true } = {}) {
@@ -467,18 +452,6 @@ ${puritySection()}
 
 ${buyStrip()}
 
-    <section class="section journal reveal">
-      <div class="wrap">
-${sectionHead({
-  eyebrow: { en: 'Journal', zh: '專欄' },
-  heading: { en: 'Fewer claims, more useful writing', zh: '少一點宣稱，多一點有用的內容' },
-})}
-        <div class="grid grid--3">
-          ${ARTICLES.map(journalCard).join('\n          ')}
-        </div>
-      </div>
-    </section>
-
 ${newsletter()}`;
 
   return {
@@ -548,8 +521,8 @@ export function product() {
           ${blk(
             'p',
             {
-              en: 'Order here with free Hong Kong delivery over HK$300, or pick it up at Watsons and Mannings.',
-              zh: '可於本網站訂購，滿 HK$300 免香港運費；亦可於屈臣氏及萬寧門市選購。',
+              en: 'Order here with free Hong Kong delivery from HK$250, or pick it up at Watsons and Mannings.',
+              zh: '可於本網站訂購，滿 HK$250 免香港運費；亦可於屈臣氏及萬寧門市選購。',
             },
             'product-main__note'
           )}
@@ -1066,70 +1039,6 @@ ${buyStrip()}`;
   };
 }
 
-export function approach() {
-  const body = `${pageHero({
-    eyebrow: { en: 'Our approach', zh: '我們的取態' },
-    title: { en: 'We took claims off this product, not added them', zh: '我們刪走宣稱，而不是加上去' },
-    lede: {
-      en: 'This brand spent years being sold as something it is not. This page is the correction, written down, so you can hold us to it.',
-      zh: '這個品牌曾多年以「並非事實」的方式被推銷。這一頁是我們的更正，白紙黑字寫下來，讓你可以監督我們。',
-    },
-    trail: [HOME_CRUMB, { name: { en: 'Our Approach', zh: '我們的取態' }, path: '/approach/' }],
-  })}
-
-    <section class="section reveal">
-      <div class="wrap prose">
-        ${blk('h2', { en: 'What changed', zh: '改變了甚麼' })}
-        ${blk('p', {
-          en: 'VITAS used to be marketed as a "lymphatic management" product, with a claim list that ran from draining lactic acid to improving memory. Some of those claims were unprovable. One of them — the lactic acid story — is straightforwardly contradicted by the evidence. Keeping them would have meant asking you to believe things we cannot demonstrate, so we removed them from our packaging, our retail listings and this website.',
-          zh: 'VITAS 過去以「淋巴管理」產品作宣傳，宣稱範圍由排走乳酸到改善記憶力。當中部分說法無法證實；而乳酸那一項，更與科學證據直接抵觸。若繼續沿用，等於要求你相信我們無法證明的事。因此，我們把這些說法從包裝、零售資料及本網站上刪除。',
-        })}
-        ${blk('h2', { en: 'What we will say', zh: '我們會說的' })}
-        ${blk('p', {
-          en: 'That this is a light, low-odour cream gel built around eucalyptus, grape seed and niaouli. That it feels warming when massaged in before training and cooling after, absorbs quickly and gives you enough glide for a proper massage. That it is made in France, produced with EEC GMP standard. That it is pleasant enough to use daily, which matters more than any single application, because the useful part of recovery is the habit.',
-          zh: '這是一支以尤加利、葡萄籽與綠花白千層為核心的輕盈低氣味啫喱膏；它於訓練前按摩帶來溫熱感、訓練後帶來清涼感，吸收快，並提供足夠滑度作按摩；它法國製造，按 EEC GMP 標準生產；它的膚感足以令人每天使用——而這比任何單次使用都重要，因為恢復真正有效的部分，是習慣。',
-        })}
-        ${blk('h2', { en: 'What we will not say', zh: '我們不會說的' })}
-        ${blk('p', {
-          en: 'That it drains lactic acid, manages the lymphatic system, detoxifies, whitens skin, reshapes the body, protects organs, sharpens memory or relieves migraines. That it treats injury or disease. That it works in one minute, or is "100% absorbed". Where a competitor makes those claims about a similar cream, treat the claim, not the cream, as the difference.',
-          zh: '我們不會說它可以排走乳酸、管理淋巴、排毒、美白、改變體形、保護器官、增強記憶或紓緩偏頭痛；不會說它能治療受傷或疾病；不會說它「一分鐘見效」或「100% 吸收」。若同類產品有這些宣稱，真正的分別在於那些宣稱，而不是產品本身。',
-        })}
-        ${blk('h2', { en: 'The honest case for the price', zh: '關於價格，誠實的說法' })}
-        ${blk('p', {
-          en: 'At HK$250 for 100ml, this costs several times more than a tube of traditional medicated rub. You are not buying stronger analgesia; you are buying a formula without methyl salicylate or camphor, a texture that does not leave you greasy, a smell that does not enter the room before you do, and French manufacture. If those things do not matter to you, a HK$40 tube of something fierce will do the job — and we would rather say that here than have you find it out at home.',
-          zh: '100毫升售 HK$250，是傳統藥膏的數倍價錢。你買的並不是更強的止痛效果，而是一個不含水楊酸甲酯與樟腦的配方、不油膩的膚感、不會先於你進入房間的氣味，以及法國生產。如果這些對你並不重要，一支四十元、氣味濃烈的產品同樣可以完成任務——我們寧願在這裡說清楚，也不想你買回家才發現。',
-        })}
-      </div>
-    </section>
-
-    <section class="band band--wash reveal">
-      <div class="wrap band__inner band__inner--stack">
-        ${blk('h2', { en: 'If we get it wrong, tell us', zh: '如果我們說錯了，請告訴我們' }, 'band__title')}
-        ${blk(
-          'p',
-          {
-            en: 'If you find a claim on a shelf talker, a reseller listing or an old advert that contradicts this page, send it to us. Grey-market listings of this product still carry the old copy, and we are working through them.',
-            zh: '如果你在貨架標示、經銷商網頁或舊廣告上，看到與本頁不符的宣稱，請告訴我們。市面上仍有沿用舊文案的平行進口資料，我們正在逐一處理。',
-          },
-          'band__lede'
-        )}
-        ${cta('/contact/', { en: 'Contact us', zh: '聯絡我們' })}
-      </div>
-    </section>`;
-
-  return {
-    title: { en: 'Our approach', zh: '我們的取態' },
-    description: {
-      en: 'Why VITAS removed its lymphatic, detox and lactic-acid claims, what it will and will not say about the cream, and the honest case for a HK$250 price.',
-      zh: 'VITAS 為何刪除淋巴、排毒與乳酸相關宣稱，我們會說與不會說甚麼，以及 HK$250 定價的誠實理由。',
-    },
-    path: '/approach/',
-    active: '/approach/',
-    body,
-    jsonLd: [breadcrumb([HOME_CRUMB, { name: { en: 'Our approach', zh: '我們的取態' }, path: '/approach/' }])],
-  };
-}
-
 export function stockists() {
   const body = `${pageHero({
     eyebrow: { en: 'Where to buy', zh: '購買地點' },
@@ -1191,113 +1100,6 @@ export function stockists() {
     jsonLd: [breadcrumb([HOME_CRUMB, { name: { en: 'Where to buy', zh: '購買地點' }, path: '/stockists/' }])],
   };
 }
-
-export function journalIndex() {
-  const body = `${pageHero({
-    eyebrow: { en: 'Journal', zh: '專欄' },
-    title: { en: 'Training, recovery, and being honest about both', zh: '訓練、恢復，以及對兩者誠實' },
-    lede: {
-      en: 'Short pieces about what helps tired muscles, including the parts that have nothing to do with buying a cream.',
-      zh: '關於疲勞肌肉的短文，包括那些與買不買一支膏完全無關的部分。',
-    },
-    trail: [HOME_CRUMB, { name: { en: 'Journal', zh: '專欄' }, path: '/journal/' }],
-  })}
-
-    <section class="section">
-      <div class="wrap">
-        <div class="grid grid--3">
-          ${ARTICLES.map(journalCard).join('\n          ')}
-        </div>
-      </div>
-    </section>
-
-${newsletter()}`;
-
-  return {
-    title: { en: 'Journal', zh: '專欄' },
-    description: {
-      en: 'Short, useful writing from VITAS on warming up, recovery, desk-bound necks and the lactic acid myth.',
-      zh: 'VITAS 專欄：熱身、恢復、辦公室頸肩，以及乳酸迷思。',
-    },
-    path: '/journal/',
-    active: '/journal/',
-    body,
-    jsonLd: [breadcrumb([HOME_CRUMB, { name: { en: 'Journal', zh: '專欄' }, path: '/journal/' }])],
-  };
-}
-
-export function article(a) {
-  const others = ARTICLES.filter((x) => x.slug !== a.slug);
-  const path = `/journal/${a.slug}/`;
-
-  const body = `    <article class="article">
-      <header class="article__head">
-        <div class="wrap">
-${crumbs([HOME_CRUMB, { name: { en: 'Journal', zh: '專欄' }, path: '/journal/' }, { name: a.title, path }])}
-          <p class="eyebrow">${t(a.tag)} · <time datetime="${a.date}">${a.date}</time> · ${t({
-            en: a.readEn,
-            zh: a.readZh,
-          })}</p>
-          ${blk('h1', a.title, 'article__title')}
-          ${blk('p', a.lede, 'article__lede')}
-        </div>
-      </header>
-      <div class="wrap">
-        <img class="article__art" src="${a.art}" alt="" width="1200" height="800" decoding="async">
-        <div class="prose">
-          ${a.body
-            .map(
-              (s) => `${blk('h2', s.h)}\n          ${s.p.map((p) => blk('p', p)).join('\n          ')}`
-            )
-            .join('\n          ')}
-        </div>
-      </div>
-    </article>
-
-    <section class="section reveal">
-      <div class="wrap">
-${sectionHead({
-  eyebrow: { en: 'Keep reading', zh: '繼續閱讀' },
-  heading: { en: 'More from the journal', zh: '更多專欄文章' },
-})}
-        <div class="grid grid--2">
-          ${others.map(journalCard).join('\n          ')}
-        </div>
-      </div>
-    </section>
-
-${newsletter()}`;
-
-  return {
-    title: a.title,
-    description: a.lede,
-    path,
-    active: '/journal/',
-    body,
-    jsonLd: [
-      {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: t(a.title),
-        description: t(a.lede),
-        datePublished: a.date,
-        inLanguage: getLang() === 'zh' ? 'zh-Hant-HK' : 'en-HK',
-        author: { '@type': 'Organization', name: 'VITAS 紓適寧' },
-        publisher: { '@type': 'Organization', name: 'VITAS 紓適寧' },
-        mainEntityOfPage: SITE.url + url(path),
-      },
-      breadcrumb([
-        HOME_CRUMB,
-        { name: { en: 'Journal', zh: '專欄' }, path: '/journal/' },
-        { name: a.title, path },
-      ]),
-    ],
-  };
-}
-
-
-
-/* ------------------------------------------------------------ your sport */
 
 export function sportsIndex() {
   const body = `${pageHero({
@@ -1419,8 +1221,8 @@ export function shop() {
     eyebrow: { en: 'Shop', zh: '網上商店' },
     title: { en: 'Two ways to buy it', zh: '兩種購買方式' },
     lede: {
-      en: 'One tube, or two at a better price. Delivered anywhere in Hong Kong, free over HK$300. Card, Apple Pay and Google Pay, handled by Stripe.',
-      zh: '一支，或以更好的價錢買兩支。全港送遞，滿 HK$300 免運費。支援信用卡、Apple Pay 及 Google Pay，由 Stripe 處理付款。',
+      en: 'One tube, or two at a better price. Delivered anywhere in Hong Kong, free from HK$250. Card, Apple Pay and Google Pay, handled by Stripe.',
+      zh: '一支，或以更好的價錢買兩支。全港送遞，滿 HK$250 免運費。支援信用卡、Apple Pay 及 Google Pay，由 Stripe 處理付款。',
     },
     trail: [HOME_CRUMB, { name: { en: 'Shop', zh: '網上商店' }, path: '/shop/' }],
   })}
@@ -1433,7 +1235,7 @@ export function shop() {
         <div class="shop__assurances">
           ${[
             {
-              h: { en: 'Free local delivery over HK$300', zh: '滿 HK$300 免本地運費' },
+              h: { en: 'Free local delivery from HK$250', zh: '滿 HK$250 免本地運費' },
               p: { en: 'Otherwise HK$30. Usually 2–4 working days.', zh: '否則 HK$30，一般 2–4 個工作天送達。' },
             },
             {
@@ -1478,8 +1280,8 @@ ${freeFromBand()}
   return {
     title: { en: 'Shop', zh: '網上商店' },
     description: {
-      en: 'Buy VITAS Soothing Cream Gel online — one 100ml tube at HK$250 or the Recovery Duo at HK$450. Free Hong Kong delivery over HK$300, secure Stripe checkout.',
-      zh: '網上選購 VITAS 舒緩啫喱膏——100毫升 HK$250，雙支裝 HK$450。滿 HK$300 免香港運費，Stripe 安全結帳。',
+      en: 'Buy VITAS Soothing Cream Gel online — one 100ml tube at HK$250 or the Recovery Duo at HK$450. Free Hong Kong delivery from HK$250, secure Stripe checkout.',
+      zh: '網上選購 VITAS 舒緩啫喱膏——100毫升 HK$250，雙支裝 HK$450。滿 HK$250 免香港運費，Stripe 安全結帳。',
     },
     path: '/shop/',
     active: '/shop/',
@@ -1568,8 +1370,8 @@ export function cart() {
   return {
     title: { en: 'Cart', zh: '購物車' },
     description: {
-      en: 'Your VITAS cart. Secure checkout by Stripe, free Hong Kong delivery over HK$300.',
-      zh: '你的 VITAS 購物車。Stripe 安全結帳，滿 HK$300 免香港運費。',
+      en: 'Your VITAS cart. Secure checkout by Stripe, free Hong Kong delivery from HK$250.',
+      zh: '你的 VITAS 購物車。Stripe 安全結帳，滿 HK$250 免香港運費。',
     },
     path: '/cart/',
     body,
@@ -1654,7 +1456,6 @@ export function about() {
         ${ABOUT.chapters
           .map((c) => `${blk('h2', c.h)}\n        ${c.p.map((para) => blk('p', para)).join('\n        ')}`)
           .join('\n        ')}
-        <p>${arrow('/approach/', { en: 'Our approach to claims', zh: '我們對宣稱的取態' })}</p>
       </div>
     </section>
 
@@ -1769,8 +1570,8 @@ export function contact() {
     eyebrow: { en: 'Contact', zh: '聯絡我們' },
     title: { en: 'Talk to a person', zh: '與真人對話' },
     lede: {
-      en: 'Product questions, trade enquiries, or a claim you have seen somewhere that we should know about.',
-      zh: '產品查詢、批發合作，或你在某處看到、值得我們知道的宣稱。',
+      en: 'Product questions, trade enquiries, or anything else.',
+      zh: '產品查詢、批發合作，或其他任何事宜。',
     },
     trail: [HOME_CRUMB, { name: { en: 'Contact', zh: '聯絡我們' }, path: '/contact/' }],
   })}
@@ -1791,7 +1592,6 @@ export function contact() {
             <select id="topic" name="topic">
               <option value="product">${t({ en: 'Product question', zh: '產品查詢' })}</option>
               <option value="trade">${t({ en: 'Trade / stocking', zh: '批發／銷售點' })}</option>
-              <option value="claim">${t({ en: 'A claim I have seen', zh: '我看到的宣稱' })}</option>
               <option value="other">${t({ en: 'Something else', zh: '其他' })}</option>
             </select>
           </div>
@@ -1808,10 +1608,12 @@ export function contact() {
           ${blk('h2', { en: 'Watch', zh: '影片' }, 'contact__h')}
           <p><a href="${SITE.youtube}" target="_blank" rel="noopener">YouTube — @VITASHK</a></p>
           <p><a href="${SITE.facebook}" target="_blank" rel="noopener">Facebook — VITAS 紓適寧</a></p>
+          ${blk('h2', { en: 'Instagram', zh: 'Instagram' }, 'contact__h')}
+          <p><a href="${SITE.instagram}" target="_blank" rel="noopener">@vitashongkong</a></p>
           ${blk('h2', { en: 'Response time', zh: '回覆時間' }, 'contact__h')}
           ${blk('p', {
-            en: 'Two working days, usually less. We are a small team in Hong Kong.',
-            zh: '通常兩個工作天內回覆。我們是香港的小團隊。',
+            en: 'Two working days, usually less.',
+            zh: '通常兩個工作天內回覆。',
           })}
         </aside>
       </div>

@@ -172,16 +172,14 @@ function footer() {
       <div class="footer__cols">
         ${col({ en: 'Shop', zh: '購買' }, [
           { href: '/shop/', label: { en: 'Shop now', zh: '網上商店' } },
-          { href: '/product/', label: { en: 'Soothing Cream Gel 100ml', zh: '舒緩啫喱膏 100毫升' } },
+          { href: '/product/', label: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' } },
           { href: '/cart/', label: { en: 'Cart', zh: '購物車' } },
           { href: '/stockists/', label: { en: 'Where to buy', zh: '購買地點' } },
         ])}
         ${col({ en: 'Brand', zh: '品牌' }, [
           { href: '/about/', label: { en: 'About VITAS', zh: '關於 VITAS' } },
-          { href: '/approach/', label: { en: 'Our approach', zh: '我們的取態' } },
           { href: '/ingredients/', label: { en: 'Ingredients', zh: '成分' } },
           { href: '/how-to-use/', label: { en: 'How to use', zh: '使用方法' } },
-          { href: '/journal/', label: { en: 'Journal', zh: '專欄' } },
           { href: '/faq/', label: { en: 'FAQ', zh: '常見問題' } },
           { href: '/contact/', label: { en: 'Contact', zh: '聯絡我們' } },
         ])}

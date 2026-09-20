@@ -19,7 +19,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { page, setLang, urlIn, SITE } from './layout.mjs';
-import { ARTICLES, PLANTS, SPORTS } from './data.mjs';
+import { PLANTS, SPORTS } from './data.mjs';
 import * as pages from './pages.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -37,10 +37,7 @@ const buildSpecs = () => [
   pages.ingredients(),
   ...PLANTS.map((p) => pages.ingredient(p)),
   ...SPORTS.map((sp) => pages.sport(sp)),
-  pages.approach(),
   pages.stockists(),
-  pages.journalIndex(),
-  ...ARTICLES.map((a) => pages.article(a)),
   pages.about(),
   pages.faq(),
   pages.contact(),

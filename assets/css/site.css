@@ -294,7 +294,6 @@ img { max-width: 100%; height: auto; display: block; }
 .card__link:hover .card__title { color: var(--brand-deep); }
 .card__latin { font-style: italic; font-size: 0.9rem; color: var(--muted); }
 .card__lede { color: var(--muted); font-size: 0.95rem; }
-.card--journal .card__title { font-size: 1.3rem; }
 
 /* ------------------------------------------------------------- split */
 .split__inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
@@ -412,12 +411,6 @@ img { max-width: 100%; height: auto; display: block; }
 .stockist__go {
   font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.5rem; color: var(--brand-deep); }
 
-/* ----------------------------------------------------------- article */
-.article__head { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(1.5rem, 3vw, 2.5rem); background: linear-gradient(180deg, var(--brand-wash), var(--paper)); }
-.article__title { max-width: 20ch; }
-.article__lede { font-size: clamp(1.02rem, 0.98rem + 0.4vw, 1.22rem); color: var(--muted); max-width: 60ch; }
-.article__art { width: 100%; border-radius: var(--radius); margin-bottom: clamp(2rem, 5vw, 3.5rem); background: var(--brand-wash); }
-.article .prose { margin-bottom: clamp(2rem, 5vw, 4rem); }
 
 /* --------------------------------------------------------- accordion */
 .acc { border-bottom: 1px solid var(--line); }

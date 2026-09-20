@@ -12,7 +12,7 @@
   var WELCOME_CODE = 'WELCOME50';
   var WELCOME_VALUE = 5000;
   var SHIPPING = 3000;
-  var FREE_OVER = 30000;
+  var FREE_OVER = 25000; // keep in sync with SHOP.freeShippingOver in src/data.mjs
 
   var lang = document.body.getAttribute('data-lang') === 'zh' ? 'zh' : 'en';
   var zh = lang === 'zh';
@@ -165,7 +165,7 @@
 
     var sub = subtotal();
     var discount = promo === WELCOME_CODE && cart.length ? Math.min(WELCOME_VALUE, sub) : 0;
-    var shipping = !cart.length ? 0 : sub - discount >= FREE_OVER ? 0 : SHIPPING;
+    var shipping = !cart.length ? 0 : sub >= FREE_OVER ? 0 : SHIPPING;
 
     var set = function (sel, value) {
       var el = document.querySelector(sel);

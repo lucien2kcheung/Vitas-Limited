@@ -1,12 +1,12 @@
 /**
  * Single source of truth for facts that appear in more than one place:
- * the product, the three plants, stockists and journal articles.
+ * the product, the three plants, stockists and FAQs.
  *
  * Claim discipline: everything here is either a verifiable fact (size, price,
  * ingredients, manufacturing) or a sensory/comfort statement. Physiological
  * claims — lymphatic drainage, "flushing lactic acid", detox, whitening,
  * body-shaping, organ or memory benefits — are deliberately absent. See
- * /approach/ and docs/positioning.md.
+ * docs/claims-guide.md.
  */
 
 
@@ -245,7 +245,7 @@ export const PURITY = {
 };
 
 export const SHOP = {
-  freeShippingOver: 30000,
+  freeShippingOver: 25000,
   currency: 'hkd',
   welcomeCode: 'WELCOME50',
   welcomeValue: 5000,
@@ -404,135 +404,6 @@ export const STOCKISTS = [
   },
 ];
 
-export const ARTICLES = [
-  {
-    slug: 'lactic-acid-myth',
-    date: '2026-07-14',
-    readEn: '5 min read',
-    readZh: '5 分鐘閱讀',
-    tag: { en: 'Recovery', zh: '恢復' },
-    title: {
-      en: 'The lactic acid myth — and what actually makes you sore',
-      zh: '乳酸迷思——真正令你痠痛的是甚麼',
-    },
-    lede: {
-      en: 'Lactate clears on its own within about an hour of stopping exercise. The soreness that shows up two days later is something else entirely.',
-      zh: '運動停止後約一小時內，乳酸便會自行代謝。兩天後才出現的痠痛，其實是另一回事。',
-    },
-    art: '/assets/img/art-recovery.svg',
-    body: [
-      {
-        h: { en: 'Lactate leaves on its own', zh: '乳酸會自行代謝' },
-        p: [
-          {
-            en: 'Blood lactate rises during hard efforts and returns to resting levels within roughly 30 to 60 minutes of stopping — usually well before you have finished showering. Nothing you rub on your skin speeds that up, and nothing needs to.',
-            zh: '劇烈運動時血液乳酸會上升，停止運動後約 30 至 60 分鐘便回落至靜息水平——通常在你洗完澡之前就完成了。塗抹在皮膚上的任何東西都無法加快這個過程，也沒有這個必要。',
-          },
-        ],
-      },
-      {
-        h: { en: 'The soreness two days later is something else', zh: '兩天後的痠痛是另一回事' },
-        p: [
-          {
-            en: 'Delayed onset muscle soreness — the stiffness that peaks 24 to 72 hours after unfamiliar or eccentric work — is an inflammatory response to microscopic damage in the muscle fibres. It arrives long after lactate has gone. Treating one by naming the other was always a category error.',
-            zh: '延遲性肌肉痠痛（DOMS）在不熟悉或離心運動後 24 至 72 小時達到高峰，是肌纖維微細損傷引起的發炎反應。它出現時，乳酸早已消失。用乳酸來解釋 DOMS，本身就是概念錯置。',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'warm-up-rub',
-    date: '2026-06-02',
-    readEn: '4 min read',
-    readZh: '4 分鐘閱讀',
-    tag: { en: 'Training', zh: '訓練' },
-    title: {
-      en: 'What a pre-workout rub can and cannot do',
-      zh: '運動前按摩膏做得到與做不到的事',
-    },
-    lede: {
-      en: 'A cream does not warm a muscle up. Movement does. But the two minutes you spend applying it are not wasted.',
-      zh: '按摩膏不會令肌肉熱身，動作才會。但塗抹它的兩分鐘並不浪費。',
-    },
-    art: '/assets/img/art-training.svg',
-    body: [
-      {
-        h: { en: 'Cooling is a skin sensation, not a muscle temperature', zh: '清涼是皮膚感覺，不是肌肉溫度' },
-        p: [
-          {
-            en: 'The coolness you feel from eucalyptus is a sensory effect at the surface of the skin. It does not change the temperature of the tissue underneath, and it is not a substitute for five minutes of easy cycling, rowing or skipping.',
-            zh: '尤加利帶來的清涼感是皮膚表層的感官效果，並不會改變下層組織的溫度，也不能取代五分鐘的輕鬆單車、划船或跳繩。',
-          },
-        ],
-      },
-      {
-        h: { en: 'What the ritual actually buys you', zh: '這個步驟真正的價值' },
-        p: [
-          {
-            en: 'Attention. Working cream into your calves, quads and shoulders forces you to notice which side is tight, which knee is complaining, whether last session left something behind. Athletes who do a consistent pre-session check-in tend to make better decisions about load — not because of the cream, but because of the two minutes.',
-            zh: '注意力。把啫喱膏推開至小腿、股四頭肌與肩膊時，你會察覺哪一邊比較緊、哪邊膝蓋在抗議、上一課是否留下了甚麼。有固定賽前自我檢查習慣的運動員，對訓練量的判斷通常更好——不是因為那支膏，而是因為那兩分鐘。',
-          },
-        ],
-      },
-      {
-        h: { en: 'Where to put it', zh: '塗在哪裡' },
-        p: [
-          {
-            en: 'The areas you are about to load, plus anywhere that felt stiff getting out of bed. Calves before running, shoulders and lats before climbing or swimming, quads and hips before lifting. Then go and actually warm up.',
-            zh: '即將發力的部位，以及起床時覺得僵硬的地方。跑步前小腿、攀岩或游泳前肩背、負重訓練前股四頭肌與髖部。然後，去真正熱身。',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'desk-neck',
-    date: '2026-05-08',
-    readEn: '3 min read',
-    readZh: '3 分鐘閱讀',
-    tag: { en: 'Everyday', zh: '日常' },
-    title: {
-      en: 'Desk neck: a three-minute reset for shoulders that live at a keyboard',
-      zh: '辦公室頸：給長期對著鍵盤的肩頸三分鐘',
-    },
-    lede: {
-      en: 'The most common reason people in Hong Kong reach for this cream has nothing to do with sport.',
-      zh: '香港人使用這支啫喱膏最常見的原因，其實與運動無關。',
-    },
-    art: '/assets/img/art-desk.svg',
-    body: [
-      {
-        h: { en: 'Why it happens', zh: '為甚麼會這樣' },
-        p: [
-          {
-            en: 'Holding a static posture loads the small stabilising muscles of the neck and upper back for hours without a break. They are not injured; they are simply never allowed to stop working. The fix is interruption, not force.',
-            zh: '長時間維持固定姿勢，會令頸部與上背的小穩定肌群連續數小時工作而沒有休息。它們並沒有受傷，只是從未被允許停下來。解決方法是「中斷」，不是「用力」。',
-          },
-        ],
-      },
-      {
-        h: { en: 'The three minutes', zh: '三分鐘怎麼做' },
-        p: [
-          {
-            en: 'One: a pea-sized amount along each side of the neck and across the top of the shoulders, worked in slow circles towards the collarbone. Two: ten slow shoulder rolls backwards, then ten chin tucks. Three: stand up and look at something more than six metres away for thirty seconds. Repeat mid-morning and mid-afternoon rather than saving it all for the evening.',
-            zh: '第一：豌豆大小的份量，塗於頸部兩側及肩膊上方，以緩慢打圈方式向鎖骨方向推開。第二：慢慢向後轉肩十次，再做十次收下巴。第三：站起來，望向六米以外的景物三十秒。與其留待晚上一次過，不如上午與下午各做一次。',
-          },
-        ],
-      },
-      {
-        h: { en: 'Why this cream in particular', zh: '為甚麼用這一支' },
-        p: [
-          {
-            en: 'Because it does not smell. A traditional medicated oil at 3pm in an open-plan office is a social decision as much as a physical one. This one absorbs in under a minute and is gone from the air before your next meeting.',
-            zh: '因為它沒有氣味。下午三時在開放式辦公室用傳統藥油，是一個社交決定多於生理決定。這一支一分鐘內吸收，氣味在下一個會議前已經消散。',
-          },
-        ],
-      },
-    ],
-  },
-];
-
 export const FAQS = [
   {
     q: { en: 'Is VITAS a medicine?', zh: 'VITAS 是藥物嗎？' },
@@ -633,8 +504,8 @@ export const FAQS = [
   {
     q: { en: 'How do I order, and how much is delivery?', zh: '如何訂購？運費多少？' },
     a: {
-      en: 'Order from the Shop page — checkout is handled by Stripe, which accepts card and Apple Pay / Google Pay. Local delivery within Hong Kong is free on orders over HK$300 and HK$30 otherwise, usually 2–4 working days. You can also buy in person at Watsons and Mannings across Hong Kong.',
-      zh: '可於「網上商店」下單，付款由 Stripe 處理，支援信用卡及 Apple Pay／Google Pay。香港本地送遞：滿 HK$300 免運費，否則 HK$30，一般 2–4 個工作天送達。亦可於全港屈臣氏及萬寧門市選購。',
+      en: 'Order from the Shop page — checkout is handled by Stripe, which accepts card and Apple Pay / Google Pay. Local delivery within Hong Kong is free on orders of HK$250 or more and HK$30 otherwise, usually 2–4 working days. You can also buy in person at Watsons and Mannings across Hong Kong.',
+      zh: '可於「網上商店」下單，付款由 Stripe 處理，支援信用卡及 Apple Pay／Google Pay。香港本地送遞：滿 HK$250 免運費，否則 HK$30，一般 2–4 個工作天送達。亦可於全港屈臣氏及萬寧門市選購。',
     },
   },
   {
