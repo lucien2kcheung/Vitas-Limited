@@ -23,10 +23,10 @@ export const SITE = {
   brandZh: '紓適寧',
   youtube: 'https://www.youtube.com/@VITASHK',
   facebook: 'https://www.facebook.com/vitashk/',
-  instagram: 'https://www.instagram.com/vitashk/',
+  instagram: 'https://www.instagram.com/vitashongkong/',
   // PLACEHOLDER — replace with the real Xiaohongshu (小紅書) profile URL.
   xiaohongshu: '#',
-  email: 'hello@vitas.com.hk',
+  email: 'info@vitas.com.hk',
   address: {
     en: 'Hong Kong',
     zh: '香港',
@@ -74,7 +74,7 @@ export const urlIn = (path, lang) => (lang === 'zh' ? '/zh' + path : path);
 /* --------------------------------------------------------------- chrome */
 
 const navItems = [
-  { href: '/product/', label: { en: 'What is VITAS', zh: '甚麼是 VITAS' } },
+  { href: '/product/', label: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' } },
   { href: '/ingredients/', label: { en: 'Ingredients', zh: '成分' } },
   { href: '/how-to-use/', label: { en: 'How to Use', zh: '使用方法' } },
   { href: '/about/', label: { en: 'About VITAS', zh: '關於 VITAS' } },

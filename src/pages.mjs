@@ -23,7 +23,6 @@ import {
   BRAND,
   SPORTS,
   PURITY,
-  STANDARD,
   PRODUCT,
   PRODUCTS,
   SHOP,
@@ -32,7 +31,6 @@ import {
   ARTICLES,
   FAQS,
   ABOUT,
-  WHY_VITAS,
 } from './data.mjs';
 
 import { existsSync } from 'node:fs';
@@ -92,7 +90,7 @@ const orgJsonLd = {
   name: 'VITAS 紓適寧',
   url: SITE.url,
   logo: SITE.url + '/assets/img/favicon.svg',
-  sameAs: [SITE.youtube, SITE.facebook],
+  sameAs: [SITE.youtube, SITE.facebook, SITE.instagram],
   contactPoint: {
     '@type': 'ContactPoint',
     email: SITE.email,
@@ -150,8 +148,8 @@ function freeFromBand() {
           ${blk(
             'p',
             {
-              en: 'Most muscle rubs work by shouting. Ours is built around the things it leaves out — which is why you can use it at 3pm in an open-plan office.',
-              zh: '大部分肌肉按摩產品靠「強烈」取勝。我們的配方，重點在於它不含甚麼——這也是你可以在下午三時的開放式辦公室使用它的原因。',
+              en: 'Most muscle rubs work by shouting. Ours is built around the things it leaves out.',
+              zh: '大部分肌肉按摩產品靠「強烈」取勝。我們的配方，重點在於它不含甚麼。',
             },
             'band__lede'
           )}
@@ -178,7 +176,7 @@ function buyStrip() {
           )}" width="620" height="1500" loading="lazy" decoding="async">
         </div>
         <div class="buy__body">
-          ${blk('p', { en: 'One product, one job', zh: '一支產品，一個用途' }, 'eyebrow')}
+          ${blk('p', { en: 'Pre + post workout', zh: '運動前後' }, 'eyebrow')}
           ${blk('h2', { en: 'Soothing Cream Gel', zh: '舒緩啫喱膏' }, 'buy__title')}
           <p class="buy__meta"><span>${PRODUCT.size}</span><span aria-hidden="true">·</span><span>${
             PRODUCT.priceLabel
@@ -186,19 +184,15 @@ function buyStrip() {
           ${blk(
             'p',
             {
-              en: 'Stocked on the shelf at Watsons and Mannings across Hong Kong, and delivered by the online stores below.',
-              zh: '全港屈臣氏及萬寧門市有售，亦可於以下網店選購。',
+              en: 'Order online with free delivery over HK$300, or pick it up at Watsons and Mannings across Hong Kong.',
+              zh: '網上訂購，滿 HK$300 免運費；亦可於全港屈臣氏及萬寧門市選購。',
             },
             'buy__text'
           )}
           <div class="buy__actions">
-            ${cta(STOCKISTS[0].url, { en: 'Buy at Watsons', zh: '於屈臣氏選購' })}
-            ${cta(STOCKISTS[1].url, { en: 'Buy at Mannings', zh: '於萬寧選購' }, 'btn--ghost')}
+            ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
+            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
           </div>
-          <p class="buy__all">${arrow('/stockists/', {
-            en: 'See all stockists',
-            zh: '查看所有銷售點',
-          })}</p>
         </div>
       </div>
     </section>`;
@@ -322,30 +316,6 @@ ${sectionHead({
     </section>`;
 }
 
-/** The VITAS Standard — spec table from the repositioning doc's "Why VITAS". */
-function vitasStandard() {
-  return `    <section class="section standard reveal" id="why-vitas">
-      <div class="wrap">
-${sectionHead({
-  eyebrow: { en: 'Why VITAS', zh: '為何選擇 VITAS' },
-  heading: { en: 'Clean performance. No unnecessary noise.', zh: '乾淨配方．簡單直接。' },
-  lede: {
-    en: 'A pre + post workout cream gel with three plant-based actives, a fast-absorbing non-greasy texture, and a clean formulation built around the modern training ritual.',
-    zh: 'VITAS 的定位很簡單：一款運動前後使用的霜凝膠，蘊含三種植物活性成分，質地快速吸收、不黏膩，以乾淨配方融入現代訓練流程。',
-  },
-})}
-        <dl class="standard__table">
-          ${STANDARD.map(
-            (row) => `<div class="standard__row">
-            <dt class="standard__feature">${t(row.feature)}</dt>
-            <dd class="standard__value">${t(row.value)}</dd>
-          </div>`
-          ).join('\n          ')}
-        </dl>
-      </div>
-    </section>`;
-}
-
 /** The sensory sub-copy the compliance framework requires beside the slogan. */
 function sensoryNote(className = 'sensory-note') {
   return blk('p', BRAND.sensory, className);
@@ -376,41 +346,6 @@ function shopCard(p) {
             </div>
           </div>
         </article>`;
-}
-
-/** Retail partners — names only, no outbound links. */
-function retailPartners() {
-  const partner = (name, zh, note) => `<div class="partner">
-            <span class="partner__name">${name}</span>
-            <span class="partner__zh">${zh}</span>
-            <span class="partner__note">${t(note)}</span>
-          </div>`;
-
-  return `    <section class="section partners reveal">
-      <div class="wrap">
-${sectionHead({
-  eyebrow: { en: 'Retail partners', zh: '零售夥伴' },
-  heading: { en: 'On the shelf across Hong Kong', zh: '全港門市有售' },
-  lede: {
-    en: 'You can pick up a tube in person, read the carton and decide for yourself — no website in between.',
-    zh: '你可以親自到門市拿起產品、看清楚外盒再決定——中間不需要一個網站。',
-  },
-  align: 'center',
-})}
-        <div class="partners__row">
-          ${partner('Watsons', '屈臣氏', { en: '600+ stores', zh: '600 多間分店' })}
-          ${partner('Mannings', '萬寧', { en: 'Stores citywide', zh: '全港分店' })}
-        </div>
-        ${blk(
-          'p',
-          {
-            en: 'Retail partner names are used to show where the product is stocked. Prices and availability are set by each retailer.',
-            zh: '零售夥伴名稱僅用以說明產品的銷售點。售價及供應情況由各零售商決定。',
-          },
-          'partners__note'
-        )}
-      </div>
-    </section>`;
 }
 
 /* ------------------------------------------------------------------- pages */
@@ -470,8 +405,8 @@ ${sectionHead({
           ${blk(
             'p',
             {
-              en: 'Apply VITAS 10 minutes before training. The warming sensation helps your muscles feel ready — part of a proper dynamic warm-up for Hyrox, padel, or your run club session.',
-              zh: '訓練前 10 分鐘塗抹 VITAS。溫熱觸感讓肌肉感覺準備就緒——作為 Hyrox、板式網球或跑團課前動態熱身的一部分。',
+              en: 'Apply VITAS 10 minutes before training. The warming sensation helps your muscles feel ready — part of a proper dynamic warm-up for Hyrox, padel, or your run club session. Make it a regular habit before every workout.',
+              zh: '訓練前 10 分鐘塗抹 VITAS。溫熱觸感讓肌肉感覺準備就緒——作為 Hyrox、板式網球或跑團課前動態熱身的一部分。不妨把它變成每次運動前的固定習慣。',
             },
             'moment__text'
           )}
@@ -511,10 +446,6 @@ ${sectionHead({
 
 ${puritySection()}
 
-${vitasStandard()}
-
-${freeFromBand()}
-
     <section class="section finder-teaser reveal">
       <div class="wrap finder-teaser__inner">
         <div>
@@ -533,8 +464,6 @@ ${freeFromBand()}
         <img class="finder-teaser__art" src="/assets/img/art-desk.svg" alt="" width="1200" height="800" loading="lazy" decoding="async">
       </div>
     </section>
-
-${retailPartners()}
 
 ${buyStrip()}
 
@@ -571,13 +500,13 @@ ${newsletter()}`;
 
 export function product() {
   const body = `${pageHero({
-    eyebrow: { en: 'What is VITAS', zh: '甚麼是 VITAS' },
+    eyebrow: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' },
     title: { en: 'One tube, three plants, two moments', zh: '一支軟管，三種植物，兩個時刻' },
     lede: {
-      en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it is, why it exists, and what it does and does not do.',
-      zh: '一支純淨、法國製造的啫喱膏，運動前熱身、運動後放鬆。100毫升，HK$250。以下說明它是甚麼、為何存在，以及它能做與不能做的事。',
+      en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it feels like, where it fits in your day, and what is inside.',
+      zh: '一支純淨、法國製造的啫喱膏，運動前熱身、運動後放鬆。100毫升，HK$250。以下說明它的膚感、如何融入你的一天，以及它的成分。',
     },
-    trail: [HOME_CRUMB, { name: { en: 'What is VITAS', zh: '甚麼是 VITAS' }, path: '/product/' }],
+    trail: [HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' }, path: '/product/' }],
   })}
 
     <section class="section product-main">
@@ -613,14 +542,14 @@ export function product() {
             })}</dd></div>
           </dl>
           <div class="buy__actions">
-            ${cta(STOCKISTS[0].url, { en: 'Buy at Watsons', zh: '於屈臣氏選購' })}
-            ${cta('/stockists/', { en: 'All stockists', zh: '所有銷售點' }, 'btn--ghost')}
+            ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
+            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
           </div>
           ${blk(
             'p',
             {
-              en: 'Sold in Hong Kong through Watsons, Mannings and selected online pharmacies. We do not currently sell direct from this site.',
-              zh: '於香港透過屈臣氏、萬寧及指定網上藥房發售。本網站目前不設直接訂購。',
+              en: 'Order here with free Hong Kong delivery over HK$300, or pick it up at Watsons and Mannings.',
+              zh: '可於本網站訂購，滿 HK$300 免香港運費；亦可於屈臣氏及萬寧門市選購。',
             },
             'product-main__note'
           )}
@@ -628,101 +557,105 @@ export function product() {
       </div>
     </section>
 
-    <section class="section claims reveal">
-      <div class="wrap grid grid--2">
-        <div class="claims__col">
-          ${blk('h2', { en: 'What it does', zh: '它會做到' }, 'claims__title')}
-          <ul class="ticks">
-            ${[
-              {
-                en: 'Gives a mild, clean cooling sensation on the skin',
-                zh: '在皮膚上帶來溫和、乾淨的清涼感',
-              },
-              {
-                en: 'Provides enough glide for a proper self-massage',
-                zh: '提供足夠滑度，讓你好好自我按摩',
-              },
-              { en: 'Absorbs in under a minute, leaving no shine', zh: '一分鐘內吸收，不留油光' },
-              {
-                en: 'Stays quiet — no medicated smell in a lift or a meeting',
-                zh: '氣味低調——在升降機或會議室都不會有藥油味',
-              },
-              {
-                en: 'Works as a daily habit, before or after exercise or at a desk',
-                zh: '可作日常習慣：運動前後，或辦公桌前',
-              },
-            ]
-              .map((i) => `<li>${t(i)}</li>`)
-              .join('\n            ')}
-          </ul>
-        </div>
-        <div class="claims__col claims__col--muted">
-          ${blk('h2', { en: 'What it does not do', zh: '它不會做到' }, 'claims__title')}
-          <ul class="crosses">
-            ${[
-              { en: 'It does not "flush out lactic acid"', zh: '不會「排走乳酸」' },
-              { en: 'It does not drain or manage the lymphatic system', zh: '不會排走或管理淋巴' },
-              { en: 'It does not whiten skin or reshape the body', zh: '不會美白或改變體形' },
-              { en: 'It does not treat injuries, illness or organs', zh: '不能治療受傷、疾病或器官問題' },
-              { en: 'It does not replace a warm-up, rest, or a physio', zh: '不能取代熱身、休息或物理治療' },
-            ]
-              .map((i) => `<li>${t(i)}</li>`)
-              .join('\n            ')}
-          </ul>
-          <p>${arrow('/approach/', { en: 'Why we cut the claims', zh: '我們為何刪走那些宣稱' })}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section why-vitas reveal" id="why-vitas">
+    <section class="section feel reveal" id="what-you-feel">
       <div class="wrap">
 ${sectionHead({
-  eyebrow: { en: 'Why VITAS', zh: '為甚麼選 VITAS' },
-  heading: { en: 'Four reasons, none of them magic', zh: '四個理由，沒有一個是奇蹟' },
+  eyebrow: { en: 'On the skin', zh: '膚感' },
+  heading: { en: 'What you will feel', zh: '你會感受到的' },
   lede: {
-    en: 'The shelf is crowded and cheap. Here is the honest case for paying a little more for this one.',
-    zh: '貨架上產品既多且便宜。以下是「多付一點選擇這一支」的誠實理由。',
+    en: 'One cream gel, two moments: warming when you massage it in before training, cooling when you massage it in after.',
+    zh: '一支霜凝膠，兩個時刻：訓練前按摩帶來溫熱感，訓練後按摩帶來清涼感。',
   },
 })}
-        <div class="grid grid--2">
-          ${WHY_VITAS.map(
-            (r) => `<div class="reason">
-            ${blk('h3', r.h, 'reason__title')}
-            ${blk('p', r.p, 'reason__text')}
-          </div>`
-          ).join('\n          ')}
+        <div class="feel__grid">
+          ${[
+            {
+              mod: 'warm',
+              icon: '<path d="M12 3c2.5 3 4 5.3 4 8a4 4 0 0 1-8 0c0-1.4.5-2.6 1.4-3.6.3 1.3 1 2 1.6 2.2C11 7.5 11.3 5.2 12 3Z"/><path d="M12 21v-3"/>',
+              h: { en: 'Warming before', zh: '運動前 · 溫熱' },
+              p: {
+                en: 'Massage it in ten minutes before training. The warming sensation is your cue to start the warm-up properly.',
+                zh: '訓練前十分鐘按摩塗抹。溫熱觸感提醒你，是時候認真開始熱身。',
+              },
+            },
+            {
+              mod: 'cool',
+              icon: '<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/><path d="M9.5 4.5 12 6l2.5-1.5M9.5 19.5 12 18l2.5 1.5"/>',
+              h: { en: 'Cooling after', zh: '運動後 · 清涼' },
+              p: {
+                en: 'Massage it into tired legs, shoulders and back after training — a fresh, cooling feel while you stretch and wind down.',
+                zh: '訓練後按摩疲勞的雙腿、肩膊與背部——伸展放鬆時，帶來清新涼感。',
+              },
+            },
+            {
+              mod: 'plain',
+              icon: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+              h: { en: 'Absorbed in under a minute', zh: '一分鐘內吸收' },
+              p: {
+                en: 'A light, non-greasy texture that leaves no shine, so you can dress and get on with your day.',
+                zh: '質地輕盈不油膩、不留油光，塗後即可穿衣，繼續你的一天。',
+              },
+            },
+            {
+              mod: 'plain',
+              icon: '<path d="M4 9c2-2 4-2 6 0s4 2 6 0 3-1.5 4-1"/><path d="M4 15c2-2 4-2 6 0s4 2 6 0 3-1.5 4-1"/><path d="M3 3l18 18"/>',
+              h: { en: 'No medicated smell', zh: '沒有藥油味' },
+              p: {
+                en: 'A faint eucalyptus note that fades within a minute. Fine for the gym, the office or the MTR.',
+                zh: '淡淡尤加利香，約一分鐘散去。在健身室、辦公室或港鐵上使用都沒問題。',
+              },
+            },
+          ]
+            .map(
+              (c) => `<article class="feel-card feel-card--${c.mod}">
+            <svg class="feel-card__icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${c.icon}</svg>
+            ${blk('h3', c.h, 'feel-card__title')}
+            ${blk('p', c.p, 'feel-card__text')}
+          </article>`
+            )
+            .join('\n          ')}
         </div>
-      </div>
-    </section>
 
-    <section class="section moments reveal">
-      <div class="wrap moments__inner">
-        <article class="moment moment--warm">
-          <span class="moment__tag">${t({ en: 'Before · Activate', zh: '賽前 · 激活' })}</span>
-          ${blk('h2', { en: 'The pre-session ritual', zh: '賽前儀式' }, 'moment__title')}
-          ${blk(
-            'p',
-            {
-              en: 'Apply VITAS 10 minutes before training. The warming sensation helps your muscles feel ready — part of a proper dynamic warm-up for Hyrox, padel, or your run club session.',
-              zh: '訓練前 10 分鐘塗抹 VITAS。溫熱觸感讓肌肉感覺準備就緒——作為 Hyrox、板式網球或跑團課前動態熱身的一部分。',
-            },
-            'moment__text'
-          )}
-        </article>
-        <article class="moment moment--cool">
-          <span class="moment__tag">${t({ en: 'After · Accelerate', zh: '賽後 · 加速' })}</span>
-          ${blk('h2', { en: 'The post-session wind-down', zh: '賽後放鬆' }, 'moment__title')}
-          ${blk(
-            'p',
-            {
-              en: 'Massage VITAS into tired muscles after effort. The cooling sensation provides soothing relief as you stretch and recover.',
-              zh: '運動後按摩疲勞肌肉，清涼觸感在你伸展與放鬆時帶來舒緩感受。',
-            },
-            'moment__text'
-          )}
-        </article>
+        <div class="fit">
+          ${blk('h3', { en: 'Where it fits in your day', zh: '融入你的一天' }, 'fit__title')}
+          <ul class="fit__list">
+            ${[
+              {
+                href: '/how-to-use/#before',
+                h: { en: 'Before every workout', zh: '每次運動前' },
+                p: { en: 'Two minutes. Make it a regular habit.', zh: '兩分鐘，養成固定習慣。' },
+              },
+              {
+                href: '/how-to-use/#after',
+                h: { en: 'After training', zh: '訓練後' },
+                p: { en: 'Ten minutes while you stretch.', zh: '伸展時的十分鐘。' },
+              },
+              {
+                href: '/how-to-use/#desk',
+                h: { en: 'At your desk', zh: '辦公桌前' },
+                p: { en: 'Three minutes for neck and shoulders.', zh: '三分鐘照顧頸肩。' },
+              },
+            ]
+              .map(
+                (f) => `<li><a class="fit__item" href="${url(f.href)}">
+              ${blk('span', f.h, 'fit__name')}
+              ${blk('span', f.p, 'fit__text')}
+              <span class="fit__go" aria-hidden="true">→</span>
+            </a></li>`
+              )
+              .join('\n            ')}
+          </ul>
+        </div>
+
+        ${blk(
+          'p',
+          {
+            en: 'A cosmetic massage gel, not a medicine. It does not replace a warm-up, rest or a physio.',
+            zh: '本品為按摩護理凝膠，並非藥物，不能取代熱身、休息或物理治療。',
+          },
+          'feel__honest'
+        )}
       </div>
-      <div class="wrap">${sensoryNote('note')}</div>
     </section>
 
 ${puritySection()}
@@ -750,17 +683,17 @@ ${sectionHead({
 ${newsletter()}`;
 
   return {
-    title: { en: 'What is VITAS', zh: '甚麼是 VITAS' },
+    title: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' },
     description: {
-      en: 'What VITAS Soothing Cream Gel is (100ml, HK$250), why to choose it, and a plain account of what it does and does not do.',
-      zh: 'VITAS 舒緩啫喱膏是甚麼（100毫升，HK$250）、為何選擇它，以及它能做與不能做的事。',
+      en: 'VITAS Soothing Cream Gel (100ml, HK$250): warming before training, cooling after, absorbed in under a minute, no medicated smell. Made in France.',
+      zh: 'VITAS 舒緩啫喱膏（100毫升，HK$250）：運動前溫熱、運動後清涼，一分鐘內吸收，沒有藥油味。法國製造。',
     },
     path: '/product/',
     active: '/product/',
     body,
     jsonLd: [
       productJsonLd(),
-      breadcrumb([HOME_CRUMB, { name: { en: 'What is VITAS', zh: '甚麼是 VITAS' }, path: '/product/' }]),
+      breadcrumb([HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' }, path: '/product/' }]),
     ],
   };
 }
@@ -863,8 +796,8 @@ ${sectionHead({
             <span class="ppr__num">01</span>
             ${blk('h3', { en: 'Prime — before training', zh: '喚醒 — 運動前' }, 'ppr__title')}
             ${blk('p', {
-              en: 'Apply a thin layer to thighs, calves, shoulders or other target areas. Massage in circular motions as part of your warm-up and experience the warming sensation.',
-              zh: '取適量薄薄塗抹於大腿、小腿、肩膊或其他目標部位。以打圈方式按摩，融入熱身流程並感受溫熱體感。',
+              en: 'Apply a thin layer to thighs, calves, shoulders or other target areas. Massage in circular motions as part of your warm-up and experience the warming sensation. Make it a regular habit before every workout.',
+              zh: '取適量薄薄塗抹於大腿、小腿、肩膊或其他目標部位。以打圈方式按摩，融入熱身流程並感受溫熱體感。不妨把它變成每次運動前的固定習慣。',
             }, 'ppr__text')}
           </li>
           <li class="ppr__step">
@@ -1153,8 +1086,8 @@ export function approach() {
         })}
         ${blk('h2', { en: 'What we will say', zh: '我們會說的' })}
         ${blk('p', {
-          en: 'That this is a light, low-odour cream gel built around eucalyptus, grape seed and niaouli. That it feels mildly cool, absorbs quickly and gives you enough glide for a proper massage. That it is made in France, produced with EEC GMP standard. That it is pleasant enough to use daily, which matters more than any single application, because the useful part of recovery is the habit.',
-          zh: '這是一支以尤加利、葡萄籽與綠花白千層為核心的輕盈低氣味啫喱膏；它帶來溫和清涼感、吸收快，並提供足夠滑度作按摩；它法國製造，按 EEC GMP 標準生產；它的膚感足以令人每天使用——而這比任何單次使用都重要，因為恢復真正有效的部分，是習慣。',
+          en: 'That this is a light, low-odour cream gel built around eucalyptus, grape seed and niaouli. That it feels warming when massaged in before training and cooling after, absorbs quickly and gives you enough glide for a proper massage. That it is made in France, produced with EEC GMP standard. That it is pleasant enough to use daily, which matters more than any single application, because the useful part of recovery is the habit.',
+          zh: '這是一支以尤加利、葡萄籽與綠花白千層為核心的輕盈低氣味啫喱膏；它於訓練前按摩帶來溫熱感、訓練後帶來清涼感，吸收快，並提供足夠滑度作按摩；它法國製造，按 EEC GMP 標準生產；它的膚感足以令人每天使用——而這比任何單次使用都重要，因為恢復真正有效的部分，是習慣。',
         })}
         ${blk('h2', { en: 'What we will not say', zh: '我們不會說的' })}
         ${blk('p', {
@@ -1165,11 +1098,6 @@ export function approach() {
         ${blk('p', {
           en: 'At HK$250 for 100ml, this costs several times more than a tube of traditional medicated rub. You are not buying stronger analgesia; you are buying a formula without methyl salicylate or camphor, a texture that does not leave you greasy, a smell that does not enter the room before you do, and French manufacture. If those things do not matter to you, a HK$40 tube of something fierce will do the job — and we would rather say that here than have you find it out at home.',
           zh: '100毫升售 HK$250，是傳統藥膏的數倍價錢。你買的並不是更強的止痛效果，而是一個不含水楊酸甲酯與樟腦的配方、不油膩的膚感、不會先於你進入房間的氣味，以及法國生產。如果這些對你並不重要，一支四十元、氣味濃烈的產品同樣可以完成任務——我們寧願在這裡說清楚，也不想你買回家才發現。',
-        })}
-        ${blk('h2', { en: 'Reviews', zh: '評價' })}
-        ${blk('p', {
-          en: 'We do not publish testimonials we did not receive, and we do not pay for reviews. When we have enough verified customer reviews to be worth reading, they will appear on the product page with the verification method described. Until then, this space stays empty on purpose.',
-          zh: '我們不會刊登並非真實收到的推薦，也不會付費購買評價。當累積到足夠、可核實的顧客評價時，它們會出現在產品頁，並列明核實方式。在此之前，這一欄刻意留白。',
         })}
       </div>
     </section>
@@ -1217,21 +1145,18 @@ export function stockists() {
       <div class="wrap">
         <div class="grid grid--2">
           ${STOCKISTS.map(
-            (s) => `<a class="stockist reveal${s.featured ? ' stockist--featured' : ''}" href="${
-              s.url
-            }" target="_blank" rel="noopener">
+            (s) => `<div class="stockist reveal${s.featured ? ' stockist--featured' : ''}">
             <span class="stockist__name">${s.name}</span>
             <span class="stockist__kind">${t(s.kind)}</span>
             <span class="stockist__note">${t(s.note)}</span>
-            <span class="stockist__go">${t({ en: 'Visit store', zh: '前往商店' })} →</span>
-          </a>`
+          </div>`
           ).join('\n          ')}
         </div>
         ${blk(
           'p',
           {
-            en: 'Buying elsewhere? Check the tube for a batch number and expiry date on the crimp. Grey-market listings sometimes carry old packaging and old claims, and we cannot vouch for storage conditions outside our own supply chain.',
-            zh: '在其他渠道購買？請檢查軟管末端摺口是否印有批號及有效期。平行進口貨品有時仍使用舊包裝與舊宣稱，我們亦無法保證供應鏈以外的儲存狀況。',
+            en: 'Buying elsewhere? Check the tube for a batch number and expiry date on the crimp — we cannot vouch for storage conditions outside our own supply chain.',
+            zh: '在其他渠道購買？請檢查軟管末端摺口是否印有批號及有效期——我們無法保證供應鏈以外的儲存狀況。',
           },
           'note'
         )}
@@ -1394,8 +1319,6 @@ export function sportsIndex() {
       </div>
     </section>
 
-${puritySection()}
-
 ${buyStrip()}`;
 
   return {
@@ -1446,6 +1369,7 @@ ${sloganBlock('sport-hero__slogan')}
           <span class="moment__tag">${t({ en: 'Before · Activate', zh: '賽前 · 激活' })}</span>
           ${blk('h2', { en: 'Warm up', zh: '熱身' }, 'moment__title')}
           ${blk('p', sp.before, 'moment__text')}
+          ${blk('p', { en: 'Make it a regular habit before every session.', zh: '把它變成每次訓練前的固定習慣。' }, 'moment__text')}
         </article>
         <article class="moment moment--cool">
           <span class="moment__tag">${t({ en: 'After · Accelerate', zh: '賽後 · 加速' })}</span>
@@ -1454,8 +1378,6 @@ ${sloganBlock('sport-hero__slogan')}
         </article>
       </div>
     </section>
-
-${puritySection()}
 
     <section class="section reveal">
       <div class="wrap">
@@ -1688,8 +1610,8 @@ export function checkoutResult(kind) {
               blk(
                 'p',
                 {
-                  en: 'Questions about your order? Email hello@vitas.com.hk and a person will answer.',
-                  zh: '對訂單有疑問？請電郵 hello@vitas.com.hk，會有真人回覆。',
+                  en: `Questions about your order? Email ${SITE.email} and a person will answer.`,
+                  zh: `對訂單有疑問？請電郵 ${SITE.email}，會有真人回覆。`,
                 },
                 'note'
               )
@@ -1719,7 +1641,7 @@ export function checkoutResult(kind) {
 export function about() {
   const body = `${pageHero({
     eyebrow: { en: 'About VITAS', zh: '關於 VITAS' },
-    title: { en: 'A small brand with one product', zh: '一個只有一支產品的小品牌' },
+    title: { en: 'Made in France. Made for how Hong Kong trains.', zh: '法國製造，為香港人的訓練而生。' },
     lede: {
       en: 'Why VITAS exists, where it is made, and what changed when we stopped saying things we could not prove.',
       zh: 'VITAS 為何存在、在哪裡生產，以及當我們停止說無法證明的話之後，改變了甚麼。',
@@ -1732,6 +1654,7 @@ export function about() {
         ${ABOUT.chapters
           .map((c) => `${blk('h2', c.h)}\n        ${c.p.map((para) => blk('p', para)).join('\n        ')}`)
           .join('\n        ')}
+        <p>${arrow('/approach/', { en: 'Our approach to claims', zh: '我們對宣稱的取態' })}</p>
       </div>
     </section>
 
@@ -1747,19 +1670,6 @@ export function about() {
           ${ABOUT.founderNote.p.map((para) => blk('p', para, 'founder__text')).join('\n          ')}
           <p class="founder__sign">${t(ABOUT.founder)}</p>
         </div>
-      </div>
-    </section>
-
-${freeFromBand()}
-
-    <section class="section reveal">
-      <div class="wrap prose">
-        ${blk('h2', { en: 'What we will not do', zh: '我們不會做的事' })}
-        ${blk('p', {
-          en: 'We will not buy reviews, invent studies, or describe this cream as a medicine. If you find a claim on a shelf talker or a reseller listing that contradicts what is written here, send it to us — some grey-market listings still carry the old copy, and we are working through them.',
-          zh: '我們不會購買評價、捏造研究，也不會把這支膏描述成藥物。如果你在貨架標示或經銷商網頁上看到與本頁不符的宣稱，請告訴我們——部分平行進口資料仍沿用舊文案，我們正在逐一處理。',
-        })}
-        <p>${arrow('/approach/', { en: 'Read our approach in full', zh: '閱讀完整的取態說明' })}</p>
       </div>
     </section>
 
@@ -1809,7 +1719,7 @@ export function faq() {
               <span class="acc__icon" aria-hidden="true"></span>
             </button>
             <div class="acc__a" id="acc-${i}" hidden>
-              ${blk('p', f.a)}
+              ${(Array.isArray(f.a) ? f.a : [f.a]).map((a) => blk('p', a)).join('\n              ')}
             </div>
           </div>`
           ).join('\n          ')}
@@ -1843,7 +1753,10 @@ export function faq() {
         mainEntity: FAQS.map((f) => ({
           '@type': 'Question',
           name: t(f.q),
-          acceptedAnswer: { '@type': 'Answer', text: t(f.a) },
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: (Array.isArray(f.a) ? f.a : [f.a]).map((a) => t(a)).join(' '),
+          },
         })),
       },
       breadcrumb([HOME_CRUMB, { name: { en: 'FAQ', zh: '常見問題' }, path: '/faq/' }]),

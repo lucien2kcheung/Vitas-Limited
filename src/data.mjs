@@ -146,41 +146,6 @@ export const SPORTS = [
   },
 ];
 
-/**
- * "Why VITAS" — the case for choosing this over the crowded shelf, shown as a
- * sub-section on the "What is VITAS" page. Sensory and formulation facts only.
- */
-export const WHY_VITAS = [
-  {
-    h: { en: 'It does not follow you around', zh: '氣味不會跟著你' },
-    p: {
-      en: 'No methyl salicylate, no camphor — the two things that give a traditional medicated rub its carrying smell. You can use VITAS at 3pm in an open-plan office, between meetings, or on the MTR, and the person next to you will not know.',
-      zh: '不含水楊酸甲酯與樟腦——傳統藥膏氣味濃烈的兩大來源。你可以在下午三時的開放式辦公室、會議之間，或在港鐵上使用 VITAS，鄰座的人也不會察覺。',
-    },
-  },
-  {
-    h: { en: 'It absorbs before you dress', zh: '穿衣前已吸收' },
-    p: {
-      en: 'A light grape-seed base sinks in within a minute and leaves no shine, so you can put a shirt back on and get on with your day. Most recovery rubs leave you greasy; this one does not.',
-      zh: '輕盈的葡萄籽基底一分鐘內吸收、不留油光，讓你可以立即穿回衣服、繼續一天的行程。大部分恢復類產品會讓皮膚油膩，而這一支不會。',
-    },
-  },
-  {
-    h: { en: 'Clean by formulation, not by accident', zh: '純淨源於配方，而非偶然' },
-    p: {
-      en: 'Three plant actives — grape seed, niaouli and eucalyptus — with no hormones, no steroids and no artificial fragrance. Made in France — produced with EEC GMP standard, the same specification for over twenty years.',
-      zh: '三種植物成分——葡萄籽、綠花白千層與尤加利——不含激素、類固醇及人造香料。法國製造，按 EEC GMP 標準生產，二十多年來同一規格。',
-    },
-  },
-  {
-    h: { en: 'Honest about what it is', zh: '對自己的定位誠實' },
-    p: {
-      en: 'A cosmetic massage gel that feels warming before effort and cooling after it. Not a medicine, not a miracle. We would rather earn you with the truth than sell you a story — see Our Approach.',
-      zh: '一支按摩護理凝膠，運動前帶來溫熱感、運動後帶來清涼感。它不是藥物，也不是奇蹟。我們寧願以事實贏得你的信任，也不想用故事把產品賣給你——詳見「我們的取態」。',
-    },
-  },
-];
-
 export const PRODUCT = {
   slug: '/product/',
   nameEn: 'Soothing Cream Gel',
@@ -227,8 +192,8 @@ export const PRODUCTS = [
     priceLabel: 'HK$250',
     badge: null,
     blurb: {
-      en: 'The one product. Grape seed, eucalyptus and niaouli in a light cream gel that absorbs in under a minute and does not smell like a pharmacy.',
-      zh: '唯一的產品。葡萄籽、尤加利與綠花白千層，輕盈啫喱質地，一分鐘內吸收，沒有藥房氣味。',
+      en: 'Grape seed, eucalyptus and niaouli in a light cream gel that absorbs in under a minute and does not smell like a pharmacy.',
+      zh: '葡萄籽、尤加利與綠花白千層，輕盈啫喱質地，一分鐘內吸收，沒有藥房氣味。',
     },
     points: [
       { en: 'One to two applications a day', zh: '每日一至兩次' },
@@ -278,41 +243,6 @@ export const PURITY = {
     { en: 'Trusted for over 20 years', zh: '逾 20 年信賴' },
   ],
 };
-
-/**
- * The VITAS Standard — the spec table from the repositioning document's
- * "Why VITAS" section. Every row is a verifiable fact or a sensory/ritual
- * statement; no outcome or mechanism claims. Compliance guide §10 wording.
- */
-export const STANDARD = [
-  {
-    feature: { en: 'Purpose', zh: '用途' },
-    value: { en: 'Pre + post workout massage ritual', zh: '運動前後按摩流程' },
-  },
-  {
-    feature: { en: 'Texture', zh: '質地' },
-    value: { en: 'Fast-absorbing, non-greasy', zh: '快速吸收、不黏膩' },
-  },
-  {
-    feature: { en: 'Plant-based actives', zh: '植物活性成分' },
-    value: { en: 'Grape Seed · Niaouli · Eucalyptus', zh: '葡萄籽 · 綠花白千層 · 尤加利' },
-  },
-  {
-    feature: { en: 'Formulated without', zh: '配方不含' },
-    value: {
-      en: 'Methyl salicylate · Camphor · Hormones · Steroids · Parabens · Synthetic dyes',
-      zh: '水楊酸甲酯 · 樟腦 · 激素 · 類固醇 · 對羥基苯甲酸酯 · 合成色素',
-    },
-  },
-  {
-    feature: { en: 'Origin', zh: '產地' },
-    value: { en: 'Made in France', zh: '法國製造' },
-  },
-  {
-    feature: { en: 'Production', zh: '生產標準' },
-    value: { en: 'Produced with EEC GMP standard', zh: '按 EEC GMP 標準生產' },
-  },
-];
 
 export const SHOP = {
   freeShippingOver: 30000,
@@ -445,7 +375,6 @@ export const STOCKISTS = [
   {
     name: 'Watsons 屈臣氏',
     kind: { en: '600+ stores in Hong Kong & Macau', zh: '香港及澳門 600 多間分店' },
-    url: 'https://www.watsons.com.hk/en/vitas-vitas-soothing-cream-gel-100ml/p/BP_226509',
     note: {
       en: 'Healthcare aisle, external muscle care. In store and online.',
       zh: '健與美貨架，外用肌肉護理區。門市及網店有售。',
@@ -455,26 +384,22 @@ export const STOCKISTS = [
   {
     name: 'Mannings 萬寧',
     kind: { en: 'Stores across Hong Kong', zh: '全港分店' },
-    url: 'https://www.mannings.com.hk/vitas-soothing-cream-gel-100ml/p/816504',
     note: { en: 'In store and online.', zh: '門市及網店有售。' },
     featured: true,
   },
   {
     name: 'HKTVmall',
     kind: { en: 'Online, next-day delivery', zh: '網購，翌日送達' },
-    url: 'https://www.hktvmall.com/hktv/en/search?q=VITAS',
     note: { en: 'Search "VITAS 紓適寧".', zh: '搜尋「VITAS 紓適寧」。' },
   },
   {
     name: 'Gogo Herbs',
     kind: { en: 'Online health store', zh: '網上健康產品店' },
-    url: 'https://gogoherbs.com/en/product/vts001',
     note: { en: 'Ships within Hong Kong.', zh: '香港境內配送。' },
   },
   {
     name: 'HK Medical Store',
     kind: { en: 'Online pharmacy', zh: '網上藥房' },
-    url: 'https://hkmedicalstore.com/products/vitas-cream-100ml',
     note: { en: 'Ships within Hong Kong.', zh: '香港境內配送。' },
   },
 ];
@@ -617,30 +542,48 @@ export const FAQS = [
     },
   },
   {
-    q: { en: 'What is the story behind VITAS?', zh: 'VITAS 紓適寧的歷史？' },
-    a: {
-      en: 'VITAS was created in Hong Kong to bring a French-made, plant-based recovery cream to a market dominated by strong medicated rubs. The formula — grape seed, niaouli and eucalyptus — comes out of two decades of formulation work in France, and the finished product has been on Hong Kong pharmacy shelves at Watsons and Mannings for over a decade. Today it is still a small operation: one product, made to the same specification, sold in the same city. Read the longer version on our About page.',
-      zh: 'VITAS 紓適寧於香港創立，目的是在以強效藥膏為主的市場中，帶來一支法國製造的植物配方恢復啫喱膏。配方以葡萄籽、綠花白千層與尤加利為核心，源自法國二十年的配方研發；成品在香港屈臣氏及萬寧的貨架上已超過十年。時至今日，它仍是一盤小生意：一支產品、同一個規格、同一個城市。詳情請看「關於 VITAS」。',
-    },
-  },
-  {
     q: {
       en: 'How is VITAS different from other soothing products on the market?',
       zh: 'VITAS 紓適寧跟市面上的其他舒緩產品有什麼分別？',
     },
+    a: [
+      {
+        en: 'Many traditional muscle rubs use methyl salicylate, camphor or steroids. These ingredients are legal and widely used — but they are active medicinal substances with known precautions.',
+        zh: '不少傳統肌肉按摩膏含有水楊酸甲酯、樟腦或類固醇。這些成分合法，亦被廣泛使用——但它們屬於具藥理活性的物質，使用時有已知的注意事項。',
+      },
+      {
+        en: 'Methyl salicylate (wintergreen oil) is chemically related to aspirin. Medical sources warn that too much absorption — through ingestion, large-area use, broken skin or heat — can cause salicylate toxicity.',
+        zh: '水楊酸甲酯（冬青油）在化學結構上與阿士匹靈相近。醫學資料提醒，如吸收過量——例如誤服、大面積塗抹、塗於破損皮膚或配合熱敷——可引致水楊酸中毒。',
+      },
+      {
+        en: 'Camphor is allowed in low concentrations, but accidental ingestion — especially by children — can cause seizures and poisoning. The US FDA limits camphor in over-the-counter products to 11% for this reason.',
+        zh: '樟腦在低濃度下獲准使用，但誤服——尤其是兒童——可引致抽搐及中毒。美國 FDA 因此把非處方產品中的樟腦濃度上限定為 11%。',
+      },
+      {
+        en: 'Topical steroids are medicines, not daily wellness ingredients, and should be used under guidance.',
+        zh: '外用類固醇是藥物，並非日常保養成分，應在專業指導下使用。',
+      },
+      {
+        en: 'VITAS 紓適寧 contains no methyl salicylate, no camphor and no topical steroids. Instead, it is built around grape seed, niaouli and eucalyptus for your warm-up and wind-down routine, with a cleaner profile — made in France to EEC GMP standard.',
+        zh: 'VITAS 紓適寧不含水楊酸甲酯、樟腦及外用類固醇。配方以葡萄籽、綠花白千層與尤加利為核心，融入你的熱身與放鬆流程，成分更簡潔——法國製造，按 EEC GMP 標準生產。',
+      },
+    ],
+  },
+  {
+    q: { en: 'What is the story behind VITAS?', zh: 'VITAS 紓適寧的歷史？' },
     a: {
-      en: 'Three practical differences. One: no methyl salicylate and no camphor, which is what gives traditional medicated rubs their carrying smell — you can use VITAS at your desk without announcing it. Two: a grape-seed base that absorbs in under a minute and leaves no shine, so you can dress straight after. Three: no hormones and no steroids, made in France — produced with EEC GMP standard. What it is not is stronger than a HK$40 tube of something fierce — it is gentler on purpose.',
-      zh: '三個實際分別。第一：不含水楊酸甲酯及樟腦——這正是傳統藥膏氣味濃烈的來源，所以 VITAS 可以在辦公桌前使用而不會驚動旁人。第二：葡萄籽基底，一分鐘內吸收、不留油光，塗後可即時穿衣。第三：不含激素及類固醇，法國製造，按 EEC GMP 標準生產。但它並不比一支四十元、氣味強烈的產品「更強效」——它是刻意做得溫和。',
+      en: 'VITAS was created in Hong Kong to bring a French-made, plant-based recovery cream to a market dominated by strong medicated rubs. The formula — grape seed, niaouli and eucalyptus — comes out of two decades of formulation work in France, and the finished product has been on Hong Kong pharmacy shelves at Watsons and Mannings for over a decade. Today it is still a small, Hong Kong-run brand, and every formula is made in France to the same standard. Read the longer version on our About page.',
+      zh: 'VITAS 紓適寧於香港創立，目的是在以強效藥膏為主的市場中，帶來一支法國製造的植物配方恢復啫喱膏。配方以葡萄籽、綠花白千層與尤加利為核心，源自法國二十年的配方研發；成品在香港屈臣氏及萬寧的貨架上已超過十年。時至今日，它仍是一個由香港團隊經營的小品牌，每一款配方都在法國按同一標準生產。詳情請看「關於 VITAS」。',
     },
   },
   {
     q: {
-      en: 'What does it actually do, and what does it feel like?',
-      zh: 'VITAS 紓適寧產品特點和功效？',
+      en: 'What does it feel like? Does it smell, or feel greasy?',
+      zh: 'VITAS 紓適寧用起來是甚麼感覺？有氣味嗎？會油膩嗎？',
     },
     a: {
-      en: 'On the skin: a mild, clean cooling sensation that arrives a few seconds after you rub it in and fades over the next few minutes. In use: enough glide for a proper self-massage on tired legs, shoulders and neck, before training or after it. In daily life: light enough and quiet enough to use twice a day without anyone noticing. It is a cosmetic massage cream — it supports the routine, it does not treat injury or illness.',
-      zh: '皮膚感受：搓揉後數秒出現溫和乾淨的清涼感，並於數分鐘內散去。使用時：提供足夠滑度，讓你為疲勞的雙腿、肩膊與頸部好好按摩，運動前後皆可。日常上：質地輕、氣味低，每日兩次也不會被察覺。它是按摩護理產品——輔助你的日常習慣，並不能治療受傷或疾病。',
+      en: 'Before training, it gives a warming sensation as you massage it in; after training, a fresh, cooling one. It has enough glide for a proper self-massage on legs, shoulders and neck, absorbs in under a minute and leaves no shine, so you can dress straight away. The scent is a faint eucalyptus note that fades within a minute — there is no methyl salicylate or camphor, so it does not carry across a room. It is a cosmetic massage cream: it supports your routine, it does not treat injury or illness.',
+      zh: '訓練前按摩時帶來溫熱感；訓練後則帶來清新涼感。質地有足夠滑度，方便為雙腿、肩膊及頸部自我按摩，一分鐘內吸收、不留油光，塗後可即時穿衣。氣味是淡淡的尤加利香，約一分鐘散去——配方不含水楊酸甲酯及樟腦，氣味不會擴散至整個房間。它是按摩護理產品——輔助你的日常習慣，並不能治療受傷或疾病。',
     },
   },
   {
@@ -671,13 +614,6 @@ export const FAQS = [
     },
   },
   {
-    q: { en: 'Does it smell? Is it greasy?', zh: '有氣味嗎？會油膩嗎？' },
-    a: {
-      en: 'Faintly, for about a minute, then it is gone. There is no methyl salicylate and no camphor in the formula, so it does not carry across a room. It absorbs in under a minute and leaves no shine — most people can dress straight afterwards.',
-      zh: '有淡淡氣味，約一分鐘後散去。配方不含水楊酸甲酯及樟腦，氣味不會擴散至整個房間。一分鐘內吸收、不留油光，一般塗後可即時穿衣。',
-    },
-  },
-  {
     q: { en: 'How often can I use it, and before or after exercise?', zh: '可以多常使用？運動前還是運動後？' },
     a: {
       en: 'One to two applications a day on clean, unbroken skin. Both: before training it is a two-minute check-in on the muscles you are about to load; after training it is a massage medium for tired legs, shoulders and back. There is no need to reapply every few minutes. Neither use replaces a proper warm-up or a rest day.',
@@ -690,8 +626,8 @@ export const FAQS = [
       zh: '它可以排走乳酸或「管理淋巴」嗎？',
     },
     a: {
-      en: 'No, and we no longer say it does. Lactate clears on its own within about an hour of stopping exercise, and no topical cream drains lymph. The retail name of the SKU in some listings still carries the older wording; the product is a low-odour, non-greasy massage cream for tired muscles, which is what we sell it as.',
-      zh: '不能，我們亦已停止這樣宣傳。運動停止後約一小時內乳酸會自行代謝；任何外用膏體都無法「排走淋巴」。部分零售平台的產品名稱仍沿用舊有字眼；產品本身是低氣味、不油膩的疲勞肌肉按摩膏，我們亦以此定位發售。',
+      en: 'No. Lactate clears on its own within about an hour of stopping exercise, and no topical cream drains lymph. VITAS is a low-odour, non-greasy massage cream gel for your warm-up and wind-down — warming before training, cooling after.',
+      zh: '不能。運動停止後約一小時內乳酸會自行代謝；任何外用膏體都無法「排走淋巴」。VITAS 是低氣味、不油膩的按摩霜凝膠，融入你的熱身與放鬆流程——運動前溫熱，運動後清涼。',
     },
   },
   {
@@ -758,15 +694,6 @@ export const ABOUT = {
         },
       ],
     },
-    {
-      h: { en: 'What changed in 2026', zh: '2026 年的改變' },
-      p: [
-        {
-          en: 'For years this product was marketed with a longer list of promises than it could support — lymphatic management, draining lactic acid, and further still. We have taken those claims off the packaging, the retail listings and this website, and replaced them with what the cream actually does. It is a smaller story. It is also a true one, and it is written down on our approach page so you can hold us to it.',
-          zh: '多年來，這支產品的宣傳承諾遠超它能支持的範圍——淋巴管理、排走乳酸，以至更多。我們已把這些說法從包裝、零售資料及本網站上刪除，改為說明它真正的作用。這是一個比較小的故事，但它是真的；我們把它寫在「我們的取態」一頁，讓你可以監督我們。',
-        },
-      ],
-    },
   ],
   founderNote: {
     h: { en: 'A note from Rosana Li, founder', zh: '創辦人 Rosana Li 的話' },
@@ -776,8 +703,8 @@ export const ABOUT = {
         zh: '我創立 VITAS，是因為我想要一支下午三時可以使用、又不會改變整個房間空氣的產品。我有訓練習慣，也長時間坐在辦公桌前；在「有效」與「用得出街」之間二選一，我已經受夠了。',
       },
       {
-        en: 'The hardest decision of the last year was to say less about what this cream does. It is a good product, honestly described: it cools, it absorbs, it makes a ten-minute massage possible, and it does not follow you around. That is the whole promise, and I would rather earn a customer with it than sell one a story.',
-        zh: '過去一年最艱難的決定，是少說一點這支膏的功效。它是一支好產品，值得被誠實地描述：它清涼、吸收快、讓十分鐘的按摩成為可能，而且不會跟著你到處走。這就是全部的承諾——我寧願用它換來一位顧客，也不想用一個故事賣出一支產品。',
+        en: 'The hardest decision of the last year was to say less about what this cream does. It is a good product, honestly described: it warms before training and cools after, it absorbs, it makes a ten-minute massage possible, and it does not follow you around. That is the whole promise, and I would rather earn a customer with it than sell one a story.',
+        zh: '過去一年最艱難的決定，是少說一點這支膏的功效。它是一支好產品，值得被誠實地描述：它運動前溫熱、運動後清涼、吸收快，讓十分鐘的按摩成為可能，而且不會跟著你到處走。這就是全部的承諾——我寧願用它換來一位顧客，也不想用一個故事賣出一支產品。',
       },
     ],
   },
