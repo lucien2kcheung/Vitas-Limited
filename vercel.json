@@ -102,12 +102,12 @@
     },
     {
       "source": "/blog",
-      "destination": "/journal/",
+      "destination": "/",
       "permanent": true
     },
     {
       "source": "/blog/:slug",
-      "destination": "/journal/",
+      "destination": "/",
       "permanent": true
     },
     {
@@ -128,6 +128,46 @@
     {
       "source": "/shop",
       "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/journal",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/journal/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/journal",
+      "destination": "/zh/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/journal/:path*",
+      "destination": "/zh/",
+      "permanent": true
+    },
+    {
+      "source": "/approach",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/approach/:path*",
+      "destination": "/about/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/approach",
+      "destination": "/zh/about/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/approach/:path*",
+      "destination": "/zh/about/",
       "permanent": true
     }
   ]

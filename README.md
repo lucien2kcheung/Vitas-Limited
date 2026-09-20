@@ -208,7 +208,7 @@ in `assets/js/shop.js`.
 
 ### Shipping and returns
 
-Local delivery is HK$30, free over HK$300 — set in `SHOP.freeShippingOver`
+Local delivery is HK$30, free from HK$250 — set in `SHOP.freeShippingOver`
 (`src/data.mjs`) and mirrored in `api/checkout.js` as Stripe shipping options,
 and in `assets/js/shop.js` for the cart display. The 14-day returns line on the
 shop page and in the FAQ is a policy statement: confirm it is the policy you
@@ -281,7 +281,7 @@ not get missed:
       swap the markup in `retailPartners()` once you have it.
 - [ ] **Stripe** — coupon and promotion code created, live key set, a real test
       order placed and refunded, and receipts/emails configured in Stripe.
-- [ ] **Delivery and returns** — confirm HK$30 / free over HK$300 and the 14-day
+- [ ] **Delivery and returns** — confirm HK$30 / free from HK$250 and the 14-day
       returns window are the policies you will actually honour.
 - [ ] **Legal sign-off on the slogan** — "Activate Circulation. Accelerate
       Recovery." is used with the deck's sensory sub-copy and footer disclaimer
