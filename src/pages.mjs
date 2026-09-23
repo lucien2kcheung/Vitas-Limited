@@ -155,7 +155,7 @@ function freeFromBand() {
             'p',
             {
               en: 'Most muscle rubs work by shouting. Ours is built around the things it leaves out.',
-              zh: '大部分肌肉按摩產品靠「強烈」取勝。我們的配方，重點在於它不含甚麼。',
+              zh: '大多數肌肉按摩產品，都盲目追求「強烈」取勝。但我們的配方天然溫和，重點不在於加了什麼，而在於它不含什麼。',
             },
             'band__lede'
           )}
@@ -281,10 +281,10 @@ function puritySection() {
       <div class="wrap">
 ${sectionHead({
   eyebrow: { en: 'Ingredient purity', zh: '成分純淨' },
-  heading: { en: "What's inside matters.", zh: '成分，才是重點。' },
+  heading: { en: "What's inside matters.", zh: '成分，才是真正的重點。' },
   lede: {
     en: 'Grape seed. Niaouli. Eucalyptus. Three plant-based actives, formulated in France — and a list of things we left out.',
-    zh: '葡萄籽、綠花白千層、尤加利：三種植物成分，法國研製——以及一張我們選擇不加入的清單。',
+    zh: '葡萄籽、綠花白千層、尤加利：三大植物精華，法國精心研製——以及一張我們選擇不加入的清單。',
   },
 })}
         <div class="purity__grid">
@@ -377,10 +377,13 @@ ${sloganBlock('hero__slogan')}
       <div class="wrap">
 ${sectionHead({
   eyebrow: { en: 'Your sport', zh: '你的運動' },
-  heading: { en: 'Built into the session, not the medicine cabinet', zh: '屬於訓練，而不是藥箱' },
+  heading: {
+    en: 'Built into the session, not the medicine cabinet',
+    zh: '屬於訓練的夥伴，而不是在藥箱裡的備品。',
+  },
   lede: {
-    en: 'The routine changes with the sport. Three of them, written for how people actually train in Hong Kong.',
-    zh: '不同運動，用法也不同。以下三種，按香港人真正的訓練方式而寫。',
+    en: 'The routine changes with the sport. Hyrox, padel, run club — three examples of how people actually train in Hong Kong. Your sport? Same ritual.',
+    zh: '不同的運動，用法自然也不同。以下三種情境，是專為香港人的真實訓練節奏所寫。你的運動呢？同一套流程，一樣適用。',
   },
 })}
         <div class="grid grid--3">
@@ -398,7 +401,7 @@ ${sectionHead({
             'p',
             {
               en: 'Apply VITAS 10 minutes before training. The warming sensation helps your muscles feel ready — part of a proper dynamic warm-up for Hyrox, padel, or your run club session. Make it a regular habit before every workout.',
-              zh: '訓練前 10 分鐘塗抹 VITAS。溫熱觸感讓肌肉感覺準備就緒——作為 Hyrox、板式網球或跑團課前動態熱身的一部分。不妨把它變成每次運動前的固定習慣。',
+              zh: '訓練前 10 分鐘塗抹 VITAS。溫熱的觸感能讓肌肉瞬間進入狀態——無論是 Hyrox、板式網球或跑團課前的動態熱身，都能完美融入。不妨把它變成每次出發前的固定習慣。',
             },
             'moment__text'
           )}
@@ -411,7 +414,7 @@ ${sectionHead({
             'p',
             {
               en: 'Massage VITAS into tired muscles after effort. The cooling sensation provides soothing relief as you stretch and recover.',
-              zh: '運動後按摩疲勞肌肉，清涼觸感在你伸展與放鬆時帶來舒緩感受。',
+              zh: '運動後按摩疲勞的肌肉，搭配清涼的觸感，在你進行伸展與放鬆時，帶來舒緩感受。',
             },
             'moment__text'
           )}
@@ -484,7 +487,7 @@ export function product() {
     title: { en: 'One tube, three plants, two moments', zh: '一支軟管，三種植物，兩個時刻' },
     lede: {
       en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it feels like, where it fits in your day, and what is inside.',
-      zh: '一支純淨、法國製造的啫喱膏，運動前熱身、運動後放鬆。100毫升，HK$250。以下說明它的膚感、如何融入你的一天，以及它的成分。',
+      zh: '一支純淨、法國製造的啫喱膏，陪伴你度過運動前的熱身與運動後的放鬆。100 毫升，HK$250。以下，將為你完整介紹它的奇妙膚感、如何自然融入你的日常，以及它的成分。',
     },
     trail: [HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' }, path: '/product/' }],
   })}
@@ -510,12 +513,12 @@ export function product() {
               PRODUCT.texture
             )}</dd></div>
             <div class="spec__row"><dt>${t({ en: 'Scent', zh: '氣味' })}</dt><dd>${t({
-              en: 'Faint green eucalyptus, gone within a minute.',
-              zh: '淡淡的尤加利草本香，約一分鐘散去。',
+              en: 'A faint green eucalyptus note that fades naturally within about a minute.',
+              zh: '帶有淡淡的尤加利草本清香，大約一分鐘內便會自然散去。',
             })}</dd></div>
             <div class="spec__row"><dt>${t({ en: 'Made in', zh: '生產地' })}</dt><dd>${t(
-              PRODUCT.origin
-            )} · ${t(PRODUCT.gmp)}</dd></div>
+              PRODUCT.gmp
+            )}</dd></div>
             <div class="spec__row"><dt>${t({ en: 'Best for', zh: '適合' })}</dt><dd>${t({
               en: 'Pre-training preparation, post-training massage, desk-bound neck and shoulders.',
               zh: '訓練前準備、訓練後按摩、久坐引起的頸肩緊繃。',
@@ -544,7 +547,7 @@ ${sectionHead({
   heading: { en: 'What you will feel', zh: '你會感受到的' },
   lede: {
     en: 'One cream gel, two moments: warming when you massage it in before training, cooling when you massage it in after.',
-    zh: '一支霜凝膠，兩個時刻：訓練前按摩帶來溫熱感，訓練後按摩帶來清涼感。',
+    zh: '一支啫喱膏，對應兩個關鍵時刻：訓練前按摩帶來溫熱感，訓練後按摩帶來清涼感。',
   },
 })}
         <div class="feel__grid">
@@ -555,7 +558,7 @@ ${sectionHead({
               h: { en: 'Warming before', zh: '運動前 · 溫熱' },
               p: {
                 en: 'Massage it in ten minutes before training. The warming sensation is your cue to start the warm-up properly.',
-                zh: '訓練前十分鐘按摩塗抹。溫熱觸感提醒你，是時候認真開始熱身。',
+                zh: '訓練前十分鐘按摩塗抹。溫熱的觸感像是一個提醒，告訴自己：是時候認真開始熱身了。',
               },
             },
             {
@@ -564,7 +567,7 @@ ${sectionHead({
               h: { en: 'Cooling after', zh: '運動後 · 清涼' },
               p: {
                 en: 'Massage it into tired legs, shoulders and back after training — a fresh, cooling feel while you stretch and wind down.',
-                zh: '訓練後按摩疲勞的雙腿、肩膊與背部——伸展放鬆時，帶來清新涼感。',
+                zh: '訓練後按摩疲勞的雙腿、肩膊與背部——在伸展與放鬆的同時，帶來陣陣清新的涼感。',
               },
             },
             {
@@ -573,7 +576,7 @@ ${sectionHead({
               h: { en: 'Absorbed in under a minute', zh: '一分鐘內吸收' },
               p: {
                 en: 'A light, non-greasy texture that leaves no shine, so you can dress and get on with your day.',
-                zh: '質地輕盈不油膩、不留油光，塗後即可穿衣，繼續你的一天。',
+                zh: '輕盈不黏膩的清爽質地，絕不留油光。塗抹後即可輕鬆著裝，無縫接軌你的每一個日常行程。',
               },
             },
             {
@@ -582,7 +585,7 @@ ${sectionHead({
               h: { en: 'No medicated smell', zh: '沒有藥油味' },
               p: {
                 en: 'A faint eucalyptus note that fades within a minute. Fine for the gym, the office or the MTR.',
-                zh: '淡淡尤加利香，約一分鐘散去。在健身室、辦公室或港鐵上使用都沒問題。',
+                zh: '散發淡淡的尤加利清香，大約一分鐘內就會散去。無論是在健身室、辦公室，甚至是擁擠的港鐵上隨時使用，都完全沒有問題。',
               },
             },
           ]
@@ -679,6 +682,9 @@ ${newsletter()}`;
 }
 
 export function howToUse() {
+  // Set VIDEO_ID to the YouTube id once the video is ready; empty shows the placeholder.
+  const VIDEO_ID = '';
+
   const routines = [
     {
       id: 'before',
@@ -687,19 +693,19 @@ export function howToUse() {
       steps: [
         {
           en: 'Warm the tube in your hand and take an amount the size of a five-cent coin per muscle group.',
-          zh: '把軟管在手中稍為回溫，每個肌群取約五毫硬幣大小的份量。',
+          zh: '先將啫喱膏置於掌心微微回溫，接著針對每個肌群取約五毫硬幣大小的份量，均勻塗抹。',
         },
         {
           en: 'Work it in with the heel of your hand, following the length of the muscle — calves and hamstrings for running, shoulders and lats for climbing or swimming, quads and hips for lifting.',
-          zh: '用掌根順著肌肉走向推開——跑步用小腿與膕繩肌，攀岩或游泳用肩膊與背闊肌，負重訓練用股四頭肌與髖部。',
+          zh: '以掌心順著肌肉紋理推開——跑步後對焦小腿與膕繩肌；攀岩或游泳後舒緩肩膊與背闊肌；進行負重訓練後則鎖定股四頭肌與髖部。',
         },
         {
           en: 'Note anything that feels stiffer than usual. That information is the point of the two minutes.',
-          zh: '留意哪裡比平時更僵硬。這兩分鐘的價值，就在這個訊息。',
+          zh: '留意哪裡比平時更繃更僵硬——這短短兩分鐘的價值，就在身體給你的誠實訊息裡。',
         },
         {
           en: 'Then do a real warm-up: five to ten minutes of easy movement, building to your first working set.',
-          zh: '然後做真正的熱身：五至十分鐘輕鬆活動，逐步過渡到第一組正式訓練。',
+          zh: '接著進行完整的動態熱身：以 5 到 10 分鐘的輕鬆活動，讓身體逐步進入狀態，無縫接軌第一組正式訓練。',
         },
       ],
     },
@@ -710,19 +716,19 @@ export function howToUse() {
       steps: [
         {
           en: 'Shower first. Clean, dry skin absorbs it faster and you will use less.',
-          zh: '先洗澡。乾淨、乾爽的皮膚吸收更快，用量也更省。',
+          zh: '建議於洗澡後使用。乾淨、乾爽的肌膚能加速吸收，用量也更精省。',
         },
         {
           en: 'Work upwards along the limb in long, slow strokes, then circle the areas that took the most load.',
-          zh: '沿著肢體以長而緩慢的手勢向上推，再於受力最多的部位打圈按揉。',
+          zh: '沿著肢體以長而舒緩的手勢向上推展，並在受力最多的部位畫圈按揉。',
         },
         {
           en: 'Give it a minute to absorb before you dress. It should not feel slick.',
-          zh: '穿衣前等約一分鐘讓它吸收，皮膚不應有滑膩感。',
+          zh: '穿衣前靜待的一分鐘讓其充分吸收，確保肌膚表面乾爽、不留油膩感。',
         },
         {
           en: 'Pair it with the boring things that work: water, food, and going to bed at a reasonable hour.',
-          zh: '配合真正有效但不吸引的事：補水、進食，以及在合理的時間睡覺。',
+          zh: '配合真正有效、卻往往引不起注意的基本功：適時補水、進食，以及在合適的時間準時入睡。',
         },
       ],
     },
@@ -745,7 +751,7 @@ export function howToUse() {
         },
         {
           en: 'Twice a day beats once a week. Mid-morning and mid-afternoon are the natural slots.',
-          zh: '每天兩次勝過每週一次。上午與下午中段是最自然的時機。',
+          zh: '每天兩次，勝過每週一次。上午與下午中段是最自然的舒緩時機。',
         },
       ],
     },
@@ -756,13 +762,28 @@ export function howToUse() {
 
   const body = `${pageHero({
     eyebrow: { en: 'How to use', zh: '使用方法' },
-    title: { en: 'Three routines, none of them complicated', zh: '三套用法，都不複雜' },
+    title: { en: 'Simple to use — three routines, none of them complicated', zh: '用法簡單，三套用法輕鬆上手' },
     lede: {
       en: 'Apply once or twice a day to clean, unbroken skin. Avoid the eyes and face. That is the whole instruction — the rest is how to make it a habit.',
-      zh: '每日一至兩次，塗於清潔、無破損的皮膚，避開眼睛及面部。說明就這麼多——其餘的，是如何養成習慣。',
+      zh: '每日一到兩次，塗抹在清潔、無破損的皮膚上，避開眼睛與面部。簡單易明——接下來要做的，是如何把它變成習慣。',
     },
     trail: [HOME_CRUMB, { name: { en: 'How to Use', zh: '使用方法' }, path: '/how-to-use/' }],
   })}
+
+    <section class="section video reveal" id="video">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'Watch', zh: '影片' },
+  heading: { en: 'See it in two minutes', zh: '兩分鐘看懂用法' },
+})}
+        ${
+          /* Paste the YouTube video id below (the part after v=) to replace the placeholder. */
+          VIDEO_ID
+            ? `<div class="video__frame"><iframe src="https://www.youtube-nocookie.com/embed/${VIDEO_ID}" title="VITAS" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
+            : `<div class="video__placeholder">[YOUTUBE VIDEO LINK]</div>`
+        }
+      </div>
+    </section>
 
     <section class="section ppr reveal">
       <div class="wrap">
@@ -785,7 +806,7 @@ ${sectionHead({
             ${blk('h3', { en: 'Perform — move', zh: '投入 — 運動中' }, 'ppr__title')}
             ${blk('p', {
               en: 'Move. Train. Run. Lift. Play.',
-              zh: '投入運動。跑步、訓練、舉重、比賽，專注於當下。',
+              zh: '跑步、訓練、舉重、比賽——在每一次呼吸裡，專注當下。',
             }, 'ppr__text')}
           </li>
           <li class="ppr__step">
@@ -793,7 +814,7 @@ ${sectionHead({
             ${blk('h3', { en: 'Recover — after training', zh: '收操 — 運動後' }, 'ppr__title')}
             ${blk('p', {
               en: 'Reapply and massage into tired areas after training. Enjoy the cooling sensation as part of your post-workout wind-down.',
-              zh: '運動後再次塗抹於疲累部位並按摩，享受清涼體感，完成運動後收操。',
+              zh: '運動結束後，再次塗抹於緊繃部位並輕柔按摩，感受舒適的清涼體感，為每一次訓練畫下放鬆的句點。',
             }, 'ppr__text')}
           </li>
         </ol>
@@ -927,7 +948,7 @@ export function ingredients() {
     title: { en: 'Three plants, and why each one is there', zh: '三種植物，各有其理由' },
     lede: {
       en: 'Every ingredient in this cream has a job you can feel. None of them has been asked to do anything a plant oil cannot do. Each has its own page.',
-      zh: '這支啫喱膏中的每一種成分，都有你感覺得到的作用；我們亦沒有要求它們做植物油做不到的事。每一種成分都有獨立頁面。',
+      zh: '三種植物，各有所司。這支啫喱膏中的每一種成分，都帶來你切身感受得到的功效；我們從不強求植物油去承擔它做不到的事。想了解更多？每一種成分，都有它的專屬頁面。',
     },
     trail: [HOME_CRUMB, { name: { en: 'Ingredients', zh: '成分' }, path: '/ingredients/' }],
   })}
@@ -937,6 +958,14 @@ export function ingredients() {
         <div class="grid grid--3">
           ${PLANTS.map((p) => plantCard(p)).join('\n          ')}
         </div>
+        ${blk(
+          'p',
+          {
+            en: 'Grape seed carries the oils and lets your hands keep moving. Niaouli softens the eucalyptus so it smells like a plant, not a pharmacy. Eucalyptus brings the cooling. Together: no steroids, no camphor, no methyl salicylate — just the ritual.',
+            zh: '葡萄籽承載精油，讓雙手保持順暢；綠花白千層柔化尤加利的氣味，讓它聞起來像植物，而非藥房；尤加利帶來清涼。三者合一：不含類固醇、不含樟腦、不含水楊酸甲酯——只有屬於你的保養流程。',
+          },
+          'plants__why'
+        )}
       </div>
     </section>
 
@@ -1192,7 +1221,11 @@ ${sloganBlock('sport-hero__slogan')}
       <div class="wrap">
 ${sectionHead({
   eyebrow: { en: 'Other sports', zh: '其他運動' },
-  heading: { en: 'Not your sport?', zh: '不是你的運動？' },
+  heading: { en: 'Built into the session, not the medicine cabinet', zh: '屬於訓練的夥伴，而不是在藥箱裡的備品。' },
+  lede: {
+    en: 'The routine changes with the sport. Hyrox, padel, run club — three examples of how people actually train in Hong Kong. Your sport? Same ritual.',
+    zh: '不同的運動，用法自然也不同。以下三種情境，是專為香港人的真實訓練節奏所寫。你的運動呢？同一套流程，一樣適用。',
+  },
 })}
         <div class="grid grid--2">
           ${others.map(sportCard).join('\n          ')}
@@ -1453,7 +1486,7 @@ export function about() {
     title: { en: 'Made in France. Made for how Hong Kong trains.', zh: '法國製造，為香港人的訓練而生。' },
     lede: {
       en: 'Why VITAS exists, where it is made, and what changed when we stopped saying things we could not prove.',
-      zh: 'VITAS 為何存在、在哪裡生產，以及當我們停止說無法證明的話之後，改變了甚麼。',
+      zh: 'VITAS 存在的意義、誕生的起點，真正改變的一切。',
     },
     trail: [HOME_CRUMB, { name: { en: 'About VITAS', zh: '關於 VITAS' }, path: '/about/' }],
   })}
