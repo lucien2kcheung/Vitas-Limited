@@ -205,6 +205,49 @@ export const PRODUCTS = [
     ],
   },
   {
+    id: 'capsule-60',
+    slug: '/capsule/',
+    art: '/assets/img/product/capsule-set-620.webp',
+    artW: 620,
+    artH: 620,
+    name: { en: 'VITAS Capsule', zh: '淋巴管理膠囊' },
+    variant: { en: '60 capsules', zh: '60 粒' },
+    price: 29800,
+    priceLabel: 'HK$298',
+    wasLabel: 'HK$538',
+    badge: { en: 'Save HK$240', zh: '慳 HK$240' },
+    blurb: {
+      en: 'Red grape leaf, bilberry, soy lecithin and garlic in a capsule. A plant-based food supplement, made in France to the same standard as the cream gel.',
+      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與舒緩啫喱膏同樣在法國按相同標準生產。',
+    },
+    points: [
+      { en: '1 to 3 capsules, twice a day', zh: '每天 2 次，每次 1-3 粒' },
+      { en: 'Four plant ingredients, nothing added for effect', zh: '四種植物成分，不額外添加' },
+      { en: 'Made in France — produced with EEC GMP standard', zh: '法國製造 — 按 EEC GMP 標準生產' },
+    ],
+  },
+  {
+    id: 'rollon-50-duo',
+    slug: '/roll-on/',
+    art: '/assets/img/product/rollon-set-620.webp',
+    artW: 620,
+    artH: 620,
+    name: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' },
+    variant: { en: '2 × 50ml', zh: '2 × 50 毫升' },
+    price: 32000,
+    priceLabel: 'HK$320',
+    badge: { en: 'Two-pack', zh: '孖裝' },
+    blurb: {
+      en: 'The same three plants in a roll-on, with menthol added for a sharper cool. No hands, no mess — roll it on over the calf or the neck and go.',
+      zh: '同樣三種植物，改以走珠形式，另加薄荷腦帶來更明顯的清涼感。不用手、不弄髒——直接滾塗小腿或頸部即可。',
+    },
+    points: [
+      { en: 'Two 50ml roll-ons', zh: '兩支 50 毫升走珠裝' },
+      { en: 'With menthol — a sharper cooling feel', zh: '含薄荷腦——清涼感更明顯' },
+      { en: 'Made in France — produced with EEC GMP standard', zh: '法國製造 — 按 EEC GMP 標準生產' },
+    ],
+  },
+  {
     id: 'cream-duo',
     slug: '/product/',
     art: '/assets/img/product/tube-duo-700.webp',
@@ -389,11 +432,6 @@ export const STOCKISTS = [
     kind: { en: 'Stores across Hong Kong', zh: '全港分店' },
     note: { en: 'In store and online.', zh: '門市及網店有售。' },
     featured: true,
-  },
-  {
-    name: 'HKTVmall',
-    kind: { en: 'Online, next-day delivery', zh: '網購，翌日送達' },
-    note: { en: 'Search "VITAS 紓適寧".', zh: '搜尋「VITAS 紓適寧」。' },
   },
   {
     name: 'Gogo Herbs',
@@ -582,4 +620,179 @@ export const ABOUT = {
       },
     ],
   },
+};
+
+/**
+ * VITAS Capsule — the oral supplement. 60 capsules, made in France to EEC GMP
+ * standard. Copy here stays inside the same claims discipline as the gel: it
+ * describes the plants and the routine, not physiological or medical effects.
+ * See docs/claims-guide.md before editing.
+ */
+export const CAPSULE = {
+  slug: '/capsule/',
+  nameEn: 'VITAS Capsule',
+  nameZh: '淋巴管理膠囊',
+  size: { en: '60 capsules', zh: '60 粒' },
+  price: 298,
+  priceLabel: 'HK$298',
+  wasLabel: 'HK$538',
+  photos: [
+    {
+      id: 'set',
+      base: '/assets/img/product/capsule-set',
+      alt: { en: 'VITAS Capsule bottle and box', zh: 'VITAS 淋巴管理膠囊 樽裝與外盒' },
+    },
+    {
+      id: 'bottle',
+      base: '/assets/img/product/capsule-bottle',
+      alt: { en: 'VITAS Capsule, 60 capsules', zh: 'VITAS 淋巴管理膠囊 60 粒' },
+    },
+    {
+      id: 'box',
+      base: '/assets/img/product/capsule-box',
+      alt: { en: 'VITAS Capsule box, front', zh: 'VITAS 淋巴管理膠囊 外盒正面' },
+    },
+  ],
+  sku: 'VTS002',
+  gmp: {
+    en: 'Made in France, produced to EEC GMP standard.',
+    zh: '法國製造，並嚴格遵循 EEC GMP 標準生產。',
+  },
+  form: {
+    en: 'A plant-based food supplement in a capsule. Four plant ingredients, nothing else added for effect.',
+    zh: '植物配方的膠囊裝食品補充品。四種植物成分，不額外添加其他成分。',
+  },
+  dosage: {
+    en: '1 to 3 capsules, twice a day, roughly 6 to 7 hours apart, before or after a meal.',
+    zh: '每天 2 次（相隔 6 至 7 小時即可），每次 1-3 粒，餐前或餐後服用。',
+  },
+  storage: {
+    en: 'Keep away from children. Store in a cool, dry place, out of direct sunlight.',
+    zh: '遠離兒童，存放於陰涼乾爽處，避光。',
+  },
+  cautions: [
+    {
+      en: 'Not suitable for children under 7, or during pregnancy and breastfeeding.',
+      zh: '7 歲以下兒童、懷孕及哺乳期間不宜服用。',
+    },
+    {
+      en: 'If you take anti-coagulant or anti-platelet medicine, or are allergic to any of the ingredients, consult your physician before taking it.',
+      zh: '如正服用薄血藥／通血管藥，或對成分敏感，請先諮詢醫生。',
+    },
+    {
+      en: 'A food supplement, not a medicine. It does not diagnose, treat, cure or prevent any disease, and it does not replace a varied diet or medical advice.',
+      zh: '本品為食品補充品，並非藥物，不能診斷、治療、治癒或預防任何疾病，亦不能取代均衡飲食或醫生的建議。',
+    },
+  ],
+};
+
+/** The four plants in VITAS Capsule. Descriptive only — no efficacy claims. */
+export const CAPSULE_PLANTS = [
+  {
+    id: 'red-grape-leaf',
+    art: '/assets/img/plant-red-grape-leaf.svg',
+    eyebrow: { en: 'The base', zh: '主成分' },
+    name: { en: 'Red grape leaf', zh: '紅葡萄葉' },
+    latin: 'Vitis vinifera',
+    text: {
+      en: 'The leaf of the wine grape, red in autumn and long used in European herbal traditions. It is the plant the formula is built around, and the same species as the grape seed in the cream gel.',
+      zh: '釀酒葡萄的葉片，入秋轉紅，在歐洲草本傳統中沿用已久。它是這個配方的核心，與舒緩啫喱膏中的葡萄籽同屬一種植物。',
+    },
+  },
+  {
+    id: 'bilberry',
+    art: '/assets/img/plant-bilberry.svg',
+    eyebrow: { en: 'Nordic berry', zh: '北歐莓果' },
+    name: { en: 'Bilberry', zh: '北歐藍莓' },
+    latin: 'Vaccinium myrtillus',
+    text: {
+      en: 'A small dark berry that grows wild across northern Europe — a cousin of the blueberry, deeper in colour and more strongly flavoured.',
+      zh: '野生於北歐的深色小莓果，與藍莓同屬近親，顏色更深、味道更濃。',
+    },
+  },
+  {
+    id: 'soy-lecithin',
+    art: '/assets/img/plant-soy.svg',
+    eyebrow: { en: 'From the soybean', zh: '來自大豆' },
+    name: { en: 'Soy lecithin', zh: '大豆卵磷脂' },
+    latin: 'Glycine max',
+    text: {
+      en: 'A natural fat fraction of the soybean, widely used in food and supplements. If you avoid soy, this is the ingredient to note.',
+      zh: '從大豆中提取的天然脂質成分，廣泛用於食品及補充品。如你需要避開大豆，請留意這項成分。',
+    },
+  },
+  {
+    id: 'garlic',
+    art: '/assets/img/plant-garlic.svg',
+    eyebrow: { en: 'The kitchen staple', zh: '廚房常備' },
+    name: { en: 'Garlic', zh: '大蒜' },
+    latin: 'Allium sativum',
+    text: {
+      en: 'The same bulb you cook with, in a measured amount inside a capsule rather than on the plate.',
+      zh: '與你日常入饌的大蒜相同，只是以定量形式裝入膠囊，而非放在碟上。',
+    },
+  },
+];
+
+/**
+ * VITAS Soothing Cream Gel 50ml roll-on, sold as a two-pack. NOTE: this is a
+ * different formulation from the 100ml gel — it contains menthol, a
+ * formaldehyde-releasing preservative (imidazolidinyl urea) and colourants
+ * (CI 15985 / CI 16255 / CI 19140). The "no synthetic dyes" chips apply to the
+ * 100ml cream gel only; never show PRODUCT.freeFrom on a roll-on page.
+ */
+export const ROLLON = {
+  slug: '/roll-on/',
+  nameEn: 'Soothing Cream Gel Roll-On',
+  nameZh: '舒緩啫喱膏走珠裝',
+  size: { en: '2 × 50ml roll-on', zh: '2 × 50 毫升走珠裝' },
+  price: 320,
+  priceLabel: 'HK$320',
+  sku: 'VTS003',
+  photos: [
+    {
+      id: 'set',
+      base: '/assets/img/product/rollon-set',
+      alt: { en: 'VITAS Soothing Cream Gel Roll-On with its box', zh: 'VITAS 舒緩啫喱膏走珠裝 連外盒' },
+    },
+    {
+      id: 'duo',
+      base: '/assets/img/product/rollon-duo',
+      alt: { en: 'Two VITAS roll-on bottles', zh: 'VITAS 走珠裝 兩支' },
+    },
+    {
+      id: 'bottle',
+      base: '/assets/img/product/rollon-bottle',
+      alt: { en: 'VITAS Soothing Cream Gel Roll-On, 50ml', zh: 'VITAS 舒緩啫喱膏走珠裝 50 毫升' },
+    },
+    {
+      id: 'box',
+      base: '/assets/img/product/rollon-box',
+      alt: { en: 'VITAS Roll-On box, front', zh: 'VITAS 走珠裝外盒正面' },
+    },
+  ],
+  gmp: {
+    en: 'Made in France, produced to EEC GMP standard.',
+    zh: '法國製造，並嚴格遵循 EEC GMP 標準生產。',
+  },
+  use: {
+    en: 'Roll it on and massage briefly until it is fully absorbed. For external use only.',
+    zh: '直接滾塗於目標部位，稍加按摩至完全吸收。只供外用。',
+  },
+  inci:
+    'Vitis Vinifera, Melaleuca Viridiflora oil, Eucalyptus Globulus oil, Aqua, Menthol, Ethylhexyl Stearate, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Sorbitan Isostearate, Isohexadecane, Polysorbate-60, Imidazolidinyl urea, CI 15985, CI 16255, CI 19140',
+  cautions: [
+    {
+      en: 'For external use only. Not suitable for children under 5, or during pregnancy and breastfeeding.',
+      zh: '只供外用。5 歲以下兒童、懷孕及哺乳期間不宜使用。',
+    },
+    {
+      en: 'This formula contains menthol, a preservative (imidazolidinyl urea) and colourants. If your skin reacts to any of these, the 100ml cream gel is the simpler formula.',
+      zh: '此配方含薄荷腦、防腐劑（咪唑烷基脲）及色素。如你的皮膚對以上成分敏感，100 毫升啫喱膏的配方較為簡單。',
+    },
+    {
+      en: 'A cosmetic massage product, not a medicine. It does not diagnose, treat, cure or prevent any condition.',
+      zh: '本品為按摩護理化妝品，並非藥物，不能診斷、治療、治癒或預防任何疾病。',
+    },
+  ],
 };

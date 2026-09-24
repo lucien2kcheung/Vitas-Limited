@@ -33,6 +33,8 @@ const buildSpecs = () => [
   pages.checkoutResult('success'),
   pages.checkoutResult('cancelled'),
   pages.product(),
+  pages.capsule(),
+  pages.rollOn(),
   pages.howToUse(),
   pages.ingredients(),
   ...PLANTS.map((p) => pages.ingredient(p)),

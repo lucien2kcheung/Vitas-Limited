@@ -25,6 +25,9 @@ import {
   PURITY,
   PRODUCT,
   PRODUCTS,
+  CAPSULE,
+  ROLLON,
+  CAPSULE_PLANTS,
   SHOP,
   PLANTS,
   STOCKISTS,
@@ -154,8 +157,8 @@ function freeFromBand() {
           ${blk(
             'p',
             {
-              en: 'Most muscle rubs work by shouting. Ours is built around the things it leaves out.',
-              zh: '大多數肌肉按摩產品，都盲目追求「強烈」取勝。但我們的配方天然溫和，重點不在於加了什麼，而在於它不含什麼。',
+              en: 'Most muscle rubs work by shouting. The 100ml Soothing Cream Gel is built around the things it leaves out. (The roll-on is a different formula — its full ingredient list is on its own page.)',
+              zh: '大多數肌肉按摩產品，都盲目追求「強烈」取勝。100 毫升舒緩啫喱膏的配方天然溫和，重點不在於加了什麼，而在於它不含什麼。（走珠裝屬另一配方，完整成分表載於其產品頁。）',
             },
             'band__lede'
           )}
@@ -327,7 +330,9 @@ function shopCard(p) {
             <ul class="shop-card__points">
               ${p.points.map((pt) => `<li>${t(pt)}</li>`).join('\n              ')}
             </ul>
-            <p class="shop-card__price">${p.priceLabel}</p>
+            <p class="shop-card__price">${
+              p.wasLabel ? `<s class="shop-card__was">${p.wasLabel}</s> ` : ''
+            }${p.priceLabel}</p>
             <div class="shop-card__actions">
               <button class="btn" type="button" data-add-to-cart="${p.id}"
                       data-name="${attr(t(p.name))}" data-variant="${attr(t(p.variant))}"
@@ -942,6 +947,385 @@ ${sectionHead({
   };
 }
 
+/* ------------------------------------------------------------- capsule */
+
+const capsuleJsonLd = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'VITAS Capsule',
+  sku: CAPSULE.sku,
+  brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
+  description: t({
+    en: 'A plant-based food supplement: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules, made in France to EEC GMP standard.',
+    zh: '植物配方食品補充品：紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜。60 粒，法國製造，按 EEC GMP 標準生產。',
+  }),
+  image: SITE.url + '/assets/img/product/capsule-set-1240.webp',
+  offers: {
+    '@type': 'Offer',
+    price: String(CAPSULE.price),
+    priceCurrency: 'HKD',
+    availability: 'https://schema.org/InStock',
+    url: SITE.url + url('/capsule/'),
+  },
+});
+
+
+export function capsule() {
+  const body = `${pageHero({
+    eyebrow: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' },
+    title: { en: 'Four plants, one capsule', zh: '四種植物，一粒膠囊' },
+    lede: {
+      en: 'Red grape leaf, bilberry, soy lecithin and garlic, in a capsule made in France. 60 capsules, HK$298 instead of HK$538. Here is what is in it, how to take it, and what it is not.',
+      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入法國製造的膠囊。60 粒，HK$298（原價 HK$538）。以下說明它的成分、服用方法，以及它不是甚麼。',
+    },
+    trail: [HOME_CRUMB, { name: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' }, path: '/capsule/' }],
+  })}
+
+    <section class="section product-main">
+      <div class="wrap product-main__inner">
+        <div class="product-main__art">
+          <div class="gallery" data-gallery>
+            <div class="gallery__main">
+              <img data-gallery-main src="${CAPSULE.photos[0].base}-620.webp"
+                   srcset="${CAPSULE.photos[0].base}-620.webp 620w, ${CAPSULE.photos[0].base}-1240.webp 1240w"
+                   sizes="(max-width: 900px) 80vw, 38vw" alt="${attr(t(CAPSULE.photos[0].alt))}"
+                   width="620" height="620" decoding="async">
+            </div>
+            <ul class="gallery__thumbs">
+              ${CAPSULE.photos
+                .map(
+                  (ph, i) => `<li><button type="button" class="gallery__thumb" data-gallery-thumb
+                data-src="${ph.base}-620.webp"
+                data-srcset="${ph.base}-620.webp 620w, ${ph.base}-1240.webp 1240w"
+                data-alt="${attr(t(ph.alt))}" aria-current="${i === 0 ? 'true' : 'false'}">
+                <img src="${ph.base}-620.webp" alt="${attr(t(ph.alt))}" width="620" height="620" loading="lazy" decoding="async">
+              </button></li>`
+                )
+                .join('\n              ')}
+            </ul>
+          </div>
+        </div>
+        <div class="product-main__body">
+          <dl class="spec">
+            <div class="spec__row"><dt>${t({ en: 'Size', zh: '容量' })}</dt><dd>${t(
+              CAPSULE.size
+            )}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Price', zh: '售價' })}</dt><dd><s class="spec__was">${
+              CAPSULE.wasLabel
+            }</s> ${CAPSULE.priceLabel}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Ingredients', zh: '主要成份' })}</dt><dd>${t({
+              en: 'Red grape leaf, bilberry, soy lecithin, garlic.',
+              zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂、大蒜。',
+            })}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'How to take', zh: '服用方法' })}</dt><dd>${t(
+              CAPSULE.dosage
+            )}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Made in', zh: '生產地' })}</dt><dd>${t(
+              CAPSULE.gmp
+            )}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Storage', zh: '貯存' })}</dt><dd>${t(
+              CAPSULE.storage
+            )}</dd></div>
+          </dl>
+          <div class="buy__actions">
+            ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
+            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
+          </div>
+          ${blk(
+            'p',
+            {
+              en: 'Order here with free Hong Kong delivery from HK$250, or pick it up at Watsons and Mannings.',
+              zh: '可於本網站訂購，滿 HK$250 免香港運費；亦可於屈臣氏及萬寧門市選購。',
+            },
+            'product-main__note'
+          )}
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'What is in it', zh: '成分' },
+  heading: { en: 'Four plants, each named on the box', zh: '四種植物，全部印在外盒上' },
+  lede: {
+    en: 'Short ingredient list, no proprietary blend, no filler names you cannot look up. Here is each one and what it is.',
+    zh: '成分表很短，沒有所謂的「專利複方」，也沒有你查不到的名字。以下逐一說明每種成分是甚麼。',
+  },
+})}
+        <div class="capsule-plants">
+          ${CAPSULE_PLANTS.map(
+            (p) => `<article class="capsule-plant reveal">
+            <img class="capsule-plant__art" src="${p.art}" alt="${attr(t(p.name))}" width="1000" height="1000" loading="lazy" decoding="async">
+            <div class="capsule-plant__body">
+              ${blk('p', p.eyebrow, 'eyebrow')}
+              ${blk('h3', p.name, 'capsule-plant__name')}
+              <p class="capsule-plant__latin">${p.latin}</p>
+              ${blk('p', p.text, 'capsule-plant__text')}
+            </div>
+          </article>`
+          ).join('\n          ')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section band band--wash reveal">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'How to take it', zh: '服用方法' },
+  heading: { en: 'Twice a day, with the rest of your routine', zh: '每天兩次，融入你的日常' },
+})}
+        <ol class="capsule-steps">
+          ${[
+            {
+              h: { en: 'Morning', zh: '早上' },
+              p: {
+                en: '1 to 3 capsules, before or after a meal, with a glass of water.',
+                zh: '1 至 3 粒，餐前或餐後服用，配一杯水。',
+              },
+            },
+            {
+              h: { en: 'Evening', zh: '晚上' },
+              p: {
+                en: 'The second dose, roughly 6 to 7 hours after the first. Same amount.',
+                zh: '第二次服用，與第一次相隔約 6 至 7 小時，份量相同。',
+              },
+            },
+            {
+              h: { en: 'Keep it visible', zh: '放在看得見的地方' },
+              p: {
+                en: 'Supplements work the same way the massage routine does: only if you actually keep taking them. Leave the bottle where you will see it.',
+                zh: '補充品和按摩流程一樣：持續做才有意義。把它放在你會看見的位置。',
+              },
+            },
+          ]
+            .map(
+              (st) => `<li class="capsule-step">
+            ${blk('h3', st.h, 'capsule-step__title')}
+            ${blk('p', st.p, 'capsule-step__text')}
+          </li>`
+            )
+            .join('\n          ')}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap prose">
+        ${blk('h2', { en: 'What it is, and what it is not', zh: '它是甚麼，不是甚麼' })}
+        ${blk('p', {
+          en: 'VITAS Capsule is a plant-based food supplement. It is not a medicine, and we do not present it as one: it is not for diagnosing, treating, curing or preventing any condition, and it does not replace a varied diet, sleep or medical advice. If you are being treated for something, your doctor should know what you are taking.',
+          zh: 'VITAS 淋巴管理膠囊是植物配方的食品補充品。它並非藥物，我們亦不會把它當作藥物介紹：它不用於診斷、治療、治癒或預防任何疾病，亦不能取代均衡飲食、充足睡眠或醫生的建議。如你正在接受治療，應讓你的醫生知道你在服用甚麼。',
+        })}
+        ${blk('p', {
+          en: 'It is made in France to EEC GMP standard, in the same regulatory environment as the cream gel — full documentation, a short ingredient list, and nothing added to make the effect feel stronger than it is.',
+          zh: '它在法國按 EEC GMP 標準生產，與舒緩啫喱膏處於同一套規管標準之下——文件齊全、成分表簡短，亦不會為了讓感受「更強烈」而額外添加成分。',
+        })}
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'Before you take it', zh: '服用前請留意' },
+  heading: { en: 'Read this first', zh: '請先閱讀' },
+})}
+        <ul class="capsule-cautions">
+          ${CAPSULE.cautions.map((c) => `<li>${t(c)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+    </section>
+
+${buyStrip()}
+
+${newsletter()}`;
+
+  return {
+    title: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' },
+    description: {
+      en: 'VITAS Capsule: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules, HK$298, made in France to EEC GMP standard. A plant-based food supplement.',
+      zh: 'VITAS 淋巴管理膠囊：紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜。60 粒，HK$298，法國製造，按 EEC GMP 標準生產。植物配方食品補充品。',
+    },
+    path: '/capsule/',
+    active: '/capsule/',
+    body,
+    jsonLd: [capsuleJsonLd()],
+  };
+}
+
+/* ------------------------------------------------------------- roll-on */
+
+const rollOnJsonLd = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: 'VITAS Soothing Cream Gel Roll-On, 2 × 50ml',
+  sku: ROLLON.sku,
+  brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
+  description: t({
+    en: 'Grape seed, niaouli and eucalyptus with menthol, in a 50ml roll-on. Two-pack, made in France to EEC GMP standard.',
+    zh: '葡萄籽、綠花白千層與尤加利，加入薄荷腦，50 毫升走珠裝。孖裝發售，法國製造，按 EEC GMP 標準生產。',
+  }),
+  image: SITE.url + '/assets/img/product/rollon-set-1240.webp',
+  offers: {
+    '@type': 'Offer',
+    price: String(ROLLON.price),
+    priceCurrency: 'HKD',
+    availability: 'https://schema.org/InStock',
+    url: SITE.url + url('/roll-on/'),
+  },
+});
+
+export function rollOn() {
+  const body = `${pageHero({
+    eyebrow: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' },
+    title: { en: 'No hands. Roll it on and go.', zh: '不用手，滾一滾就出發。' },
+    lede: {
+      en: 'The same three plants as the cream gel, in a 50ml roll-on with menthol added for a sharper cool. Sold as a two-pack, HK$320 — one for the bag, one for the desk.',
+      zh: '與啫喱膏相同的三種植物，改為 50 毫升走珠裝，並加入薄荷腦，清涼感更明顯。孖裝發售，HK$320——一支放袋，一支放辦公桌。',
+    },
+    trail: [
+      HOME_CRUMB,
+      { name: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' }, path: '/roll-on/' },
+    ],
+  })}
+
+    <section class="section product-main">
+      <div class="wrap product-main__inner">
+        <div class="product-main__art">
+          <div class="gallery" data-gallery>
+            <div class="gallery__main">
+              <img data-gallery-main src="${ROLLON.photos[0].base}-620.webp"
+                   srcset="${ROLLON.photos[0].base}-620.webp 620w, ${ROLLON.photos[0].base}-1240.webp 1240w"
+                   sizes="(max-width: 900px) 80vw, 38vw" alt="${attr(t(ROLLON.photos[0].alt))}"
+                   width="620" height="620" decoding="async">
+            </div>
+            <ul class="gallery__thumbs">
+              ${ROLLON.photos
+                .map(
+                  (ph, i) => `<li><button type="button" class="gallery__thumb" data-gallery-thumb
+                data-src="${ph.base}-620.webp"
+                data-srcset="${ph.base}-620.webp 620w, ${ph.base}-1240.webp 1240w"
+                data-alt="${attr(t(ph.alt))}" aria-current="${i === 0 ? 'true' : 'false'}">
+                <img src="${ph.base}-620.webp" alt="${attr(t(ph.alt))}" width="620" height="620" loading="lazy" decoding="async">
+              </button></li>`
+                )
+                .join('\n              ')}
+            </ul>
+          </div>
+        </div>
+        <div class="product-main__body">
+          <dl class="spec">
+            <div class="spec__row"><dt>${t({ en: 'Size', zh: '容量' })}</dt><dd>${t(
+              ROLLON.size
+            )}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Price', zh: '售價' })}</dt><dd>${
+              ROLLON.priceLabel
+            }</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Feel', zh: '膚感' })}</dt><dd>${t({
+              en: 'Cooler and sharper than the cream gel — menthol on top of the eucalyptus.',
+              zh: '比啫喱膏更清涼、更鮮明——在尤加利之上加入薄荷腦。',
+            })}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'How to use', zh: '使用方法' })}</dt><dd>${t(
+              ROLLON.use
+            )}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Made in', zh: '生產地' })}</dt><dd>${t(
+              ROLLON.gmp
+            )}</dd></div>
+          </dl>
+          <div class="buy__actions">
+            ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
+            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
+          </div>
+          ${blk(
+            'p',
+            {
+              en: 'Order here with free Hong Kong delivery from HK$250, or pick it up at Watsons and Mannings.',
+              zh: '可於本網站訂購，滿 HK$250 免香港運費；亦可於屈臣氏及萬寧門市選購。',
+            },
+            'product-main__note'
+          )}
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'Which one', zh: '如何選擇' },
+  heading: { en: 'Roll-on or cream gel?', zh: '走珠裝還是啫喱膏？' },
+  lede: {
+    en: 'Two different jobs, two different formulas. Most people end up with one of each.',
+    zh: '兩種用途，兩種配方。大部分人最後兩款都會有一支。',
+  },
+})}
+        <div class="grid grid--2">
+          ${[
+            {
+              h: { en: 'The roll-on, for speed', zh: '走珠裝：講求快' },
+              p: {
+                en: 'Courtside, in the changing room, at your desk. It goes on without getting anything on your hands, and the menthol makes the cooling obvious straight away. Best on calves, forearms, neck and shoulders.',
+                zh: '場邊、更衣室、辦公桌前皆宜。塗抹時不會沾手，薄荷腦令清涼感即時明顯。最適合小腿、前臂、頸部與肩膊。',
+              },
+            },
+            {
+              h: { en: 'The 100ml gel, for the massage', zh: '100 毫升啫喱膏：講求按摩' },
+              p: {
+                en: 'When you have ten minutes and want to work an area properly, the cream gel gives your hands enough glide for a real massage — and it is the simpler formula, without menthol or colourants.',
+                zh: '當你有十分鐘、想認真處理某個部位時，啫喱膏能為雙手提供足夠滑度，完成真正的按摩——而且配方更簡單，不含薄荷腦與色素。',
+              },
+            },
+          ]
+            .map(
+              (c) => `<article class="reveal">
+            ${blk('h3', c.h)}
+            ${blk('p', c.p)}
+          </article>`
+            )
+            .join('\n          ')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section band band--wash reveal">
+      <div class="wrap prose">
+        ${blk('h2', { en: 'Everything in it', zh: '完整成分' })}
+        ${blk('p', {
+          en: 'The full INCI list, exactly as it appears on the bottle. Note that this formula is not the same as the 100ml cream gel: it adds menthol for the cooling, a preservative and colourants.',
+          zh: '以下為瓶身上的完整 INCI 成分表。請留意，此配方與 100 毫升啫喱膏並不相同：它額外加入薄荷腦帶來清涼感，以及防腐劑與色素。',
+        })}
+        <p class="inci">${ROLLON.inci}</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="wrap">
+${sectionHead({
+  eyebrow: { en: 'Before you use it', zh: '使用前請留意' },
+  heading: { en: 'Read this first', zh: '請先閱讀' },
+})}
+        <ul class="capsule-cautions">
+          ${ROLLON.cautions.map((c) => `<li>${t(c)}</li>`).join('\n          ')}
+        </ul>
+      </div>
+    </section>
+
+${buyStrip()}
+
+${newsletter()}`;
+
+  return {
+    title: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' },
+    description: {
+      en: 'VITAS Soothing Cream Gel Roll-On: grape seed, niaouli and eucalyptus with menthol. Two 50ml roll-ons, HK$320, made in France to EEC GMP standard.',
+      zh: 'VITAS 舒緩啫喱膏走珠裝：葡萄籽、綠花白千層與尤加利，加入薄荷腦。兩支 50 毫升，HK$320，法國製造，按 EEC GMP 標準生產。',
+    },
+    path: '/roll-on/',
+    active: '/roll-on/',
+    body,
+    jsonLd: [rollOnJsonLd()],
+  };
+}
+
 export function ingredients() {
   const body = `${pageHero({
     eyebrow: { en: 'Ingredients', zh: '成分' },
@@ -1127,8 +1511,8 @@ export function stockists() {
   return {
     title: { en: 'Where to buy', zh: '購買地點' },
     description: {
-      en: 'Buy VITAS Soothing Cream Gel 100ml (HK$250) at Watsons and Mannings across Hong Kong, or online through HKTVmall, Gogo Herbs and HK Medical Store.',
-      zh: '於全港屈臣氏及萬寧選購 VITAS 舒緩啫喱膏 100毫升（HK$250），或經 HKTVmall、Gogo Herbs 及網上藥房購買。',
+      en: 'Buy VITAS Soothing Cream Gel 100ml (HK$250) at Watsons and Mannings across Hong Kong, or online through Gogo Herbs and HK Medical Store.',
+      zh: '於全港屈臣氏及萬寧選購 VITAS 舒緩啫喱膏 100毫升（HK$250），或經 Gogo Herbs 及網上藥房購買。',
     },
     path: '/stockists/',
     active: '/stockists/',
@@ -1403,6 +1787,16 @@ export function cart() {
             },
             'cart__small'
           )}
+          <p class="cart__small">${t({
+            en: 'Prefer PayMe or FPS? ',
+            zh: '想用 PayMe 或轉數快？',
+          })}<a href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">${t({
+            en: 'Message us on WhatsApp',
+            zh: '請 WhatsApp 我們',
+          })}</a>${t({
+            en: ' and we will send you a payment request.',
+            zh: '，我們會向你發出付款要求。',
+          })}</p>
         </aside>
       </div>
     </section>`;
@@ -1458,8 +1852,8 @@ export function checkoutResult(kind) {
                 'note'
               )
             : blk('p', {
-                en: 'If something went wrong at checkout — a card declined, a code that would not apply — tell us and we will sort it out.',
-                zh: '如結帳時遇到問題——卡片被拒、優惠碼無法套用——請告訴我們，我們會處理。',
+                en: 'If something went wrong at checkout — a card declined, a code that would not apply — tell us and we will sort it out. If you would rather pay by PayMe or FPS, message us on WhatsApp and we will send you a payment request.',
+                zh: '如結帳時遇到問題——卡片被拒、優惠碼無法套用——請告訴我們，我們會處理。如想使用 PayMe 或轉數快付款，請 WhatsApp 我們，我們會向你發出付款要求。',
               }) +
               `<p>${arrow('/cart/', { en: 'Back to the cart', zh: '返回購物車' })}</p>` +
               `<p>${arrow('/contact/', { en: 'Contact us', zh: '聯絡我們' })}</p>`

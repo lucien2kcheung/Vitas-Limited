@@ -83,7 +83,9 @@ export const urlIn = (path, lang) => (lang === 'zh' ? '/zh' + path : path);
 /* --------------------------------------------------------------- chrome */
 
 const navItems = [
-  { href: '/product/', label: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' } },
+  { href: '/product/', label: { en: 'Soothing Cream', zh: '舒緩啫喱膏' } },
+          { href: '/capsule/', label: { en: 'Capsule', zh: '膠囊' } },
+          { href: '/roll-on/', label: { en: 'Roll-On', zh: '走珠裝' } },
   { href: '/ingredients/', label: { en: 'Ingredients', zh: '成分' } },
   { href: '/how-to-use/', label: { en: 'How to Use', zh: '使用方法' } },
   { href: '/about/', label: { en: 'About VITAS', zh: '關於 VITAS' } },
@@ -188,6 +190,8 @@ function footer() {
         ${col({ en: 'Shop', zh: '購買' }, [
           { href: '/shop/', label: { en: 'Shop now', zh: '網上商店' } },
           { href: '/product/', label: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' } },
+          { href: '/capsule/', label: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' } },
+          { href: '/roll-on/', label: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' } },
           { href: '/cart/', label: { en: 'Cart', zh: '購物車' } },
           { href: '/stockists/', label: { en: 'Where to buy', zh: '購買地點' } },
         ])}
