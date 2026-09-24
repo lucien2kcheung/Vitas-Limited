@@ -1024,3 +1024,23 @@ body.welcome-open { overflow: hidden; }
 .gallery__thumb[aria-current='true'] { border-color: var(--brand-deep); box-shadow: 0 0 0 1px var(--brand-deep) inset; }
 .shop-card__was, .spec__was { color: var(--steel); font-weight: 400; margin-right: 0.35rem; }
 .inci { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+/* --------------------------------------------- alternative payment note */
+.pay-alt {
+  display: flex; align-items: center; gap: 1rem; margin-top: 1rem;
+  padding: 0.95rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--paper); text-decoration: none; color: inherit;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.pay-alt:hover { border-color: var(--brand); box-shadow: var(--shadow-soft); }
+.pay-alt__marks { display: flex; align-items: center; gap: 0.6rem; flex: none; }
+.pay-alt__payme {
+  display: inline-grid; place-items: center; padding: 0.3rem 0.55rem; border-radius: 8px;
+  background: #d0021b; color: #fff; font-family: var(--font-mono); font-size: 0.72rem;
+  font-weight: 600; letter-spacing: 0.02em;
+}
+.pay-alt__wa { color: #25d366; flex: none; }
+.pay-alt__body { display: grid; gap: 0.15rem; }
+.pay-alt__title { font-weight: 600; font-size: 0.95rem; }
+.pay-alt__text { color: var(--muted); font-size: 0.88rem; }
+@media (max-width: 520px) { .pay-alt { align-items: flex-start; } }

@@ -975,8 +975,8 @@ export function capsule() {
     eyebrow: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' },
     title: { en: 'Four plants, one capsule', zh: '四種植物，一粒膠囊' },
     lede: {
-      en: 'Red grape leaf, bilberry, soy lecithin and garlic, in a capsule made in France. 60 capsules, HK$298 instead of HK$538. Here is what is in it, how to take it, and what it is not.',
-      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入法國製造的膠囊。60 粒，HK$298（原價 HK$538）。以下說明它的成分、服用方法，以及它不是甚麼。',
+      en: 'Red grape leaf, bilberry, soy lecithin and garlic, in a capsule made in France. 60 capsules.',
+      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入法國製造的膠囊。60 粒。',
     },
     trail: [HOME_CRUMB, { name: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' }, path: '/capsule/' }],
   })}
@@ -1107,20 +1107,6 @@ ${sectionHead({
             )
             .join('\n          ')}
         </ol>
-      </div>
-    </section>
-
-    <section class="section reveal">
-      <div class="wrap prose">
-        ${blk('h2', { en: 'What it is, and what it is not', zh: '它是甚麼，不是甚麼' })}
-        ${blk('p', {
-          en: 'VITAS Capsule is a plant-based food supplement. It is not a medicine, and we do not present it as one: it is not for diagnosing, treating, curing or preventing any condition, and it does not replace a varied diet, sleep or medical advice. If you are being treated for something, your doctor should know what you are taking.',
-          zh: 'VITAS 淋巴管理膠囊是植物配方的食品補充品。它並非藥物，我們亦不會把它當作藥物介紹：它不用於診斷、治療、治癒或預防任何疾病，亦不能取代均衡飲食、充足睡眠或醫生的建議。如你正在接受治療，應讓你的醫生知道你在服用甚麼。',
-        })}
-        ${blk('p', {
-          en: 'It is made in France to EEC GMP standard, in the same regulatory environment as the cream gel — full documentation, a short ingredient list, and nothing added to make the effect feel stronger than it is.',
-          zh: '它在法國按 EEC GMP 標準生產，與舒緩啫喱膏處於同一套規管標準之下——文件齊全、成分表簡短，亦不會為了讓感受「更強烈」而額外添加成分。',
-        })}
       </div>
     </section>
 
@@ -1787,16 +1773,23 @@ export function cart() {
             },
             'cart__small'
           )}
-          <p class="cart__small">${t({
-            en: 'Prefer PayMe or FPS? ',
-            zh: '想用 PayMe 或轉數快？',
-          })}<a href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">${t({
-            en: 'Message us on WhatsApp',
-            zh: '請 WhatsApp 我們',
-          })}</a>${t({
-            en: ' and we will send you a payment request.',
-            zh: '，我們會向你發出付款要求。',
-          })}</p>
+          <a class="pay-alt" href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">
+            <span class="pay-alt__marks">
+              <span class="pay-alt__payme">PayMe</span>
+              <svg class="pay-alt__wa" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="${WA_ICON_PATH}"/></svg>
+            </span>
+            <span class="pay-alt__body">
+              ${blk('span', { en: 'Prefer PayMe or FPS?', zh: '想用 PayMe 或轉數快？' }, 'pay-alt__title')}
+              ${blk(
+                'span',
+                {
+                  en: 'Message us on WhatsApp and we will send you a payment request.',
+                  zh: '請 WhatsApp 我們，我們會向你發出付款要求。',
+                },
+                'pay-alt__text'
+              )}
+            </span>
+          </a>
         </aside>
       </div>
     </section>`;
@@ -1895,9 +1888,9 @@ export function about() {
 
     <section class="section founder reveal">
       <div class="wrap founder__inner">
-        ${figure('/assets/img/art-founder.svg', { en: 'Rosana Li, founder', zh: '創辦人 Rosana Li' }, 'tint', {
-          w: 1000,
-          h: 1000,
+        ${figure('/assets/img/founder-rosana-620.webp', { en: 'Rosana Li, founder', zh: '創辦人 Rosana Li' }, 'tint', {
+          w: 620,
+          h: 620,
         })}
         <div class="founder__body">
           ${blk('p', { en: 'The founder', zh: '創辦人' }, 'eyebrow')}
