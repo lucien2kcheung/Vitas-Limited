@@ -186,6 +186,22 @@
 
   wire(document.querySelector('[data-newsletter]'), '[data-newsletter-note]');
 
+  /* Product gallery: thumbnails swap the main image. */
+  var gallery = document.querySelector('[data-gallery]');
+  if (gallery) {
+    var main = gallery.querySelector('[data-gallery-main]');
+    gallery.addEventListener('click', function (e) {
+      var thumb = e.target.closest('[data-gallery-thumb]');
+      if (!thumb || !main) return;
+      main.src = thumb.getAttribute('data-src');
+      main.srcset = thumb.getAttribute('data-srcset');
+      main.alt = thumb.getAttribute('data-alt');
+      gallery.querySelectorAll('[data-gallery-thumb]').forEach(function (b) {
+        b.setAttribute('aria-current', b === thumb ? 'true' : 'false');
+      });
+    });
+  }
+
   /* Contact form → a pre-filled WhatsApp message to the company number. */
   var contact = document.querySelector('[data-contact]');
   if (contact) {
