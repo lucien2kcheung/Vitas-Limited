@@ -23,7 +23,7 @@
 export const BRAND = {
   slogan: {
     en: ['Warm up.', 'Wind down.'],
-    zh: ['熱身備戰．', '放鬆收操。'],
+    zh: ['熱身備戰．', '放鬆恢復。'],
   },
   triptych: [
     { en: 'Prime', zh: '喚醒' },
@@ -57,7 +57,7 @@ export const BRAND = {
   },
   disclaimer: {
     en: 'Disclaimer: VITAS is a cosmetic product for massage and external use. References to "warm-up", "wind-down", "prime", "perform", "recover", and warming/cooling describe the intended training ritual and sensory experience during massage. They do not represent medical, therapeutic or performance-enhancement claims. This product is not intended to diagnose, treat, cure or prevent any disease.',
-    zh: '免責聲明：本產品為供按摩及外用的化妝品。「熱身」、「收操」、「Prime」、「Perform」、「Recover」以及溫熱／清涼等字眼，只用作描述運動流程及按摩時的感官體驗，並不代表任何醫療、治療或提升運動表現的聲稱。本產品並非用作診斷、治療、治癒或預防任何疾病。',
+    zh: '免責聲明：本產品為供按摩及外用的化妝品。「熱身」、「恢復」、「Prime」、「Perform」、「Recover」以及溫熱／清涼等字眼，只用作描述運動流程及按摩時的感官體驗，並不代表任何醫療、治療或提升運動表現的聲稱。本產品並非用作診斷、治療、治癒或預防任何疾病。',
   },
 };
 
@@ -81,11 +81,15 @@ export const SPORTS = [
     },
     lede: {
       en: 'Eight workouts, eight kilometres, and a sled that does not care how you feel. The work between stations is where the session is won — and the two minutes before and ten minutes after are the part you control.',
-      zh: '八個項目、八公里，還有一台不理會你感受的冷酷無情的雪橇。真正決定表現的，是站與站之間的處理——而賽前兩分鐘和賽後十分鐘，就是你能控制勝負的關鍵部分。',
+      zh: '八個項目、八公里，還有一台冷酷無情的雪橇。真正決定表現的，是站與站之間的處理——而賽前兩分鐘和賽後十分鐘，就是你能控制勝負的關鍵部分。',
     },
     before: {
       en: 'Ten minutes before the first station, massage into quads, calves and shoulders. The warming sensation is your cue that the muscle has had attention — then go and do the dynamic warm-up properly.',
-      zh: '第一站前十分鐘，按摩股四頭肌、小腿與肩膊。溫熱的觸感在提醒你：這些肌肉已經被妥善照顧——接著，認真完成動態熱身。',
+      zh: '第一站前十分鐘，按摩股四頭肌、小腿與肩膊。溫熱的觸感在提醒你：這些肌肉已經被妥善照顧-接著，認真完成動態熱身。',
+    },
+    habit: {
+      en: 'Make it a regular habit before every session.',
+      zh: '把這一切，變成每一次訓練前不可或缺的固定習慣。',
     },
     after: {
       en: 'After the last sled push, shower, then work upward along the legs in long slow strokes. Cooling, non-greasy, absorbed before you put your kit back on.',
@@ -107,7 +111,7 @@ export const SPORTS = [
     },
     lede: {
       en: 'Padel is played in short, explosive bursts — and the bill arrives the next morning in your calves, forearms and lower back. A weekend sport deserves a weekday routine.',
-      zh: '板式網球由短促而爆發的動作組成，而代價會在第二天早上出現在小腿、前臂與下背。這類激烈的球類運動，你需要養成一套平日照顧肌肉的好習慣。',
+      zh: '板式網球由短促爆發力的動作組成，而代價會在第二天早上出現在小腿、前臂與下背。這類激烈的球類運動，你需要養成一套平日照顧肌肉的好習慣。',
     },
     before: {
       en: 'Before you step on court: calves, forearms and shoulders. Two minutes, both sides, paying attention to whichever one is complaining.',
@@ -137,7 +141,11 @@ export const SPORTS = [
     },
     before: {
       en: 'Calves, hamstrings and hip flexors before you start — especially on interval days, and especially on the side that always tightens first.',
-      zh: '起跑前先處理小腿、膕繩肌與髖屈肌——這在間歇日尤其重要，特別是那條總是先緊繃的腿。',
+      zh: '起跑前先處理小腿、膕繩肌與髖屈肌-這在間歇日尤其重要，特別是那條總是先繃緊的腿。',
+    },
+    habit: {
+      en: 'Make it a regular habit before every session.',
+      zh: '把這個動作，變成每次訓練前的固定習慣。',
     },
     after: {
       en: 'After the cool-down jog: long upward strokes on the calves and quads while your heart rate settles. It travels well in a running belt or a club bag.',
@@ -196,7 +204,7 @@ export const PRODUCTS = [
     badge: null,
     blurb: {
       en: 'Grape seed, eucalyptus and niaouli in a light cream gel that absorbs in under a minute and does not smell like a pharmacy.',
-      zh: '葡萄籽、尤加利與綠花白千層，輕盈啫喱質地，一分鐘內吸收，沒有藥房氣味。',
+      zh: '葡萄籽、尤加利與綠花白千層，交織出輕盈的啫喱質地；一分鐘內極速吸收，沒有傳統藥物的刺鼻氣味。',
     },
     points: [
       { en: 'One to two applications a day', zh: '每日一至兩次' },
@@ -307,7 +315,7 @@ export const PLANTS = [
     role: { en: 'The cool one', zh: '清涼感' },
     short: {
       en: 'Gives the cream its quiet coolness on the skin — noticeable, never fierce.',
-      zh: '為啫喱膏帶來恰到好處的皮膚清涼感——清晰有感，溫和但不刺激。',
+      zh: '為啫喱膏帶來恰到好處的皮膚清涼感-清晰有感，溫和但不刺激。',
     },
     long: {
       en: 'Eucalyptus globulus leaf oil is rich in 1,8-cineole, the compound behind its clean, faintly camphoraceous scent and the cool feeling it leaves behind. In VITAS it is dosed for comfort rather than shock: enough to register as you rub it in, not enough to announce itself to the person sitting next to you.',
@@ -325,7 +333,7 @@ export const PLANTS = [
         h: { en: 'Why not menthol or camphor', zh: '為何不用薄荷腦或樟腦' },
         p: {
           en: 'Both are stronger, cheaper and carry a medicated smell across a room. Eucalyptus gives a gentler version of the same cool sensation, which is the whole point of a cream you can use at your desk.',
-          zh: '兩者確實更強烈、成本也更低，但氣味往往會傳遍整個房間。相比之下，尤加利能提供溫和同類的清涼感——而這，正是打造一款「能在辦公室內隨時使用」的按摩膏的真正意義。',
+          zh: '兩者確實更強烈、成本也更低，但氣味往往會傳遍整個房間。相比之下，尤加利能提供溫和同類的清涼感-而這，正是打造一款「能在辦公室內隨時使用」的按摩膏的真正意義。',
         },
       },
       {
@@ -350,7 +358,7 @@ export const PLANTS = [
     },
     long: {
       en: 'Grape seed oil is one of the lightest cosmetic carrier oils there is — high in linoleic acid, low in tack. It gives your hands enough glide to work a muscle properly, then sinks in fast enough that you can put a shirt back on straight away. It is also, unglamorously, why the cream feels expensive.',
-      zh: '葡萄籽油是最輕盈的基底油之一，亞油酸含量高、黏膩感低。它讓雙手有足夠的滑度按摩肌肉還能極速吸收，讓你按摩後無需等待即可俐落著裝——這也是這款啫喱膏膚感如此細緻的關鍵。',
+      zh: '葡萄籽油是最輕盈的基底油之一，亞油酸含量高、黏膩感低。它讓雙手有足夠的滑度按摩肌肉還能極速吸收，讓你按摩後無需等待即可俐落著裝-這也是這款啫喱膏膚感如此細緻的關鍵。',
     },
     facts: [
       {
@@ -576,11 +584,11 @@ export const ABOUT = {
       p: [
         {
           en: 'Anyone who has shared a lift in Hong Kong after someone applied a traditional medicated rub knows the problem. The products that work on tired muscles announce themselves — a sharp wall of methyl salicylate and camphor that follows you into the office, the MTR and the meeting you are already late for. Most people solve it by not using anything until they get home, which is to say by not using anything at all.',
-          zh: '在香港，只要曾在升降機裡聞到那股藥油味，你就明白問題所在。真正能舒緩疲勞的產品，氣味往往霸道得讓人卻步——水楊酸甲酯與樟腦的刺鼻氣味，會一路跟著你進辦公室、擠地鐵。大部分人的解法是「回家再用」；換句話說，就是索性不用。',
+          zh: '在香港，只要曾在升降機裡聞到那股藥油味，你就明白問題所在。真正能舒緩疲勞的產品，氣味往往霸道得讓人卻步——水楊酸甲酯與樟腦的刺鼻氣味，會一路跟著你進辦公室、擠地鐵。大多數人的解決方法是「回家再用」；換句話說，就是索性不用。',
         },
         {
           en: 'VITAS exists because of that gap: something you can actually use in the middle of a working day, on the muscles that are tired now rather than the ones you will get to tonight.',
-          zh: 'VITAS 紓適寧就是為了填補這個空隙而存在：一支你真的可以在上班日中途使用的產品，隨時照顧此刻疲勞的肌肉，不必再等今晚才來處理。',
+          zh: 'VITAS 紓適寧的誕生，正是為了解決這個問題-一支你真正能在上班日中途使用的產品，隨時照顧此刻疲勞的肌肉，不必再留待今晚才處理。',
         },
       ],
     },
@@ -602,7 +610,7 @@ export const ABOUT = {
       p: [
         {
           en: 'Getting a small brand onto the shelf at Watsons and Mannings is the hardest thing to do in Hong Kong retail, and it took years. It is also the part of this business we are proudest of: it means someone can pick the tube up, read the carton and decide for themselves, without a website in between.',
-          zh: '在香港的零售市場裡，要把一個小品牌推上屈臣氏與萬寧的貨架，是極其艱難的一條路，而我們花了多年時間走到這裡。這也是我們最引以為傲的事：當顧客親手拿起產品、看清外盒上的每一個字，就能自主做出決定——這過程，不需要透過任何網站或廣告來說服。',
+          zh: '在香港的零售市場裡，要把一個小品牌推上屈臣氏與萬寧的貨架，是極其艱難的一條路，而我們花了多年時間走到這裡。這也是我們最引以為傲的事：當顧客親手拿起產品、看清楚外盒上的每一個字，就能自主做出決定-這過程，不需要透過任何網站或廣告來說服。',
         },
       ],
     },
