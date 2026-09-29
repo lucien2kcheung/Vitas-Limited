@@ -45,6 +45,7 @@ const buildSpecs = () => [
   pages.contact(),
   pages.legal('privacy'),
   pages.legal('terms'),
+  pages.shippingReturns(),
   pages.notFound(),
 ];
 

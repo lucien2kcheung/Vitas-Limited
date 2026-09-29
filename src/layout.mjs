@@ -205,6 +205,7 @@ function footer() {
         ${col({ en: 'Legal', zh: '條款' }, [
           { href: '/legal/privacy/', label: { en: 'Privacy', zh: '私隱政策' } },
           { href: '/legal/terms/', label: { en: 'Terms', zh: '使用條款' } },
+          { href: '/legal/shipping-returns/', label: { en: 'Shipping/returns policy', zh: '送遞及退貨政策' } },
         ])}
       </div>
     </div>

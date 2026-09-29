@@ -2117,6 +2117,58 @@ export function legal(kind) {
   };
 }
 
+export function shippingReturns() {
+  const path = '/legal/shipping-returns/';
+  const title = { en: 'Shipping & returns policy', zh: '送遞及退貨政策' };
+  const free = SHOP.freeShippingOver / 100;
+
+  const body = `${pageHero({
+    eyebrow: { en: 'Legal', zh: '條款' },
+    title,
+    trail: [HOME_CRUMB, { name: title, path }],
+  })}
+    <section class="section">
+      <div class="wrap prose">
+        ${blk('h2', { en: 'Delivery', zh: '送遞' })}
+        ${blk('p', {
+          en: `We deliver within Hong Kong. Delivery is free on orders of HK$${free} or more and HK$30 otherwise, and usually takes 2–4 working days. You will see the delivery charge at checkout before you pay.`,
+          zh: `我們提供香港本地送遞。滿 HK$${free} 免運費，否則運費為 HK$30，一般 2–4 個工作天送達。運費會在付款前於結帳頁面顯示。`,
+        })}
+        ${blk('p', {
+          en: 'You can also buy in person at Watsons and Mannings across Hong Kong.',
+          zh: '你亦可於全港屈臣氏及萬寧門市選購。',
+        })}
+        ${blk('h2', { en: 'Returns and refunds', zh: '退貨及退款' })}
+        ${blk('p', {
+          en: 'Unopened tubes can be returned within 14 days of delivery for a full refund. Email us and we will arrange it.',
+          zh: '未開封產品可於收貨後 14 天內退貨並全額退款。請來電郵，我們會安排。',
+        })}
+        ${blk('p', {
+          en: 'We cannot accept opened tubes back for hygiene reasons.',
+          zh: '基於衞生理由，已開封產品恕不接受退回。',
+        })}
+        ${blk('h2', { en: 'Damaged items', zh: '損壞產品' })}
+        ${blk('p', {
+          en: 'If something arrived damaged, send us a photo and we will replace it.',
+          zh: '如收到的產品有損壞，請提供照片，我們會安排更換。',
+        })}
+        ${blk('h2', { en: 'Contact us', zh: '聯絡我們' })}
+        <p>${t({ en: 'Email', zh: '電郵' })}: <a href="mailto:${SITE.email}">${SITE.email}</a></p>
+      </div>
+    </section>`;
+
+  return {
+    title,
+    description: {
+      en: 'Delivery within Hong Kong and how to return a VITAS order.',
+      zh: 'VITAS 香港本地送遞資料及退貨安排。',
+    },
+    path,
+    body,
+    jsonLd: [breadcrumb([HOME_CRUMB, { name: title, path }])],
+  };
+}
+
 export function notFound() {
   const body = `    <section class="page-hero">
       <div class="wrap">
