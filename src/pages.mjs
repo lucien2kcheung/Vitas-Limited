@@ -779,7 +779,7 @@ export function howToUse() {
       <div class="wrap">
 ${sectionHead({
   eyebrow: { en: 'Watch', zh: '影片' },
-  heading: { en: 'See it in two minutes', zh: '兩分鐘看懂用法' },
+  heading: { en: 'See it in one minute', zh: '一分鐘看懂用法' },
 })}
         ${
           /* The YouTube id is set by VIDEO_ID above (the part after v=). Empty shows the placeholder. */
