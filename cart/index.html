@@ -93,25 +93,15 @@
           <h2 class="cart__summary-title">Summary</h2>
           <dl class="cart__totals">
             <div class="cart__row"><dt>Subtotal</dt><dd data-cart-subtotal>HK$0</dd></div>
-            <div class="cart__row" data-cart-discount-row hidden><dt>Welcome offer</dt><dd data-cart-discount>−HK$50</dd></div>
             <div class="cart__row"><dt>Delivery</dt><dd data-cart-shipping>—</dd></div>
             <div class="cart__row cart__row--total"><dt>Total</dt><dd data-cart-total>HK$0</dd></div>
           </dl>
-
-          <div class="cart__promo">
-            <label for="promo">Discount code</label>
-            <div class="cart__promo-row">
-              <input id="promo" type="text" data-promo-input placeholder="WELCOME50" autocomplete="off">
-              <button class="btn btn--ghost btn--sm" type="button" data-promo-apply>Apply</button>
-            </div>
-            <p class="cart__promo-note" data-promo-note hidden></p>
-          </div>
 
           <button class="btn btn--full" type="button" data-checkout disabled>
             Checkout
           </button>
           <p class="cart__note" data-checkout-note hidden></p>
-          <p class="cart__small">Payment is handled by Stripe — card, Apple Pay and Google Pay. You will be taken to Stripe to pay and returned here afterwards.</p>
+          <p class="cart__small">Payment is handled by Stripe — card, Apple Pay and Google Pay. You will be taken to Stripe to pay and returned here afterwards. If you have a discount code, enter it on the Stripe payment page.</p>
           <a class="pay-alt" href="https://wa.me/85260607593" target="_blank" rel="noopener">
             <span class="pay-alt__marks">
               <span class="pay-alt__payme">PayMe</span>
@@ -200,26 +190,6 @@
       </address>
     </div>
   </footer>
-  <div class="welcome" data-welcome hidden>
-    <div class="welcome__scrim" data-welcome-close></div>
-    <div class="welcome__panel" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-describedby="welcome-text">
-      <button class="welcome__close" type="button" data-welcome-close aria-label="Close">&times;</button>
-      <p class="welcome__eyebrow">Welcome offer</p>
-      <h2 id="welcome-title" class="welcome__title">HK$50 off your first order</h2>
-      <p id="welcome-text" class="welcome__text">Leave your email and we will send the code — and, once a month or so, a note on training and recovery. No spam, unsubscribe in one click.</p>
-      <form class="welcome__form" data-welcome-form novalidate>
-        <label class="sr-only" for="welcome-email">Email address</label>
-        <input id="welcome-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
-        <button class="btn" type="submit">Get the code</button>
-      </form>
-      <div class="welcome__done" data-welcome-done hidden>
-        <p class="welcome__code" data-welcome-code>WELCOME50</p>
-        <p class="welcome__small">Use it at checkout for HK$50 off. It is saved to this browser, so the cart will remind you.</p>
-        <a class="btn" href="/shop/">Start shopping</a>
-      </div>
-      <p class="welcome__terms">One use per customer, on orders from this website. Not valid at Watsons, Mannings or other retailers.</p>
-    </div>
-  </div>
   <script src="/assets/js/site.js" defer></script>
   <script src="/assets/js/shop.js" defer></script>
 </body>

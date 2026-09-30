@@ -301,8 +301,6 @@ export const PURITY = {
 export const SHOP = {
   freeShippingOver: 25000,
   currency: 'hkd',
-  welcomeCode: 'WELCOME50',
-  welcomeValue: 5000,
 };
 
 export const PLANTS = [

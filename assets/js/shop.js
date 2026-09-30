@@ -1,4 +1,4 @@
-/* VITAS — cart, welcome offer and Stripe checkout.
+/* VITAS — cart and Stripe checkout.
    Progressive enhancement: with JavaScript off the shop pages still read, and
    the stockist links still work. Prices shown here are for display only —
    /api/checkout re-prices every line from the server-side catalogue before it
@@ -7,10 +7,6 @@
   'use strict';
 
   var CART_KEY = 'vitas-cart';
-  var PROMO_KEY = 'vitas-promo';
-  var WELCOME_KEY = 'vitas-welcome-seen';
-  var WELCOME_CODE = 'WELCOME50';
-  var WELCOME_VALUE = 5000;
   var SHIPPING = 3000;
   var FREE_OVER = 25000; // keep in sync with SHOP.freeShippingOver in src/data.mjs
 
@@ -23,8 +19,6 @@
     remove: { en: 'Remove', zh: '移除' },
     qty: { en: 'Quantity', zh: '數量' },
     free: { en: 'Free', zh: '免費' },
-    promoOk: { en: 'HK$50 welcome offer applied.', zh: '已套用 HK$50 迎新優惠。' },
-    promoBad: { en: 'That code is not recognised.', zh: '無法辨識此優惠碼。' },
     working: { en: 'Taking you to Stripe…', zh: '正前往 Stripe…' },
     failed: {
       en: 'Checkout is not connected yet. Add STRIPE_SECRET_KEY in Vercel to enable it (see README).',
@@ -60,7 +54,13 @@
   var cart = read(CART_KEY, []);
   if (!Array.isArray(cart)) cart = [];
 
-  var promo = read(PROMO_KEY, '');
+  /* Discount codes are handled only on the Stripe payment page. Clear the
+     values the old on-site coupon and welcome pop-up left in returning
+     visitors' browsers. */
+  try {
+    localStorage.removeItem('vitas-promo');
+    localStorage.removeItem('vitas-welcome-seen');
+  } catch (e) {}
 
   var subtotal = function () {
     return cart.reduce(function (sum, line) {
@@ -164,7 +164,6 @@
     }
 
     var sub = subtotal();
-    var discount = promo === WELCOME_CODE && cart.length ? Math.min(WELCOME_VALUE, sub) : 0;
     var shipping = !cart.length ? 0 : sub >= FREE_OVER ? 0 : SHIPPING;
 
     var set = function (sel, value) {
@@ -172,18 +171,11 @@
       if (el) el.textContent = value;
     };
     set('[data-cart-subtotal]', money(sub));
-    set('[data-cart-discount]', '−' + money(discount));
     set('[data-cart-shipping]', !cart.length ? '—' : shipping === 0 ? say('free') : money(shipping));
-    set('[data-cart-total]', money(Math.max(0, sub - discount + shipping)));
-
-    var row = document.querySelector('[data-cart-discount-row]');
-    if (row) row.hidden = discount === 0;
+    set('[data-cart-total]', money(sub + shipping));
 
     var checkoutBtn = document.querySelector('[data-checkout]');
     if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
-
-    var promoInput = document.querySelector('[data-promo-input]');
-    if (promoInput && promo && !promoInput.value) promoInput.value = promo;
   }
 
   if (itemsEl) {
@@ -209,31 +201,6 @@
     });
   }
 
-  /* ----------------------------------------------------------- promo code */
-
-  var promoBtn = document.querySelector('[data-promo-apply]');
-  if (promoBtn) {
-    promoBtn.addEventListener('click', function () {
-      var input = document.querySelector('[data-promo-input]');
-      var note = document.querySelector('[data-promo-note]');
-      var code = (input.value || '').trim().toUpperCase();
-
-      if (code === WELCOME_CODE) {
-        promo = code;
-        save(PROMO_KEY, promo);
-        note.textContent = say('promoOk');
-        note.className = 'cart__promo-note is-ok';
-      } else {
-        promo = '';
-        save(PROMO_KEY, '');
-        note.textContent = say('promoBad');
-        note.className = 'cart__promo-note is-bad';
-      }
-      note.hidden = false;
-      paintCart();
-    });
-  }
-
   /* -------------------------------------------------------------- checkout */
 
   var checkout = document.querySelector('[data-checkout]');
@@ -254,7 +221,6 @@
           items: cart.map(function (l) {
             return { id: l.id, qty: l.qty };
           }),
-          promo: promo || null,
           lang: lang,
         }),
       })
@@ -274,78 +240,6 @@
           }
         });
     });
-  }
-
-  /* -------------------------------------------------------- welcome offer */
-
-  var welcome = document.querySelector('[data-welcome]');
-
-  function closeWelcome() {
-    if (!welcome) return;
-    welcome.hidden = true;
-    document.body.classList.remove('welcome-open');
-    save(WELCOME_KEY, true);
-    if (welcome.__opener && welcome.__opener.focus) welcome.__opener.focus();
-  }
-
-  function openWelcome() {
-    if (!welcome) return;
-    welcome.__opener = document.activeElement;
-    welcome.hidden = false;
-    document.body.classList.add('welcome-open');
-    var field = welcome.querySelector('input[type=email]');
-    if (field) field.focus();
-  }
-
-  if (welcome) {
-    var seen = read(WELCOME_KEY, false);
-    var onCheckout = /\/(cart|checkout)\//.test(window.location.pathname);
-
-    if (!seen && !onCheckout) {
-      setTimeout(openWelcome, 2500);
-    }
-
-    welcome.querySelectorAll('[data-welcome-close]').forEach(function (el) {
-      el.addEventListener('click', closeWelcome);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !welcome.hidden) closeWelcome();
-      /* keep focus inside the dialog while it is open */
-      if (e.key === 'Tab' && !welcome.hidden) {
-        var focusable = welcome.querySelectorAll('button, [href], input');
-        if (!focusable.length) return;
-        var first = focusable[0];
-        var last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
-
-    var form = welcome.querySelector('[data-welcome-form]');
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
-        /* TODO before launch: POST the address to your email provider.
-           See README, "Forms". */
-        promo = WELCOME_CODE;
-        save(PROMO_KEY, promo);
-        save(WELCOME_KEY, true);
-        form.hidden = true;
-        var done = welcome.querySelector('[data-welcome-done]');
-        if (done) done.hidden = false;
-        paintCart();
-      });
-    }
   }
 
   /* ------------------------------------------------------------------ init */

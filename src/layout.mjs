@@ -232,61 +232,6 @@ function footer() {
 
 
 /**
- * Welcome offer. Shown once per visitor (a localStorage flag suppresses it
- * afterwards), never on the checkout pages. The email goes to the same endpoint
- * as the newsletter — see README, "Forms".
- */
-function welcomeModal() {
-  return `  <div class="welcome" data-welcome hidden>
-    <div class="welcome__scrim" data-welcome-close></div>
-    <div class="welcome__panel" role="dialog" aria-modal="true" aria-labelledby="welcome-title" aria-describedby="welcome-text">
-      <button class="welcome__close" type="button" data-welcome-close aria-label="${attr(
-        t({ en: 'Close', zh: '關閉' })
-      )}">&times;</button>
-      <p class="welcome__eyebrow">${t({ en: 'Welcome offer', zh: '迎新優惠' })}</p>
-      ${blk('h2', { en: 'HK$50 off your first order', zh: '首次訂購減 HK$50' }, 'welcome__title')
-        .replace('<h2', '<h2 id="welcome-title"')}
-      ${blk(
-        'p',
-        {
-          en: 'Leave your email and we will send the code — and, once a month or so, a note on training and recovery. No spam, unsubscribe in one click.',
-          zh: '留下你的電郵，我們會把優惠碼寄給你；並約每月一次分享訓練與恢復的內容。不發垃圾郵件，一鍵取消訂閱。',
-        },
-        'welcome__text'
-      ).replace('<p class', '<p id="welcome-text" class')}
-      <form class="welcome__form" data-welcome-form novalidate>
-        <label class="sr-only" for="welcome-email">${t({
-          en: 'Email address',
-          zh: '電郵地址',
-        })}</label>
-        <input id="welcome-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
-        <button class="btn" type="submit">${t({ en: 'Get the code', zh: '取得優惠碼' })}</button>
-      </form>
-      <div class="welcome__done" data-welcome-done hidden>
-        <p class="welcome__code" data-welcome-code>WELCOME50</p>
-        ${blk(
-          'p',
-          {
-            en: 'Use it at checkout for HK$50 off. It is saved to this browser, so the cart will remind you.',
-            zh: '結帳時輸入即減 HK$50。優惠碼已儲存於此瀏覽器，購物車會提醒你。',
-          },
-          'welcome__small'
-        )}
-        <a class="btn" href="${url('/shop/')}">${t({ en: 'Start shopping', zh: '開始選購' })}</a>
-      </div>
-      ${blk(
-        'p',
-        {
-          en: 'One use per customer, on orders from this website. Not valid at Watsons, Mannings or other retailers.',
-          zh: '每位顧客限用一次，只適用於本網站訂單，不適用於屈臣氏、萬寧或其他零售商。',
-        },
-        'welcome__terms'
-      )}
-    </div>
-  </div>`;
-}
-
-/**
  * Full page shell.
  *
  * @param {object} opts
@@ -341,7 +286,6 @@ ${header(active, path)}
 ${body}
   </main>
 ${footer()}
-${welcomeModal()}
   <script src="/assets/js/site.js" defer></script>
   <script src="/assets/js/shop.js" defer></script>
 </body>

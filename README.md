@@ -165,7 +165,7 @@ function.
 
 ```
 /shop/                     the two products, add to cart
-/cart/                     quantities, discount code, totals
+/cart/                     quantities, delivery, totals
 POST /api/checkout         creates the Stripe session   (api/checkout.js)
 /checkout/success/         return page after payment
 /checkout/cancelled/       return page if they back out
@@ -189,22 +189,18 @@ in devtools cannot change what is charged. Keep it that way.
 Until the key is set, the Checkout button shows "Checkout is not connected yet"
 rather than failing silently. Nothing else on the site depends on it.
 
-### The HK$50 welcome offer
+### Discount codes (Stripe only)
 
-The pop-up (see below) hands out the code **`WELCOME50`**. Create it once in
-Stripe so the discount is actually applied at payment:
+The website has **no discount-code feature of its own** — no pop-up offer and no
+code box in the cart. Every code is created and managed in Stripe, and the
+customer types it into the code box on the Stripe payment page
+(`allow_promotion_codes: true` in `api/checkout.js`).
 
-1. Stripe → Products → **Coupons** → New: amount off **HK$50.00**, currency HKD,
-   duration "once".
-2. On that coupon, **Add promotion code** → code `WELCOME50` → set
-   "Limit to first-time customers" and any expiry you want.
-
-`api/checkout.js` looks the code up by name at checkout time and applies it if
-it is active — the browser never decides the discount. The cart page also shows
-the HK$50 in its totals so the number the customer sees matches the one Stripe
-charges. Change the amount in **three** places if you change the offer:
-the Stripe coupon, `SHOP.welcomeValue` in `src/data.mjs`, and `WELCOME_VALUE`
-in `assets/js/shop.js`.
+To add a code: Stripe → Products → **Coupons** → New (amount or percentage off),
+then on that coupon **Add promotion code** and set the code, expiry and any
+limits (e.g. first-time customers only). It works at checkout immediately, with
+no website change or redeploy. The cart total on the website shows subtotal +
+delivery only; Stripe shows the discounted total on its own page.
 
 ### Shipping and returns
 
@@ -214,23 +210,7 @@ and in `assets/js/shop.js` for the cart display. The 14-day returns line on the
 shop page and in the FAQ is a policy statement: confirm it is the policy you
 actually want to operate before launch.
 
-## 5. The welcome pop-up
-
-`src/layout.mjs` → `welcomeModal()` renders it on every page; `assets/js/shop.js`
-decides when to show it:
-
-- appears 2.5 seconds after the first page view,
-- never on `/cart/` or `/checkout/…`,
-- never again once dismissed or completed (`vitas-welcome-seen` in
-  localStorage),
-- closes on Escape, on the scrim, or on the × button, and keeps keyboard focus
-  inside itself while open.
-
-Submitting the form reveals the code and stores it so the cart pre-fills it.
-**It does not yet send the address anywhere** — wire the form to your email
-provider (see Forms, below) or the addresses are lost.
-
-## 6. Forms
+## 5. Forms
 
 The newsletter and contact forms are wired up in the markup but **submit
 nowhere** — they show a note saying so. Before launch, point them at a real
@@ -242,7 +222,7 @@ endpoint. The simplest options, in order of effort:
   post to `/api/subscribe`.
 - **Your email provider's embed** (Mailchimp, Brevo) — replace the form markup.
 
-## 7. Things to verify before launch
+## 6. Things to verify before launch
 
 These need a human with access to the business; they are marked here so they do
 not get missed:
@@ -296,7 +276,7 @@ not get missed:
       testimonials (§09 ⑤). Nothing is published because nothing is verified;
       collect real ones and they can slot in under the sport modules.
 
-## 8. File map
+## 7. File map
 
 ```
 .
@@ -307,7 +287,7 @@ not get missed:
 ├── assets/
 │   ├── css/site.css        one stylesheet
 │   ├── js/site.js          nav, accordion, routine finder (no language logic)
-│   ├── js/shop.js          cart, welcome offer, Stripe checkout call
+│   ├── js/shop.js          cart, Stripe checkout call
 │   ├── img/logo/*          supplied logo kit, unmodified
 │   └── img/*.svg|png       generated illustrations
 ├── api/checkout.js         Vercel function → Stripe Checkout session

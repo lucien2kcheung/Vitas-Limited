@@ -1741,25 +1741,9 @@ export function cart() {
           ${blk('h2', { en: 'Summary', zh: '訂單摘要' }, 'cart__summary-title')}
           <dl class="cart__totals">
             <div class="cart__row"><dt>${t({ en: 'Subtotal', zh: '小計' })}</dt><dd data-cart-subtotal>HK$0</dd></div>
-            <div class="cart__row" data-cart-discount-row hidden><dt>${t({
-              en: 'Welcome offer',
-              zh: '迎新優惠',
-            })}</dt><dd data-cart-discount>−HK$50</dd></div>
             <div class="cart__row"><dt>${t({ en: 'Delivery', zh: '運費' })}</dt><dd data-cart-shipping>—</dd></div>
             <div class="cart__row cart__row--total"><dt>${t({ en: 'Total', zh: '總計' })}</dt><dd data-cart-total>HK$0</dd></div>
           </dl>
-
-          <div class="cart__promo">
-            <label for="promo">${t({ en: 'Discount code', zh: '優惠碼' })}</label>
-            <div class="cart__promo-row">
-              <input id="promo" type="text" data-promo-input placeholder="WELCOME50" autocomplete="off">
-              <button class="btn btn--ghost btn--sm" type="button" data-promo-apply>${t({
-                en: 'Apply',
-                zh: '套用',
-              })}</button>
-            </div>
-            <p class="cart__promo-note" data-promo-note hidden></p>
-          </div>
 
           <button class="btn btn--full" type="button" data-checkout disabled>
             ${t({ en: 'Checkout', zh: '前往結帳' })}
@@ -1768,8 +1752,8 @@ export function cart() {
           ${blk(
             'p',
             {
-              en: 'Payment is handled by Stripe — card, Apple Pay and Google Pay. You will be taken to Stripe to pay and returned here afterwards.',
-              zh: '付款由 Stripe 處理，支援信用卡、Apple Pay 及 Google Pay。你會被帶到 Stripe 完成付款，然後返回本網站。',
+              en: 'Payment is handled by Stripe — card, Apple Pay and Google Pay. You will be taken to Stripe to pay and returned here afterwards. If you have a discount code, enter it on the Stripe payment page.',
+              zh: '付款由 Stripe 處理，支援信用卡、Apple Pay 及 Google Pay。你會被帶到 Stripe 完成付款，然後返回本網站。如有優惠碼，請在 Stripe 付款頁面輸入。',
             },
             'cart__small'
           )}

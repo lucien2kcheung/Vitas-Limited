@@ -50,8 +50,8 @@
 /* -------------------------------------------------------------- base */
 *, *::before, *::after { box-sizing: border-box; }
 
-/* Class-level `display` beats the UA rule for [hidden], which would leave the
-   welcome overlay covering the page and swallowing clicks. Keep this first. */
+/* Class-level `display` beats the UA rule for [hidden], so hidden elements can
+   stay visible and swallow clicks. Keep this first. */
 [hidden] { display: none !important; }
 
 html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
@@ -532,14 +532,25 @@ img { max-width: 100%; height: auto; display: block; }
   body.nav-open .nav-toggle__bar::before { opacity: 0; }
   body.nav-open .nav-toggle__bar::after { transform: rotate(-90deg) translateX(6px); }
 
+  /* The menu hangs off the bottom of the header and fills the rest of the
+     screen. It must NOT be position:fixed: the header uses backdrop-filter,
+     which makes it the containing block for fixed children, so a fixed menu
+     collapsed to the height of the header bar on phones. Absolute, with a
+     height measured from the header (100% = header height), is immune to that. */
   .nav {
-    position: fixed; inset: 62px 0 0; background: var(--paper);
+    position: absolute; top: 100%; left: 0; right: 0;
+    height: calc(100vh - 100%); height: calc(100dvh - 100%);
+    background: var(--paper); border-top: 1px solid var(--line);
     flex-direction: column; align-items: flex-start; justify-content: flex-start;
-    gap: 0; padding: 2rem var(--gutter); transform: translateY(-12px);
-    opacity: 0; pointer-events: none; transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
-    overflow-y: auto;
+    gap: 0; padding: 1.5rem var(--gutter) 3rem; transform: translateY(-12px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0s linear 0.25s;
+    overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
   }
-  body.nav-open .nav { opacity: 1; transform: none; pointer-events: auto; }
+  body.nav-open .nav {
+    opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0s;
+  }
   .nav__links { flex-direction: column; align-items: flex-start; gap: 0; width: 100%; }
   .nav__link { font-size: 1.25rem; text-transform: none; letter-spacing: 0.01em; padding: 1rem 0; width: 100%; border-bottom: 1px solid var(--line); }
   .nav__link.is-active { border-bottom-color: var(--line); }
@@ -567,7 +578,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 
 /* =====================================================================
-   Shop, cart, partners, founder, welcome offer
+   Shop, cart, partners, founder
    ===================================================================== */
 
 /* ------------------------------------------------------- cart button */
@@ -679,20 +690,6 @@ img { max-width: 100%; height: auto; display: block; }
 .cart__row--total dt { color: var(--ink); font-weight: 600; }
 .cart__row--total dd { font-size: 1.2rem; }
 
-.cart__promo { margin-bottom: 1.5rem; }
-.cart__promo label {
-  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--steel); display: block; margin-bottom: 0.4rem;
-}
-.cart__promo-row { display: flex; gap: 0.5rem; }
-.cart__promo-row input {
-  flex: 1; min-width: 0; font-family: var(--font-mono); font-size: 0.9rem;
-  padding: 0.7rem 0.8rem; border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--paper); color: var(--ink); text-transform: uppercase;
-}
-.cart__promo-note { font-size: 0.85rem; margin: 0.6rem 0 0; }
-.cart__promo-note.is-ok { color: var(--mint-deep); }
-.cart__promo-note.is-bad { color: var(--brand-deep); }
 .btn--full { width: 100%; }
 .cart__note { font-size: 0.85rem; color: var(--muted); margin: 0.75rem 0 0; }
 .cart__note.is-bad { color: var(--brand-deep); }
@@ -709,49 +706,6 @@ img { max-width: 100%; height: auto; display: block; }
   font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--brand-deep); margin: 0;
 }
-
-/* ------------------------------------------------------ welcome offer */
-body.welcome-open { overflow: hidden; }
-.welcome { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.25rem; }
-.welcome__scrim { position: absolute; inset: 0; background: rgba(23, 24, 26, 0.55); }
-.welcome__panel {
-  position: relative; width: min(480px, 100%);
-  background: var(--paper-warm); border-radius: var(--radius);
-  padding: clamp(1.75rem, 5vw, 2.75rem);
-  box-shadow: 0 40px 80px -40px rgba(23, 24, 26, 0.6);
-  border-top: 4px solid var(--brand);
-  animation: welcome-in 0.35s var(--ease);
-  max-height: 92vh; overflow-y: auto;
-}
-@keyframes welcome-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .welcome__panel { animation: none; } }
-.welcome__close {
-  position: absolute; top: 0.6rem; right: 0.9rem;
-  background: none; border: 0; font-size: 1.6rem; line-height: 1;
-  color: var(--steel); cursor: pointer; padding: 0.25rem;
-}
-.welcome__close:hover { color: var(--ink); }
-.welcome__eyebrow {
-  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--brand-deep); margin: 0 0 0.75rem;
-}
-.welcome__title { font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2rem); margin-bottom: 0.6rem; }
-.welcome__text { color: var(--muted); font-size: 0.95rem; }
-.welcome__form { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.25rem 0 1rem; }
-.welcome__form input {
-  flex: 1 1 12rem; min-width: 0; font-size: 1rem; padding: 0.85rem 1rem;
-  border: 1px solid var(--line); border-radius: var(--radius);
-  background: var(--paper); color: var(--ink);
-}
-.welcome__done { margin: 1.25rem 0 1rem; display: grid; gap: 0.75rem; justify-items: start; }
-.welcome__code {
-  font-family: var(--font-mono); font-size: 1.4rem; letter-spacing: 0.2em;
-  background: var(--brand-wash); border: 1px dashed var(--brand);
-  color: var(--brand-deep); padding: 0.75rem 1.25rem; border-radius: var(--radius);
-  margin: 0; width: 100%; text-align: center;
-}
-.welcome__small { font-size: 0.9rem; color: var(--muted); margin: 0; }
-.welcome__terms { font-size: 0.76rem; color: var(--steel); margin: 0; }
 
 @media (max-width: 1080px) {
   .shop__grid, .cart, .founder__inner { grid-template-columns: 1fr; }
@@ -889,7 +843,7 @@ body.welcome-open { overflow: hidden; }
 
 /* -------------------------------------------------------------- print */
 @media print {
-  .site-header, .nav, .signup, .site-footer, .welcome { display: none; }
+  .site-header, .nav, .signup, .site-footer { display: none; }
   body { background: #fff; }
 }
 
