@@ -688,7 +688,7 @@ ${newsletter()}`;
 
 export function howToUse() {
   // Set VIDEO_ID to the YouTube id once the video is ready; empty shows the placeholder.
-  const VIDEO_ID = '';
+  const VIDEO_ID = 's3gSpjQfCus';
 
   const routines = [
     {
@@ -782,9 +782,15 @@ ${sectionHead({
   heading: { en: 'See it in two minutes', zh: '兩分鐘看懂用法' },
 })}
         ${
-          /* Paste the YouTube video id below (the part after v=) to replace the placeholder. */
+          /* The YouTube id is set by VIDEO_ID above (the part after v=). Empty shows the placeholder. */
           VIDEO_ID
-            ? `<div class="video__frame"><iframe src="https://www.youtube-nocookie.com/embed/${VIDEO_ID}" title="VITAS" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`
+            ? `<div class="video__frame"><iframe src="https://www.youtube-nocookie.com/embed/${VIDEO_ID}" title="${attr(
+                t({ en: 'VITAS — how to use', zh: 'VITAS — 使用方法' })
+              )}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+        <p class="video__link"><a class="link-arrow" href="https://www.youtube.com/watch?v=${VIDEO_ID}" target="_blank" rel="noopener">${t({
+                en: 'Watch on YouTube',
+                zh: '前往 YouTube 觀看',
+              })}</a></p>`
             : `<div class="video__placeholder">[YOUTUBE VIDEO LINK]</div>`
         }
       </div>
