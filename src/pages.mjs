@@ -1036,14 +1036,6 @@ export function capsule() {
           <div class="buy__actions">
             ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
           </div>
-          ${blk(
-            'p',
-            {
-              en: 'Order here with free Hong Kong delivery from HK$250, or pick it up at Watsons and Mannings.',
-              zh: '可於本網站訂購，滿 HK$250 免香港運費；亦可於屈臣氏及萬寧門市選購。',
-            },
-            'product-main__note'
-          )}
         </div>
       </div>
     </section>
@@ -1226,14 +1218,6 @@ export function rollOn() {
           <div class="buy__actions">
             ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
           </div>
-          ${blk(
-            'p',
-            {
-              en: 'Order here with free Hong Kong delivery from HK$250, or pick it up at Watsons and Mannings.',
-              zh: '可於本網站訂購，滿 HK$250 免香港運費；亦可於屈臣氏及萬寧門市選購。',
-            },
-            'product-main__note'
-          )}
         </div>
       </div>
     </section>
