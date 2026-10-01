@@ -171,7 +171,7 @@ function freeFromBand() {
 }
 
 /** Buy strip: price, size and the two retail chains. */
-function buyStrip() {
+function buyStrip({ whereToBuy = true } = {}) {
   return `    <section class="buy reveal" id="buy">
       <div class="wrap buy__inner">
         <div class="buy__art">
@@ -200,7 +200,7 @@ function buyStrip() {
           )}
           <div class="buy__actions">
             ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
-            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
+            ${whereToBuy ? cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost') : ''}
           </div>
         </div>
       </div>
@@ -1035,7 +1035,6 @@ export function capsule() {
           </dl>
           <div class="buy__actions">
             ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
-            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
           </div>
           ${blk(
             'p',
@@ -1128,7 +1127,7 @@ ${sectionHead({
       </div>
     </section>
 
-${buyStrip()}
+${buyStrip({ whereToBuy: false })}
 
 ${newsletter()}`;
 
@@ -1226,7 +1225,6 @@ export function rollOn() {
           </dl>
           <div class="buy__actions">
             ${cta('/shop/', { en: 'Shop now', zh: '立即選購' })}
-            ${cta('/stockists/', { en: 'Where to buy', zh: '購買地點' }, 'btn--ghost')}
           </div>
           ${blk(
             'p',
@@ -1301,7 +1299,7 @@ ${sectionHead({
       </div>
     </section>
 
-${buyStrip()}
+${buyStrip({ whereToBuy: false })}
 
 ${newsletter()}`;
 
