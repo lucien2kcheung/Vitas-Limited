@@ -189,6 +189,15 @@ in devtools cannot change what is charged. Keep it that way.
 Until the key is set, the Checkout button shows "Checkout is not connected yet"
 rather than failing silently. Nothing else on the site depends on it.
 
+### Automatic invoices
+
+`api/checkout.js` sets `invoice_creation.enabled`, so Stripe issues a paid
+invoice (PDF and hosted page) for every completed checkout; find them under
+Stripe → Invoices. Set the business name, address and logo that appear on it in
+Stripe → Settings → Business → Invoice template. Turn on *Email customers about
+successful payments* in Stripe → Settings → Customer emails so the customer
+receives it. Test with a test-mode order first.
+
 ### Discount codes (Stripe only)
 
 The website has **no discount-code feature of its own** — no pop-up offer and no

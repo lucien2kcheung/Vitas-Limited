@@ -76,6 +76,21 @@ export default async function handler(req, res) {
          code box on the Stripe payment page. The website never applies or
          validates a code itself. Manage them in Stripe → Products → Coupons. */
       allow_promotion_codes: true,
+      /* Automatic invoice: Stripe creates a paid invoice (PDF + hosted page)
+         for every completed checkout. It works with these per-order sessions;
+         no fixed Payment Link or pre-made Price is needed. Customer-facing
+         invoice details (business name, address, logo) come from Stripe →
+         Settings → Business → Invoice template / Public details. */
+      customer_creation: 'always',
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: 'VITAS 紓適寧 online order · 網上訂單',
+          footer:
+            'VITAS 紓適寧 · Unit 411, Lippo Sun Plaza, 28 Canton Road, Tsimshatsui, Kowloon, Hong Kong · info@vitas.com.hk',
+          metadata: { source: 'vitas.com.hk', lang },
+        },
+      },
       locale: lang === 'zh' ? 'zh-HK' : 'en',
       billing_address_collection: 'auto',
       shipping_address_collection: { allowed_countries: ['HK'] },
