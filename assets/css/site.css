@@ -634,6 +634,17 @@ img { max-width: 100%; height: auto; display: block; }
   transform: rotate(-45deg);
 }
 .shop-card__price { font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; margin: 0.6rem 0 0; }
+.shop-card__options { border: 0; margin: 0.4rem 0 0; padding: 0; display: grid; gap: 0.5rem; }
+.shop-card__option {
+  display: flex; align-items: center; gap: 0.7rem; padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--line, #d9d9d9); border-radius: 10px; cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.shop-card__option:hover { border-color: var(--brand); }
+.shop-card__option:has(input:checked) { border-color: var(--brand-deep); background: var(--paper-deep); }
+.shop-card__option input { accent-color: var(--brand-deep); margin: 0; flex: none; }
+.shop-card__option-name { flex: 1; font-size: 0.92rem; }
+.shop-card__option-price { font-family: var(--font-display); font-weight: 600; }
 .shop-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: auto; padding-top: 0.75rem; }
 .btn.is-added { background: var(--mint-deep); border-color: var(--mint-deep); }
 
@@ -977,7 +988,6 @@ img { max-width: 100%; height: auto; display: block; }
 .gallery__thumb img { display: block; width: 100%; height: auto; }
 .gallery__thumb:hover { border-color: var(--brand); }
 .gallery__thumb[aria-current='true'] { border-color: var(--brand-deep); box-shadow: 0 0 0 1px var(--brand-deep) inset; }
-.shop-card__was, .spec__was { color: var(--steel); font-weight: 400; margin-right: 0.35rem; }
 .inci { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
 
 /* --------------------------------------------- alternative payment note */

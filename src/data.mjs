@@ -186,9 +186,9 @@ export const PRODUCT = {
  * The shop catalogue. Prices are in cents (HKD) because that is what Stripe
  * expects; `priceLabel` is what the site shows.
  *
- * PLACEHOLDER: `duo` is a bundle of the same SKU, not a second product. When a
- * genuine second SKU exists (a travel size, a larger tube), replace it here and
- * the shop page picks it up with no other change.
+ * `capsule-180` is the Monthly package of the capsule: it is a separate entry so
+ * /api/checkout can price it, but the shop page shows it as an option on the
+ * capsule card (see `shopCard` / `OPTION_OF`) rather than as its own card.
  */
 export const PRODUCTS = [
   {
@@ -222,8 +222,7 @@ export const PRODUCTS = [
     variant: { en: '60 capsules', zh: '60 粒' },
     price: 29800,
     priceLabel: 'HK$298',
-    wasLabel: 'HK$538',
-    badge: { en: 'Save HK$240', zh: '慳 HK$240' },
+    badge: null,
     blurb: {
       en: 'Red grape leaf, bilberry, soy lecithin and garlic in a capsule. A plant-based food supplement, made in France to the same standard as the cream gel.',
       zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與舒緩啫喱膏同樣在法國按相同標準生產。',
@@ -233,6 +232,23 @@ export const PRODUCTS = [
       { en: 'Four plant ingredients, nothing added for effect', zh: '四種植物成分，不額外添加' },
       { en: 'Made in France — produced with EEC GMP standard', zh: '法國製造 — 按 EEC GMP 標準生產' },
     ],
+  },
+  {
+    id: 'capsule-180',
+    slug: '/capsule/',
+    art: '/assets/img/product/capsule-set-620.webp',
+    artW: 620,
+    artH: 620,
+    name: { en: 'VITAS Capsule', zh: '淋巴管理膠囊' },
+    variant: { en: 'Monthly package · 3 boxes (180 capsules)', zh: '月度套裝 · 3 盒（共 180 粒）' },
+    price: 80000,
+    priceLabel: 'HK$800',
+    badge: null,
+    blurb: {
+      en: 'Red grape leaf, bilberry, soy lecithin and garlic in a capsule. A plant-based food supplement, made in France to the same standard as the cream gel.',
+      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與舒緩啫喱膏同樣在法國按相同標準生產。',
+    },
+    points: [],
   },
   {
     id: 'rollon-50-duo',
@@ -258,21 +274,21 @@ export const PRODUCTS = [
   {
     id: 'cream-duo',
     slug: '/product/',
-    art: '/assets/img/product/tube-duo-700.webp',
+    art: '/assets/img/product/duo-gel-rollon-700.webp',
     artW: 700,
-    artH: 1104,
-    name: { en: 'Recovery Duo', zh: '雙支裝' },
-    variant: { en: '2 × 100ml tubes', zh: '2 × 100毫升' },
-    price: 45000,
-    priceLabel: 'HK$450',
-    badge: { en: 'Save HK$50', zh: '慳 HK$50' },
+    artH: 700,
+    name: { en: 'Recovery Duo', zh: '雙效組合' },
+    variant: { en: '1 × 100ml gel + 1 × 50ml roll-on', zh: '1 × 100毫升啫喱膏 + 1 × 50毫升走珠裝' },
+    price: 38800,
+    priceLabel: 'HK$388',
+    badge: { en: 'Bundle', zh: '組合裝' },
     blurb: {
-      en: 'Two tubes: one for the gym bag, one for the desk drawer. The routine you can see is the one you keep — and this is how most people get past week three.',
-      zh: '兩支裝：一支放運動袋，一支放辦公桌抽屜。看得見的習慣才會持續——大部分人能撐過第三週，靠的就是這個。',
+      en: 'One 100ml tube for the bathroom shelf, one 50ml roll-on for the gym bag. The routine you can see is the one you keep.',
+      zh: '一支 100 毫升啫喱膏放家中，一支 50 毫升走珠裝放運動袋。看得見的習慣才會持續。',
     },
     points: [
-      { en: 'Two 100ml tubes', zh: '兩支 100毫升' },
-      { en: 'HK$225 each — HK$50 off', zh: '每支 HK$225——減 HK$50' },
+      { en: 'One 100ml Soothing Cream Gel tube', zh: '一支 100 毫升舒緩啫喱膏' },
+      { en: 'One 50ml Soothing Cream Gel Roll-On', zh: '一支 50 毫升舒緩啫喱膏走珠裝' },
       { en: 'Free local delivery', zh: '免費本地送遞' },
     ],
   },
@@ -641,7 +657,8 @@ export const CAPSULE = {
   size: { en: '60 capsules', zh: '60 粒' },
   price: 298,
   priceLabel: 'HK$298',
-  wasLabel: 'HK$538',
+  monthlyPrice: 800, // 3 boxes · 180 capsules (PRODUCTS id 'capsule-180')
+  monthlyPriceLabel: 'HK$800',
   photos: [
     {
       id: 'set',

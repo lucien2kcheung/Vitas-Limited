@@ -316,8 +316,35 @@ function sensoryNote(className = 'sensory-note') {
   return blk('p', BRAND.sensory, className);
 }
 
+/** Products sold as an option on another product's card, not as their own card. */
+const OPTION_OF = { 'capsule-60': 'capsule-180' };
+const OPTION_IDS = new Set(Object.values(OPTION_OF));
+
+/** Short option labels for the selector on a shop card. */
+const OPTION_LABEL = {
+  'capsule-60': { en: '1 box · 60 capsules', zh: '1 盒 · 60 粒' },
+  'capsule-180': { en: 'Monthly package · 3 boxes (180 capsules)', zh: '月度套裝 · 3 盒（共 180 粒）' },
+};
+
 /** Product card used on the shop page and the homepage shop strip. */
 function shopCard(p) {
+  const extra = PRODUCTS.find((o) => o.id === OPTION_OF[p.id]);
+  const choices = extra ? [p, extra] : [];
+  const selector = extra
+    ? `<fieldset class="shop-card__options" data-options>
+              <legend class="sr-only">${t({ en: 'Choose a package', zh: '選擇套裝' })}</legend>
+              ${choices
+                .map(
+                  (o, i) => `<label class="shop-card__option">
+                <input type="radio" name="opt-${p.id}" value="${o.id}"${i === 0 ? ' checked' : ''}
+                       data-variant="${attr(t(o.variant))}" data-price="${o.price}" data-price-label="${o.priceLabel}">
+                <span class="shop-card__option-name">${t(OPTION_LABEL[o.id])}</span>
+                <span class="shop-card__option-price">${o.priceLabel}</span>
+              </label>`
+                )
+                .join('\n              ')}
+            </fieldset>`
+    : '';
   return `<article class="shop-card reveal" data-product="${p.id}">
           <div class="shop-card__art">
             <img src="${p.art}" alt="${attr(t(p.name))}" width="${p.artW || 620}" height="${p.artH || 1500}" loading="lazy" decoding="async">
@@ -325,14 +352,13 @@ function shopCard(p) {
           </div>
           <div class="shop-card__body">
             ${blk('h2', p.name, 'shop-card__title')}
-            <p class="shop-card__variant">${t(p.variant)}</p>
+            <p class="shop-card__variant">${t(extra ? OPTION_LABEL[p.id] : p.variant)}</p>
             ${blk('p', p.blurb, 'shop-card__blurb')}
             <ul class="shop-card__points">
               ${p.points.map((pt) => `<li>${t(pt)}</li>`).join('\n              ')}
             </ul>
-            <p class="shop-card__price">${
-              p.wasLabel ? `<s class="shop-card__was">${p.wasLabel}</s> ` : ''
-            }${p.priceLabel}</p>
+            ${selector}
+            <p class="shop-card__price" data-price-out>${p.priceLabel}</p>
             <div class="shop-card__actions">
               <button class="btn" type="button" data-add-to-cart="${p.id}"
                       data-name="${attr(t(p.name))}" data-variant="${attr(t(p.variant))}"
@@ -966,13 +992,17 @@ const capsuleJsonLd = () => ({
     zh: '植物配方食品補充品：紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜。60 粒，法國製造，按 EEC GMP 標準生產。',
   }),
   image: SITE.url + '/assets/img/product/capsule-set-1240.webp',
-  offers: {
+  offers: [
+    { price: CAPSULE.price, name: '1 box · 60 capsules' },
+    { price: CAPSULE.monthlyPrice, name: 'Monthly package · 3 boxes (180 capsules)' },
+  ].map((o) => ({
     '@type': 'Offer',
-    price: String(CAPSULE.price),
+    name: o.name,
+    price: String(o.price),
     priceCurrency: 'HKD',
     availability: 'https://schema.org/InStock',
     url: SITE.url + url('/capsule/'),
-  },
+  })),
 });
 
 
@@ -1016,9 +1046,10 @@ export function capsule() {
             <div class="spec__row"><dt>${t({ en: 'Size', zh: '容量' })}</dt><dd>${t(
               CAPSULE.size
             )}</dd></div>
-            <div class="spec__row"><dt>${t({ en: 'Price', zh: '售價' })}</dt><dd><s class="spec__was">${
-              CAPSULE.wasLabel
-            }</s> ${CAPSULE.priceLabel}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Price', zh: '售價' })}</dt><dd>${t({ en: '1 box (60 capsules)', zh: '1 盒（60 粒）' })} — ${CAPSULE.priceLabel}<br>${t({
+              en: 'Monthly package, 3 boxes (180 capsules)',
+              zh: '月度套裝，3 盒（共 180 粒）',
+            })} — ${CAPSULE.monthlyPriceLabel}</dd></div>
             <div class="spec__row"><dt>${t({ en: 'Ingredients', zh: '主要成份' })}</dt><dd>${t({
               en: 'Red grape leaf, bilberry, soy lecithin, garlic.',
               zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂、大蒜。',
@@ -1126,8 +1157,8 @@ ${newsletter()}`;
   return {
     title: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' },
     description: {
-      en: 'VITAS Capsule: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules, HK$298, made in France to EEC GMP standard. A plant-based food supplement.',
-      zh: 'VITAS 淋巴管理膠囊：紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜。60 粒，HK$298，法國製造，按 EEC GMP 標準生產。植物配方食品補充品。',
+      en: 'VITAS Capsule: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules HK$298, or the Monthly package of 3 boxes (180 capsules) HK$800. Made in France to EEC GMP standard. A plant-based food supplement.',
+      zh: 'VITAS 淋巴管理膠囊：紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜。60 粒 HK$298，或月度套裝 3 盒（共 180 粒）HK$800。法國製造，按 EEC GMP 標準生產。植物配方食品補充品。',
     },
     path: '/capsule/',
     active: '/capsule/',
@@ -1617,10 +1648,10 @@ ${buyStrip()}`;
 export function shop() {
   const body = `${pageHero({
     eyebrow: { en: 'Shop', zh: '網上商店' },
-    title: { en: 'Two ways to buy it', zh: '兩種購買方式' },
+    title: { en: 'Choose your VITAS', zh: '選購 VITAS' },
     lede: {
-      en: 'One tube, or two at a better price. Delivered anywhere in Hong Kong, free from HK$250. Card, Apple Pay and Google Pay, handled by Stripe.',
-      zh: '自選一支入手，或以優惠組合帶走兩支。全港滿額 HK$250 即享免運配送。我們支援信用卡、Apple Pay 與 Google Pay，並由 Stripe 提供安全可靠的付款保障。',
+      en: 'Gel, capsules, roll-on, or the gel and roll-on together. Delivered anywhere in Hong Kong, free from HK$250. Card, Apple Pay and Google Pay, handled by Stripe.',
+      zh: '啫喱膏、膠囊、走珠裝，或啫喱膏加走珠裝組合，任君選擇。全港滿額 HK$250 即享免運配送。我們支援信用卡、Apple Pay 與 Google Pay，並由 Stripe 提供安全可靠的付款保障。',
     },
     trail: [HOME_CRUMB, { name: { en: 'Shop', zh: '網上商店' }, path: '/shop/' }],
   })}
@@ -1628,7 +1659,7 @@ export function shop() {
     <section class="section shop">
       <div class="wrap">
         <div class="shop__grid">
-          ${PRODUCTS.map(shopCard).join('\n          ')}
+          ${PRODUCTS.filter((p) => !OPTION_IDS.has(p.id)).map(shopCard).join('\n          ')}
         </div>
         <div class="shop__assurances">
           ${[
@@ -1678,8 +1709,8 @@ ${freeFromBand()}
   return {
     title: { en: 'Shop', zh: '網上商店' },
     description: {
-      en: 'Buy VITAS Soothing Cream Gel online — one 100ml tube at HK$250 or the Recovery Duo at HK$450. Free Hong Kong delivery from HK$250, secure Stripe checkout.',
-      zh: '網上選購 VITAS 舒緩啫喱膏——100毫升 HK$250，雙支裝 HK$450。滿 HK$250 免香港運費，Stripe 安全結帳。',
+      en: 'Buy VITAS Soothing Cream Gel online — one 100ml tube at HK$250, the Recovery Duo (gel + roll-on) at HK$388, or the capsule Monthly package at HK$800. Free Hong Kong delivery from HK$250, secure Stripe checkout.',
+      zh: '網上選購 VITAS 舒緩啫喱膏——100毫升 HK$250，雙效組合（啫喱膏＋走珠裝）HK$388，淋巴管理膠囊月度套裝 HK$800。滿 HK$250 免香港運費，Stripe 安全結帳。',
     },
     path: '/shop/',
     active: '/shop/',

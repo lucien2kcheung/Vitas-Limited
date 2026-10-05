@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  var CART_KEY = 'vitas-cart';
+  var CART_KEY = 'vitas-cart-v2'; // v2: products and prices changed; old carts are discarded
   var SHIPPING = 3000;
   var FREE_OVER = 25000; // keep in sync with SHOP.freeShippingOver in src/data.mjs
 
@@ -59,6 +59,7 @@
      visitors' browsers. */
   try {
     localStorage.removeItem('vitas-promo');
+    localStorage.removeItem('vitas-cart');
     localStorage.removeItem('vitas-welcome-seen');
   } catch (e) {}
 
@@ -89,6 +90,24 @@
       el.hidden = n === 0;
     });
   }
+
+  /* ------------------------------------------------------ package options */
+
+  /* A card with a package selector (e.g. the capsule: 1 box / Monthly package)
+     re-points its Add to cart button at the chosen product id and price. */
+  document.querySelectorAll('[data-options]').forEach(function (group) {
+    var card = group.closest('[data-product]');
+    var btn = card.querySelector('[data-add-to-cart]');
+    var out = card.querySelector('[data-price-out]');
+    group.addEventListener('change', function (e) {
+      var input = e.target.closest('input[type="radio"]');
+      if (!input) return;
+      btn.setAttribute('data-add-to-cart', input.value);
+      btn.setAttribute('data-variant', input.getAttribute('data-variant'));
+      btn.setAttribute('data-price', input.getAttribute('data-price'));
+      if (out) out.textContent = input.getAttribute('data-price-label');
+    });
+  });
 
   /* ----------------------------------------------------------- add to cart */
 
