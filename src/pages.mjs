@@ -339,6 +339,7 @@ function shopCard(p) {
                 <input type="radio" name="opt-${p.id}" value="${o.id}"${i === 0 ? ' checked' : ''}
                        data-variant="${attr(t(o.variant))}" data-price="${o.price}" data-price-label="${o.priceLabel}">
                 <span class="shop-card__option-name">${t(OPTION_LABEL[o.id])}</span>
+                ${o.badge ? `<span class="shop-card__option-tag">${t(o.badge)}</span>` : ''}
                 <span class="shop-card__option-price">${o.priceLabel}</span>
               </label>`
                 )
@@ -1049,7 +1050,9 @@ export function capsule() {
             <div class="spec__row"><dt>${t({ en: 'Price', zh: '售價' })}</dt><dd>${t({ en: '1 box (60 capsules)', zh: '1 盒（60 粒）' })} — ${CAPSULE.priceLabel}<br>${t({
               en: 'Monthly package, 3 boxes (180 capsules)',
               zh: '月度套裝，3 盒（共 180 粒）',
-            })} — ${CAPSULE.monthlyPriceLabel}</dd></div>
+            })} — ${CAPSULE.monthlyPriceLabel} <span class="shop-card__option-tag">${t(
+              PRODUCTS.find((o) => o.id === 'capsule-180').badge
+            )}</span></dd></div>
             <div class="spec__row"><dt>${t({ en: 'Ingredients', zh: '主要成份' })}</dt><dd>${t({
               en: 'Red grape leaf, bilberry, soy lecithin, garlic.',
               zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂、大蒜。',

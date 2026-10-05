@@ -243,7 +243,8 @@ export const PRODUCTS = [
     variant: { en: 'Monthly package · 3 boxes (180 capsules)', zh: '月度套裝 · 3 盒（共 180 粒）' },
     price: 80000,
     priceLabel: 'HK$800',
-    badge: null,
+    /* 3 × HK$298 = HK$894 vs HK$800 → HK$94 off = 10.5%; shown rounded down. */
+    badge: { en: 'Save 10%', zh: '慳 10%' },
     blurb: {
       en: 'Red grape leaf, bilberry, soy lecithin and garlic in a capsule. A plant-based food supplement, made in France to the same standard as the cream gel.',
       zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與舒緩啫喱膏同樣在法國按相同標準生產。',

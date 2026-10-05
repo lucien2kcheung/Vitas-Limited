@@ -644,6 +644,11 @@ img { max-width: 100%; height: auto; display: block; }
 .shop-card__option:has(input:checked) { border-color: var(--brand-deep); background: var(--paper-deep); }
 .shop-card__option input { accent-color: var(--brand-deep); margin: 0; flex: none; }
 .shop-card__option-name { flex: 1; font-size: 0.92rem; }
+.shop-card__option-tag {
+  background: var(--mint); color: #fff; border-radius: 999px; white-space: nowrap;
+  font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.2rem 0.6rem;
+}
 .shop-card__option-price { font-family: var(--font-display); font-weight: 600; }
 .shop-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: auto; padding-top: 0.75rem; }
 .btn.is-added { background: var(--mint-deep); border-color: var(--mint-deep); }
