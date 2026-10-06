@@ -70,6 +70,7 @@ body {
 body.lang-zh { font-family: var(--font-zh); font-weight: 400; }
 .lang-zh h1, .lang-zh h2, .lang-zh h3 { font-family: var(--font-zh); font-weight: 700; }
 body.nav-open { overflow: hidden; }
+html:has(body.nav-open) { overflow: hidden; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -540,6 +541,9 @@ img { max-width: 100%; height: auto; display: block; }
   .nav {
     position: absolute; top: 100%; left: 0; right: 0;
     height: calc(100vh - 100%); height: calc(100dvh - 100%);
+    /* site.js sets --nav-h to the exact visible height under the header, which
+       phone browsers with a collapsing address bar get wrong for vh/dvh. */
+    height: var(--nav-h, calc(100dvh - 100%));
     background: var(--paper); border-top: 1px solid var(--line);
     flex-direction: column; align-items: flex-start; justify-content: flex-start;
     gap: 0; padding: 1.5rem var(--gutter) 3rem; transform: translateY(-12px);

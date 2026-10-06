@@ -10,24 +10,41 @@
   var nav = document.getElementById('primary-nav');
 
   if (navToggle && nav) {
+    var navHeader = document.getElementById('site-header');
+
+    /* Size the open menu to what is actually visible under the header, so its
+       last links are never pushed below the phone's address/navigation bar and
+       the list can scroll inside itself. */
+    var sizeNav = function () {
+      if (!document.body.classList.contains('nav-open')) return;
+      var vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+      var top = navHeader ? navHeader.getBoundingClientRect().bottom : 0;
+      nav.style.setProperty('--nav-h', Math.max(160, Math.floor(vh - top)) + 'px');
+    };
+    var setNav = function (open) {
+      navToggle.setAttribute('aria-expanded', String(open));
+      document.body.classList.toggle('nav-open', open);
+      if (open) {
+        window.scrollTo(0, window.pageYOffset); // keep the header in view
+        sizeNav();
+      }
+    };
+
     navToggle.addEventListener('click', function () {
-      var open = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!open));
-      document.body.classList.toggle('nav-open', !open);
+      setNav(navToggle.getAttribute('aria-expanded') !== 'true');
     });
     nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('nav-open');
-      }
+      if (e.target.closest('a')) setNav(false);
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && document.body.classList.contains('nav-open')) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('nav-open');
+        setNav(false);
         navToggle.focus();
       }
     });
+    window.addEventListener('resize', sizeNav);
+    window.addEventListener('orientationchange', sizeNav);
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', sizeNav);
   }
 
   /* ----------------------------------------------------- header on scroll */
