@@ -83,7 +83,7 @@ export const urlIn = (path, lang) => (lang === 'zh' ? '/zh' + path : path);
 /* --------------------------------------------------------------- chrome */
 
 const navItems = [
-  { href: '/product/', label: { en: 'Soothing Cream', zh: '舒緩啫喱膏' } },
+  { href: '/product/', label: { en: 'Soothing Cream', zh: '淋巴管理啫喱膏' } },
           { href: '/capsule/', label: { en: 'Capsule', zh: '膠囊' } },
           { href: '/roll-on/', label: { en: 'Roll-On', zh: '走珠裝' } },
   { href: '/ingredients/', label: { en: 'Ingredients', zh: '成分' } },
@@ -169,7 +169,7 @@ function footer() {
         <p class="footer__slogan">${t(BRAND.slogan)[0]}<br>${t(BRAND.slogan)[1]}</p>
         ${blk('p', {
           en: 'The clean performance cream gel — grape seed, niaouli and eucalyptus, made in France for your pre- and post-training ritual. Trusted in Hong Kong for over 20 years.',
-          zh: '源自法國的乾淨表現霜凝膠，結合葡萄籽、綠花白千層與尤加利精華，完美融入你的運動前後保養流程。20 年來深得香港信賴。',
+          zh: '源自法國的乾淨表現啫喱膏，結合葡萄籽、綠花白千層與尤加利精華，完美融入你的運動前後保養流程。20 年來深得香港信賴。',
         })}
         <div class="footer__social">
           <a class="social-icon" href="${SITE.facebook}" target="_blank" rel="noopener" aria-label="Facebook">
@@ -189,9 +189,9 @@ function footer() {
       <div class="footer__cols">
         ${col({ en: 'Shop', zh: '購買' }, [
           { href: '/shop/', label: { en: 'Shop now', zh: '網上商店' } },
-          { href: '/product/', label: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' } },
+          { href: '/product/', label: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' } },
           { href: '/capsule/', label: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' } },
-          { href: '/roll-on/', label: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' } },
+          { href: '/roll-on/', label: { en: 'Soothing Cream Gel Roll-On', zh: '淋巴管理啫喱膏走珠裝' } },
           { href: '/cart/', label: { en: 'Cart', zh: '購物車' } },
           { href: '/stockists/', label: { en: 'Where to buy', zh: '購買地點' } },
         ])}

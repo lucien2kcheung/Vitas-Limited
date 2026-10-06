@@ -23,16 +23,16 @@
 export const BRAND = {
   slogan: {
     en: ['Warm up.', 'Wind down.'],
-    zh: ['熱身備戰．', '放鬆恢復。'],
+    zh: ['熱身備戰．', '放鬆修復。'],
   },
   triptych: [
     { en: 'Prime', zh: '喚醒' },
     { en: 'Perform', zh: '投入' },
-    { en: 'Recover', zh: '收操' },
+    { en: 'Recover', zh: '修復' },
   ],
   heroLede: {
     en: 'A fast-absorbing, non-greasy cream gel with three plant-based actives, made in France for your pre- and post-training ritual.',
-    zh: '蘊含三大植物活性成分的快速吸收凝膠，質地清爽不黏膩。法國製造，完美融入你每一次運動前後的按摩流程。',
+    zh: '蘊含三大植物活性成分的快速吸收啫喱膏，質地清爽不黏膩。法國製造，完美融入你每一次運動前後的按摩流程。',
   },
   proof: {
     en: 'Grape seed · Niaouli · Eucalyptus · Made in France — produced with EEC GMP standard',
@@ -57,7 +57,7 @@ export const BRAND = {
   },
   disclaimer: {
     en: 'Disclaimer: VITAS is a cosmetic product for massage and external use. References to "warm-up", "wind-down", "prime", "perform", "recover", and warming/cooling describe the intended training ritual and sensory experience during massage. They do not represent medical, therapeutic or performance-enhancement claims. This product is not intended to diagnose, treat, cure or prevent any disease.',
-    zh: '免責聲明：本產品為供按摩及外用的化妝品。「熱身」、「恢復」、「Prime」、「Perform」、「Recover」以及溫熱／清涼等字眼，只用作描述運動流程及按摩時的感官體驗，並不代表任何醫療、治療或提升運動表現的聲稱。本產品並非用作診斷、治療、治癒或預防任何疾病。',
+    zh: '免責聲明：本產品為供按摩及外用的化妝品。「熱身」、「修復」、「Prime」、「Perform」、「Recover」以及溫熱／清涼等字眼，只用作描述運動流程及按摩時的感官體驗，並不代表任何醫療、治療或提升運動表現的聲稱。本產品並非用作診斷、治療、治癒或預防任何疾病。',
   },
 };
 
@@ -157,7 +157,7 @@ export const SPORTS = [
 export const PRODUCT = {
   slug: '/product/',
   nameEn: 'Soothing Cream Gel',
-  nameZh: '舒緩啫喱膏',
+  nameZh: '淋巴管理啫喱膏',
   size: '100ml',
   price: 250,
   currency: 'HKD',
@@ -197,7 +197,7 @@ export const PRODUCTS = [
     art: '/assets/img/product/tube-front-620.webp',
     artW: 620,
     artH: 1500,
-    name: { en: 'Soothing Cream Gel', zh: '舒緩啫喱膏' },
+    name: { en: 'Soothing Cream Gel', zh: '淋巴管理啫喱膏' },
     variant: { en: '100ml tube', zh: '100毫升 軟管' },
     price: 25000,
     priceLabel: 'HK$250',
@@ -225,7 +225,7 @@ export const PRODUCTS = [
     badge: null,
     blurb: {
       en: 'Red grape leaf, bilberry, soy lecithin and garlic in a capsule. A plant-based food supplement, made in France to the same standard as the cream gel.',
-      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與舒緩啫喱膏同樣在法國按相同標準生產。',
+      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與淋巴管理啫喱膏同樣在法國按相同標準生產。',
     },
     points: [
       { en: '1 to 3 capsules, twice a day', zh: '每天 2 次，每次 1-3 粒' },
@@ -247,7 +247,7 @@ export const PRODUCTS = [
     badge: { en: 'Save 10%', zh: '慳 10%' },
     blurb: {
       en: 'Red grape leaf, bilberry, soy lecithin and garlic in a capsule. A plant-based food supplement, made in France to the same standard as the cream gel.',
-      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與舒緩啫喱膏同樣在法國按相同標準生產。',
+      zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜，裝入膠囊。植物配方食品補充品，與淋巴管理啫喱膏同樣在法國按相同標準生產。',
     },
     points: [],
   },
@@ -257,7 +257,7 @@ export const PRODUCTS = [
     art: '/assets/img/product/rollon-set-620.webp',
     artW: 620,
     artH: 620,
-    name: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' },
+    name: { en: 'Soothing Cream Gel Roll-On', zh: '淋巴管理啫喱膏走珠裝' },
     variant: { en: '2 × 50ml', zh: '2 × 50 毫升' },
     price: 32000,
     priceLabel: 'HK$320',
@@ -288,8 +288,8 @@ export const PRODUCTS = [
       zh: '一支 100 毫升啫喱膏放家中，一支 50 毫升走珠裝放運動袋。看得見的習慣才會持續。',
     },
     points: [
-      { en: 'One 100ml Soothing Cream Gel tube', zh: '一支 100 毫升舒緩啫喱膏' },
-      { en: 'One 50ml Soothing Cream Gel Roll-On', zh: '一支 50 毫升舒緩啫喱膏走珠裝' },
+      { en: 'One 100ml Soothing Cream Gel tube', zh: '一支 100 毫升淋巴管理啫喱膏' },
+      { en: 'One 50ml Soothing Cream Gel Roll-On', zh: '一支 50 毫升淋巴管理啫喱膏走珠裝' },
       { en: 'Free local delivery', zh: '免費本地送遞' },
     ],
   },
@@ -508,7 +508,7 @@ export const FAQS = [
     q: { en: 'What is the story behind VITAS?', zh: 'VITAS 紓適寧的歷史？' },
     a: {
       en: 'VITAS was created in Hong Kong to bring a French-made, plant-based recovery cream to a market dominated by strong medicated rubs. The formula — grape seed, niaouli and eucalyptus — comes out of two decades of formulation work in France, and the finished product has been on Hong Kong pharmacy shelves at Watsons and Mannings for over a decade. Today it is still a small, Hong Kong-run brand, and every formula is made in France to the same standard. Read the longer version on our About page.',
-      zh: 'VITAS 紓適寧於香港創立，目的是在以強效藥膏為主的市場中，帶來一支法國製造的植物配方恢復啫喱膏。配方以葡萄籽、綠花白千層與尤加利為核心，源自法國二十年的配方研發；成品在香港屈臣氏及萬寧的貨架上已超過十年。時至今日，它仍是一個由香港團隊經營的小品牌，每一款配方都在法國按同一標準生產。詳情請看「關於 VITAS」。',
+      zh: 'VITAS 紓適寧於香港創立，目的是在以強效藥膏為主的市場中，帶來一支法國製造的植物配方修復啫喱膏。配方以葡萄籽、綠花白千層與尤加利為核心，源自法國二十年的配方研發；成品在香港屈臣氏及萬寧的貨架上已超過十年。時至今日，它仍是一個由香港團隊經營的小品牌，每一款配方都在法國按同一標準生產。詳情請看「關於 VITAS」。',
     },
   },
   {
@@ -524,7 +524,7 @@ export const FAQS = [
   {
     q: {
       en: 'What is in the VITAS Soothing Cream Gel?',
-      zh: 'VITAS 紓適寧舒緩啫喱膏成分？',
+      zh: 'VITAS 紓適寧淋巴管理啫喱膏成分？',
     },
     a: {
       en: 'Three plant actives in a light water- and oil-based cream gel: grape seed (Vitis vinifera) as the carrier, eucalyptus (Eucalyptus globulus) for the cooling note, and niaouli (Melaleuca viridiflora) to round the scent. No hormones, no steroids, no methyl salicylate, no camphor. The full INCI list is printed on the carton — if you have a known essential-oil sensitivity, read it before you buy and patch test on the inner forearm.',
@@ -541,7 +541,7 @@ export const FAQS = [
   {
     q: {
       en: 'Who should not use VITAS?',
-      zh: '哪些人士不宜使用 VITAS 紓適寧舒緩啫喱膏？',
+      zh: '哪些人士不宜使用 VITAS 紓適寧淋巴管理啫喱膏？',
     },
     a: {
       en: 'Do not use it on broken skin, on the face or near the eyes. It is not recommended for children under 5. If you are pregnant or breastfeeding, check with your doctor or midwife first — the formula contains eucalyptus and niaouli essential oils. If you have sensitive skin or a known reaction to essential oils, patch test on the inner forearm and stop if the skin becomes red or irritated. Severe, sudden or post-injury pain needs a doctor or physiotherapist, not a cream.',
@@ -562,7 +562,7 @@ export const FAQS = [
     },
     a: {
       en: 'No. Lactate clears on its own within about an hour of stopping exercise, and no topical cream drains lymph. VITAS is a low-odour, non-greasy massage cream gel for your warm-up and wind-down — warming before training, cooling after.',
-      zh: '不能。運動停止後約一小時內乳酸會自行代謝；任何外用膏體都無法「排走淋巴」。VITAS 是低氣味、不油膩的按摩霜凝膠，融入你的熱身與放鬆流程——運動前溫熱，運動後清涼。',
+      zh: '不能。運動停止後約一小時內乳酸會自行代謝；任何外用膏體都無法「排走淋巴」。VITAS 是低氣味、不油膩的按摩啫喱膏，融入你的熱身與放鬆流程——運動前溫熱，運動後清涼。',
     },
   },
   {
@@ -720,7 +720,7 @@ export const CAPSULE_PLANTS = [
     latin: 'Vitis vinifera',
     text: {
       en: 'The leaf of the wine grape, red in autumn and long used in European herbal traditions. It is the plant the formula is built around, and the same species as the grape seed in the cream gel.',
-      zh: '釀酒葡萄的葉片，入秋轉紅，在歐洲草本傳統中沿用已久。它是這個配方的核心，與舒緩啫喱膏中的葡萄籽同屬一種植物。',
+      zh: '釀酒葡萄的葉片，入秋轉紅，在歐洲草本傳統中沿用已久。它是這個配方的核心，與淋巴管理啫喱膏中的葡萄籽同屬一種植物。',
     },
   },
   {
@@ -768,7 +768,7 @@ export const CAPSULE_PLANTS = [
 export const ROLLON = {
   slug: '/roll-on/',
   nameEn: 'Soothing Cream Gel Roll-On',
-  nameZh: '舒緩啫喱膏走珠裝',
+  nameZh: '淋巴管理啫喱膏走珠裝',
   size: { en: '2 × 50ml roll-on', zh: '2 × 50 毫升走珠裝' },
   price: 320,
   priceLabel: 'HK$320',
@@ -777,7 +777,7 @@ export const ROLLON = {
     {
       id: 'set',
       base: '/assets/img/product/rollon-set',
-      alt: { en: 'VITAS Soothing Cream Gel Roll-On with its box', zh: 'VITAS 舒緩啫喱膏走珠裝 連外盒' },
+      alt: { en: 'VITAS Soothing Cream Gel Roll-On with its box', zh: 'VITAS 淋巴管理啫喱膏走珠裝 連外盒' },
     },
     {
       id: 'duo',
@@ -787,7 +787,7 @@ export const ROLLON = {
     {
       id: 'bottle',
       base: '/assets/img/product/rollon-bottle',
-      alt: { en: 'VITAS Soothing Cream Gel Roll-On, 50ml', zh: 'VITAS 舒緩啫喱膏走珠裝 50 毫升' },
+      alt: { en: 'VITAS Soothing Cream Gel Roll-On, 50ml', zh: 'VITAS 淋巴管理啫喱膏走珠裝 50 毫升' },
     },
     {
       id: 'box',

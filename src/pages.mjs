@@ -64,7 +64,7 @@ const productJsonLd = () => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'VITAS Soothing Cream Gel 100ml',
-  alternateName: 'VITAS 紓適寧 舒緩啫喱膏 100毫升',
+  alternateName: 'VITAS 紓適寧 淋巴管理啫喱膏 100毫升',
   sku: PRODUCT.sku,
   brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
   description: plain({
@@ -180,13 +180,13 @@ function buyStrip({ whereToBuy = true } = {}) {
                sizes="(max-width: 900px) 55vw, 30vw" alt="${attr(
             t({
               en: 'VITAS Soothing Cream Gel 100ml tube',
-              zh: 'VITAS 舒緩啫喱膏 100毫升',
+              zh: 'VITAS 淋巴管理啫喱膏 100毫升',
             })
           )}" width="620" height="1500" loading="lazy" decoding="async">
         </div>
         <div class="buy__body">
           ${blk('p', { en: 'Pre + post workout', zh: '運動前後' }, 'eyebrow')}
-          ${blk('h2', { en: 'Soothing Cream Gel', zh: '舒緩啫喱膏' }, 'buy__title')}
+          ${blk('h2', { en: 'Soothing Cream Gel', zh: '淋巴管理啫喱膏' }, 'buy__title')}
           <p class="buy__meta"><span>${PRODUCT.size}</span><span aria-hidden="true">·</span><span>${
             PRODUCT.priceLabel
           }</span><span aria-hidden="true">·</span><span>${t(PRODUCT.origin)}</span></p>
@@ -395,7 +395,7 @@ ${sloganBlock('hero__slogan')}
                sizes="(max-width: 900px) 62vw, 34vw" alt="${attr(
             t({
               en: 'VITAS Soothing Cream Gel, 100ml tube',
-              zh: 'VITAS 舒緩啫喱膏 100毫升',
+              zh: 'VITAS 淋巴管理啫喱膏 100毫升',
             })
           )}" width="620" height="1632" fetchpriority="high" decoding="async">
         </div>
@@ -503,7 +503,7 @@ ${newsletter()}`;
     },
     description: {
       en: 'VITAS 紓適寧 Soothing Cream Gel: a low-odour, non-greasy plant-oil cream gel with eucalyptus, grape seed and niaouli. 100ml, HK$250, at Watsons and Mannings in Hong Kong.',
-      zh: 'VITAS 紓適寧舒緩啫喱膏：含尤加利、葡萄籽及綠花白千層的低氣味、不油膩植物油啫喱膏。100毫升，HK$250，香港屈臣氏及萬寧有售。',
+      zh: 'VITAS 紓適寧淋巴管理啫喱膏：含尤加利、葡萄籽及綠花白千層的低氣味、不油膩植物油啫喱膏。100毫升，HK$250，香港屈臣氏及萬寧有售。',
     },
     path: '/',
     active: '/',
@@ -515,13 +515,13 @@ ${newsletter()}`;
 
 export function product() {
   const body = `${pageHero({
-    eyebrow: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' },
+    eyebrow: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' },
     title: { en: 'One tube, three plants, two moments', zh: '一支啫喱膏，三種植物，兩個時刻' },
     lede: {
       en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it feels like, where it fits in your day, and what is inside.',
       zh: '一支純淨、法國製造的啫喱膏，陪伴你度過運動前的熱身與運動後的放鬆。100 毫升，HK$250。以下，將為你完整介紹它的奇妙膚感、如何自然融入你的日常，以及它的成分。',
     },
-    trail: [HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' }, path: '/product/' }],
+    trail: [HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' }, path: '/product/' }],
   })}
 
     <section class="section product-main">
@@ -530,7 +530,7 @@ export function product() {
           <img src="/assets/img/product/tube-angle-620.webp"
                srcset="/assets/img/product/tube-angle-620.webp 620w, /assets/img/product/tube-angle-1240.webp 1240w"
                sizes="(max-width: 900px) 70vw, 38vw" alt="${attr(
-            t({ en: 'VITAS Soothing Cream Gel 100ml', zh: 'VITAS 舒緩啫喱膏 100毫升' })
+            t({ en: 'VITAS Soothing Cream Gel 100ml', zh: 'VITAS 淋巴管理啫喱膏 100毫升' })
           )}" width="620" height="1632" loading="lazy" decoding="async">
         </div>
         <div class="product-main__body">
@@ -666,7 +666,7 @@ ${sectionHead({
           'p',
           {
             en: 'A cosmetic massage gel, not a medicine. It does not replace a warm-up, rest or a physio.',
-            zh: '本品為按摩護理凝膠，並非藥物，不能取代熱身、休息或物理治療。',
+            zh: '本品為按摩護理啫喱膏，並非藥物，不能取代熱身、休息或物理治療。',
           },
           'feel__honest'
         )}
@@ -698,17 +698,17 @@ ${sectionHead({
 ${newsletter()}`;
 
   return {
-    title: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' },
+    title: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' },
     description: {
       en: 'VITAS Soothing Cream Gel (100ml, HK$250): warming before training, cooling after, absorbed in under a minute, no medicated smell. Made in France.',
-      zh: 'VITAS 舒緩啫喱膏（100毫升，HK$250）：運動前溫熱、運動後清涼，一分鐘內吸收，沒有藥油味。法國製造。',
+      zh: 'VITAS 淋巴管理啫喱膏（100毫升，HK$250）：運動前溫熱、運動後清涼，一分鐘內吸收，沒有藥油味。法國製造。',
     },
     path: '/product/',
     active: '/product/',
     body,
     jsonLd: [
       productJsonLd(),
-      breadcrumb([HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 舒緩啫喱膏' }, path: '/product/' }]),
+      breadcrumb([HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' }, path: '/product/' }]),
     ],
   };
 }
@@ -826,8 +826,8 @@ ${sectionHead({
     <section class="section ppr reveal">
       <div class="wrap">
 ${sectionHead({
-  eyebrow: { en: 'Prime · Perform · Recover', zh: '喚醒 · 投入 · 收操' },
-  heading: { en: 'Prime. Perform. Recover.', zh: '喚醒．投入．收操。' },
+  eyebrow: { en: 'Prime · Perform · Recover', zh: '喚醒 · 投入 · 修復' },
+  heading: { en: 'Prime. Perform. Recover.', zh: '喚醒．投入．修復。' },
   align: 'center',
 })}
         <ol class="ppr__steps">
@@ -849,7 +849,7 @@ ${sectionHead({
           </li>
           <li class="ppr__step">
             <span class="ppr__num">03</span>
-            ${blk('h3', { en: 'Recover — after training', zh: '收操 — 運動後' }, 'ppr__title')}
+            ${blk('h3', { en: 'Recover — after training', zh: '修復 — 運動後' }, 'ppr__title')}
             ${blk('p', {
               en: 'Reapply and massage into tired areas after training. Enjoy the cooling sensation as part of your post-workout wind-down.',
               zh: '運動結束後，再次塗抹於緊繃部位並輕柔按摩，感受舒適的清涼體感，為每一次訓練畫下放鬆的句點。',
@@ -969,7 +969,7 @@ ${sectionHead({
     title: { en: 'How to use', zh: '使用方法' },
     description: {
       en: 'How to use VITAS Soothing Cream Gel: a pre-training warm-up, a post-training wind-down, a three-minute desk reset, plus routines for Hyrox, padel and running.',
-      zh: 'VITAS 舒緩啫喱膏的使用方法：訓練前熱身、訓練後放鬆、辦公桌前三分鐘重設，以及 Hyrox、板式網球與跑步的專屬用法。',
+      zh: 'VITAS 淋巴管理啫喱膏的使用方法：訓練前熱身、訓練後放鬆、辦公桌前三分鐘重設，以及 Hyrox、板式網球與跑步的專屬用法。',
     },
     path: '/how-to-use/',
     active: '/how-to-use/',
@@ -1194,7 +1194,7 @@ const rollOnJsonLd = () => ({
 
 export function rollOn() {
   const body = `${pageHero({
-    eyebrow: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' },
+    eyebrow: { en: 'Soothing Cream Gel Roll-On', zh: '淋巴管理啫喱膏走珠裝' },
     title: { en: 'No hands. Roll it on and go.', zh: '不沾手，隨手一滾，就能立刻出發。' },
     lede: {
       en: 'The same three plants as the cream gel, in a 50ml roll-on with menthol added for a sharper cool. Sold as a two-pack, HK$320 — one for the bag, one for the desk.',
@@ -1202,7 +1202,7 @@ export function rollOn() {
     },
     trail: [
       HOME_CRUMB,
-      { name: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' }, path: '/roll-on/' },
+      { name: { en: 'Soothing Cream Gel Roll-On', zh: '淋巴管理啫喱膏走珠裝' }, path: '/roll-on/' },
     ],
   })}
 
@@ -1322,10 +1322,10 @@ ${buyStrip({ whereToBuy: false })}
 ${newsletter()}`;
 
   return {
-    title: { en: 'Soothing Cream Gel Roll-On', zh: '舒緩啫喱膏走珠裝' },
+    title: { en: 'Soothing Cream Gel Roll-On', zh: '淋巴管理啫喱膏走珠裝' },
     description: {
       en: 'VITAS Soothing Cream Gel Roll-On: grape seed, niaouli and eucalyptus with menthol. Two 50ml roll-ons, HK$320, made in France to EEC GMP standard.',
-      zh: 'VITAS 舒緩啫喱膏走珠裝：葡萄籽、綠花白千層與尤加利，加入薄荷腦。兩支 50 毫升，HK$320，法國製造，按 EEC GMP 標準生產。',
+      zh: 'VITAS 淋巴管理啫喱膏走珠裝：葡萄籽、綠花白千層與尤加利，加入薄荷腦。兩支 50 毫升，HK$320，法國製造，按 EEC GMP 標準生產。',
     },
     path: '/roll-on/',
     active: '/roll-on/',
@@ -1384,7 +1384,7 @@ ${buyStrip()}`;
     title: { en: 'Ingredients', zh: '成分' },
     description: {
       en: 'Eucalyptus globulus, Vitis vinifera grape seed and Melaleuca viridiflora niaouli — the three plants in VITAS Soothing Cream Gel, and what each one actually does.',
-      zh: '尤加利、葡萄籽與綠花白千層——VITAS 舒緩啫喱膏中的三種植物，以及它們各自的實際作用。',
+      zh: '尤加利、葡萄籽與綠花白千層——VITAS 淋巴管理啫喱膏中的三種植物，以及它們各自的實際作用。',
     },
     path: '/ingredients/',
     active: '/ingredients/',
@@ -1452,7 +1452,7 @@ ${buyStrip()}`;
     title: { en: `${p.nameEn} — ingredient`, zh: `${p.nameZh}——成分` },
     description: {
       en: `${p.nameEn} (${p.latin}) in VITAS Soothing Cream Gel: what it contributes, what it feels like, and what we do not claim for it.`,
-      zh: `VITAS 舒緩啫喱膏中的${p.nameZh}（${p.latin}）：它的作用、實際感受，以及我們不會宣稱的事。`,
+      zh: `VITAS 淋巴管理啫喱膏中的${p.nameZh}（${p.latin}）：它的作用、實際感受，以及我們不會宣稱的事。`,
     },
     path,
     active: '/ingredients/',
@@ -1473,7 +1473,7 @@ export function stockists() {
     title: { en: 'On the shelf, and online', zh: '門市與網店' },
     lede: {
       en: 'VITAS Soothing Cream Gel 100ml, HK$250. Sold through Hong Kong pharmacy chains and a small number of online stores.',
-      zh: 'VITAS 舒緩啫喱膏 100毫升，HK$250。於香港連鎖藥房及少數網店發售。',
+      zh: 'VITAS 淋巴管理啫喱膏 100毫升，HK$250。於香港連鎖藥房及少數網店發售。',
     },
     trail: [HOME_CRUMB, { name: { en: 'Where to Buy', zh: '購買地點' }, path: '/stockists/' }],
   })}
@@ -1520,7 +1520,7 @@ export function stockists() {
     title: { en: 'Where to buy', zh: '購買地點' },
     description: {
       en: 'Buy VITAS Soothing Cream Gel 100ml (HK$250) at Watsons and Mannings across Hong Kong, or online through Gogo Herbs and HK Medical Store.',
-      zh: '於全港屈臣氏及萬寧選購 VITAS 舒緩啫喱膏 100毫升（HK$250），或經 Gogo Herbs 及網上藥房購買。',
+      zh: '於全港屈臣氏及萬寧選購 VITAS 淋巴管理啫喱膏 100毫升（HK$250），或經 Gogo Herbs 及網上藥房購買。',
     },
     path: '/stockists/',
     active: '/stockists/',
@@ -1713,7 +1713,7 @@ ${freeFromBand()}
     title: { en: 'Shop', zh: '網上商店' },
     description: {
       en: 'Buy VITAS Soothing Cream Gel online — one 100ml tube at HK$250, the Recovery Duo (gel + roll-on) at HK$388, or the capsule Monthly package at HK$800. Free Hong Kong delivery from HK$250, secure Stripe checkout.',
-      zh: '網上選購 VITAS 舒緩啫喱膏——100毫升 HK$250，雙效組合（啫喱膏＋走珠裝）HK$388，淋巴管理膠囊月度套裝 HK$800。滿 HK$250 免香港運費，Stripe 安全結帳。',
+      zh: '網上選購 VITAS 淋巴管理啫喱膏——100毫升 HK$250，雙效組合（啫喱膏＋走珠裝）HK$388，淋巴管理膠囊月度套裝 HK$800。滿 HK$250 免香港運費，Stripe 安全結帳。',
     },
     path: '/shop/',
     active: '/shop/',
@@ -1974,7 +1974,7 @@ export function faq() {
     title: { en: 'FAQ', zh: '常見問題' },
     description: {
       en: 'Does it smell? Is it hot or cold? Can I use it before exercise? Straight answers about VITAS Soothing Cream Gel.',
-      zh: '有氣味嗎？是熱還是涼？運動前可以用嗎？關於 VITAS 舒緩啫喱膏的直接答案。',
+      zh: '有氣味嗎？是熱還是涼？運動前可以用嗎？關於 VITAS 淋巴管理啫喱膏的直接答案。',
     },
     path: '/faq/',
     active: '/faq/',
