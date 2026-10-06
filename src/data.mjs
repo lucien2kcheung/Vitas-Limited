@@ -303,9 +303,9 @@ export const PURITY = {
     { en: 'Artificial fragrance — hidden allergens', zh: '人造香料——隱藏致敏原' },
   ],
   in: [
-    { en: 'Grape seed extract — the light, fast carrier', zh: '葡萄籽萃取——輕盈快吸的基底' },
-    { en: 'Niaouli oil — the gentle warming note', zh: '綠花白千層油——溫和的暖感' },
-    { en: 'Eucalyptus oil — the cooling note', zh: '尤加利油——清涼感' },
+    { en: 'Grape seed extract — a light, fast-absorbing base', zh: '葡萄籽萃取——輕盈快吸的基底' },
+    { en: 'Niaouli oil — an aromatic plant from the tea-tree family, with a gentle warming note', zh: '綠花白千層油——與茶樹同科的芳香植物，帶來溫和暖感' },
+    { en: 'Eucalyptus oil — a fresh, cooling note', zh: '尤加利油——清新的清涼感' },
     { en: 'Water-based gel — fast absorption, no residue', zh: '水基啫喱——快速吸收，不留殘膜' },
   ],
   marks: [
@@ -561,8 +561,8 @@ export const FAQS = [
       zh: '它可以排走乳酸或「管理淋巴」嗎？',
     },
     a: {
-      en: 'No. Lactate clears on its own within about an hour of stopping exercise, and no topical cream drains lymph. VITAS is a low-odour, non-greasy massage cream gel for your warm-up and wind-down — warming before training, cooling after.',
-      zh: '不能。運動停止後約一小時內乳酸會自行代謝；任何外用膏體都無法「排走淋巴」。VITAS 是低氣味、不油膩的按摩啫喱膏，融入你的熱身與放鬆流程——運動前溫熱，運動後清涼。',
+      en: "VITAS is a massage gel, not a treatment. It doesn't claim to remove lactic acid or treat any condition. The massage itself, and the warming sensation before training and cooling after, are part of your warm-up and wind-down routine.",
+      zh: 'VITAS 是按摩啫喱膏，不是治療產品，也不聲稱能排走乳酸或治療任何狀況。按摩本身，加上運動前的溫熱觸感與運動後的清涼觸感，是你熱身與放鬆流程的一部分。',
     },
   },
   {
@@ -686,6 +686,10 @@ export const CAPSULE = {
     en: 'A plant-based food supplement in a capsule. Four plant ingredients, nothing else added for effect.',
     zh: '植物配方的膠囊裝食品補充品。四種植物成分，不額外添加其他成分。',
   },
+  suits: {
+    en: 'A plant-based capsule, suitable for vegetarians, for people who like to add plant ingredients to a daily routine alongside a balanced diet and an active lifestyle.',
+    zh: '適合素食者，以及希望在均衡飲食與運動生活之外，將植物成分加入日常習慣的人士。',
+  },
   dosage: {
     en: '1 to 3 capsules, twice a day, roughly 6 to 7 hours apart, before or after a meal.',
     zh: '每天 2 次（相隔 6 至 7 小時即可），每次 1-3 粒，餐前或餐後服用。',
@@ -719,8 +723,8 @@ export const CAPSULE_PLANTS = [
     name: { en: 'Red grape leaf', zh: '紅葡萄葉' },
     latin: 'Vitis vinifera',
     text: {
-      en: 'The leaf of the wine grape, red in autumn and long used in European herbal traditions. It is the plant the formula is built around, and the same species as the grape seed in the cream gel.',
-      zh: '釀酒葡萄的葉片，入秋轉紅，在歐洲草本傳統中沿用已久。它是這個配方的核心，與淋巴管理啫喱膏中的葡萄籽同屬一種植物。',
+      en: 'The leaf of the wine grape, long used in European herbal traditions and the base of this formula.',
+      zh: '釀酒葡萄的葉片，歐洲草本傳統沿用已久，是這個配方的核心。',
     },
   },
   {
@@ -730,8 +734,8 @@ export const CAPSULE_PLANTS = [
     name: { en: 'Bilberry', zh: '北歐藍莓' },
     latin: 'Vaccinium myrtillus',
     text: {
-      en: 'A small dark berry that grows wild across northern Europe — a cousin of the blueberry, deeper in colour and more strongly flavoured.',
-      zh: '野生於北歐的深色小莓果，與藍莓同屬近親，顏色更深、味道更濃。',
+      en: 'A dark wild berry from northern Europe, naturally rich in plant pigments (anthocyanins) and a familiar ingredient in food supplements.',
+      zh: '生長於北歐的深色野生小果，天然含有花青素等植物色素，是食品補充品中常見的成分。',
     },
   },
   {
@@ -741,8 +745,8 @@ export const CAPSULE_PLANTS = [
     name: { en: 'Soy lecithin', zh: '大豆卵磷脂' },
     latin: 'Glycine max',
     text: {
-      en: 'A natural fat fraction of the soybean, widely used in food and supplements. If you avoid soy, this is the ingredient to note.',
-      zh: '從大豆中提取的天然脂質成分，廣泛用於食品及補充品。如你需要避開大豆，請留意這項成分。',
+      en: 'A natural fat fraction of the soybean, widely used in food and supplements. If you avoid soy, note this ingredient.',
+      zh: '取自大豆的天然脂質成分，廣泛用於食品及補充品。如你需要避開大豆，請留意這項成分。',
     },
   },
   {
@@ -752,8 +756,8 @@ export const CAPSULE_PLANTS = [
     name: { en: 'Garlic', zh: '大蒜' },
     latin: 'Allium sativum',
     text: {
-      en: 'The same bulb you cook with, in a measured amount inside a capsule rather than on the plate.',
-      zh: '與你日常入饌的大蒜相同，只是以定量形式裝入膠囊，而非放在碟上。',
+      en: 'The same bulb you cook with, here in a measured amount in capsule form.',
+      zh: '與日常入饌的大蒜相同，以定量形式裝入膠囊。',
     },
   },
 ];

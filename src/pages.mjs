@@ -1057,6 +1057,9 @@ export function capsule() {
               en: 'Red grape leaf, bilberry, soy lecithin, garlic.',
               zh: '紅葡萄葉、北歐藍莓、大豆卵磷脂、大蒜。',
             })}</dd></div>
+            <div class="spec__row"><dt>${t({ en: 'Who it suits', zh: '適合人士' })}</dt><dd>${t(
+              CAPSULE.suits
+            )}</dd></div>
             <div class="spec__row"><dt>${t({ en: 'How to take', zh: '服用方法' })}</dt><dd>${t(
               CAPSULE.dosage
             )}</dd></div>
