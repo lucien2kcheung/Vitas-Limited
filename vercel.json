@@ -51,6 +51,26 @@
   ],
   "redirects": [
     {
+      "source": "/products",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/products/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/products",
+      "destination": "/zh/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/zh/products/",
+      "destination": "/zh/shop/",
+      "permanent": true
+    },
+    {
       "source": "/for",
       "destination": "/how-to-use/#your-sport",
       "permanent": true
