@@ -25,6 +25,8 @@
       zh: '結帳功能尚未連接。請在 Vercel 設定 STRIPE_SECRET_KEY 以啟用（見 README）。',
     },
   };
+  T.suggestAdd = { en: 'Add to cart', zh: '加入購物車' };
+  T.suggestAdded = { en: 'added to your cart', zh: '已加入購物車' };
   var say = function (key) {
     return T[key][lang];
   };
@@ -195,6 +197,8 @@
 
     var checkoutBtn = document.querySelector('[data-checkout]');
     if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+
+    paintSuggest();
   }
 
   if (itemsEl) {
@@ -258,6 +262,94 @@
             note.hidden = false;
           }
         });
+    });
+  }
+
+  /* ------------------------------------------- "Customers also purchased" */
+
+  /* The cart page lists a few products from the catalogue (embedded by the
+     build as JSON) that are not already in the cart. Adding one puts it in the
+     cart straight away, and the cart, totals and this list all repaint. */
+
+  var suggestBox = document.querySelector('[data-cart-suggest]');
+  var suggestList = suggestBox && suggestBox.querySelector('[data-cart-suggest-list]');
+  var suggestStatus = suggestBox && suggestBox.querySelector('[data-cart-suggest-status]');
+  var suggestItems = [];
+  try {
+    var suggestRaw = suggestBox && suggestBox.querySelector('[data-cart-suggest-data]');
+    suggestItems = suggestRaw ? JSON.parse(suggestRaw.textContent) : [];
+  } catch (e) {
+    suggestItems = [];
+  }
+
+  /* The 3-box capsule package counts as the capsule that is already shown. */
+  var family = function (id) {
+    return id === 'capsule-180' ? 'capsule-60' : id;
+  };
+
+  var esc = function (value) {
+    return String(value).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  };
+
+  function paintSuggest() {
+    if (!suggestBox || !suggestList) return;
+
+    var inCart = {};
+    cart.forEach(function (line) {
+      inCart[family(line.id)] = true;
+    });
+    var shown = cart.length
+      ? suggestItems
+          .filter(function (item) {
+            return !inCart[family(item.id)];
+          })
+          .slice(0, 3)
+      : [];
+
+    suggestBox.hidden = shown.length === 0;
+    suggestList.innerHTML = shown
+      .map(function (item) {
+        return (
+          '<article class="suggest-card">' +
+          '<a class="suggest-card__art" href="' + esc(item.href) + '" tabindex="-1" aria-hidden="true">' +
+          '<img src="' + esc(item.art) + '" alt="" width="80" height="80" loading="lazy" decoding="async"></a>' +
+          '<div class="suggest-card__body">' +
+          '<h3 class="suggest-card__name"><a href="' + esc(item.href) + '">' + esc(item.name) + '</a></h3>' +
+          '<p class="suggest-card__variant">' + esc(item.variant) + '</p>' +
+          '<p class="suggest-card__price">' + esc(item.priceLabel) +
+          (item.badge ? ' <span class="suggest-card__tag">' + esc(item.badge) + '</span>' : '') +
+          '</p></div>' +
+          '<button class="btn btn--sm" type="button" data-suggest-add="' + esc(item.id) + '">' +
+          say('suggestAdd') +
+          '</button>' +
+          '</article>'
+        );
+      })
+      .join('');
+  }
+
+  if (suggestList) {
+    suggestList.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-suggest-add]');
+      if (!btn) return;
+      var id = btn.getAttribute('data-suggest-add');
+      var item = suggestItems.filter(function (i) {
+        return i.id === id;
+      })[0];
+      if (!item) return;
+
+      var line = cart.filter(function (l) {
+        return l.id === id;
+      })[0];
+      if (line) {
+        line.qty = Math.min(20, line.qty + 1);
+      } else {
+        cart.push({ id: item.id, name: item.name, variant: item.variant, price: item.price, art: item.art, qty: 1 });
+      }
+      persist();
+      if (suggestStatus) suggestStatus.textContent = item.name + ' ' + say('suggestAdded');
     });
   }
 
