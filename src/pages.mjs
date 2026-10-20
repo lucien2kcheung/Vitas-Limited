@@ -1782,13 +1782,26 @@ export function cart() {
             },
             'cart__small'
           )}
+          <div class="pay-or" aria-hidden="true"><span>${t({ en: 'or', zh: '或' })}</span></div>
+          <button class="btn btn--payme btn--full" type="button" data-payme-open disabled>
+            <span class="pay-alt__payme">PayMe</span>
+            ${t({ en: 'Pay with PayMe', zh: '使用 PayMe 付款' })}
+          </button>
+          ${blk(
+            'p',
+            {
+              en: 'Scan a QR code with the PayMe app (or open the app on your phone) to pay. Hong Kong delivery only.',
+              zh: '以 PayMe 應用程式掃描二維碼（或在手機上直接開啟應用程式）付款。只限送遞香港地區。',
+            },
+            'cart__small'
+          )}
           <a class="pay-alt" href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">
             <span class="pay-alt__marks">
-              <span class="pay-alt__payme">PayMe</span>
+              <span class="pay-alt__payme">FPS</span>
               <svg class="pay-alt__wa" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="${WA_ICON_PATH}"/></svg>
             </span>
             <span class="pay-alt__body">
-              ${blk('span', { en: 'Prefer PayMe or FPS?', zh: '想用 PayMe 或轉數快？' }, 'pay-alt__title')}
+              ${blk('span', { en: 'Prefer FPS?', zh: '想用轉數快？' }, 'pay-alt__title')}
               ${blk(
                 'span',
                 {
@@ -1800,6 +1813,58 @@ export function cart() {
             </span>
           </a>
         </aside>
+      </div>
+
+      <div class="pm-modal" data-payme-modal hidden role="dialog" aria-modal="true" aria-labelledby="pm-title">
+        <div class="pm-modal__panel">
+          <button class="pm-modal__close" type="button" data-payme-close aria-label="${t({ en: 'Close', zh: '關閉' })}">×</button>
+
+          <div data-payme-step="form">
+            <h2 class="pm-modal__title" id="pm-title">${t({ en: 'Pay with PayMe', zh: '使用 PayMe 付款' })}</h2>
+            ${blk(
+              'p',
+              {
+                en: 'Enter your delivery details. Next you will see a QR code to scan with the PayMe app.',
+                zh: '請填寫送貨資料。下一步會顯示二維碼，用 PayMe 應用程式掃描即可付款。',
+              },
+              'pm-modal__lede'
+            )}
+            <form class="pm-form" data-payme-form novalidate>
+              <div class="field"><label for="pm-name">${t({ en: 'Full name', zh: '姓名' })}</label>
+                <input id="pm-name" name="name" type="text" autocomplete="name" required maxlength="100"></div>
+              <div class="field"><label for="pm-email">${t({ en: 'Email', zh: '電郵' })}</label>
+                <input id="pm-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+              <div class="field"><label for="pm-phone">${t({ en: 'Phone', zh: '電話' })}</label>
+                <input id="pm-phone" name="phone" type="tel" autocomplete="tel" required maxlength="30"></div>
+              <div class="field"><label for="pm-address1">${t({ en: 'Delivery address', zh: '送貨地址' })}</label>
+                <input id="pm-address1" name="address1" type="text" autocomplete="address-line1" required maxlength="160"></div>
+              <div class="field"><label for="pm-address2">${t({ en: 'Flat, floor, building (optional)', zh: '單位、樓層、大廈（選填）' })}</label>
+                <input id="pm-address2" name="address2" type="text" autocomplete="address-line2" maxlength="160"></div>
+              <div class="field"><label for="pm-district">${t({ en: 'District (optional)', zh: '地區（選填）' })}</label>
+                <input id="pm-district" name="district" type="text" maxlength="80"></div>
+              <div class="field"><label for="pm-coupon">${t({ en: 'Discount code (optional)', zh: '優惠碼（選填）' })}</label>
+                <input id="pm-coupon" name="coupon" type="text" autocomplete="off" autocapitalize="characters" maxlength="40"></div>
+              <p class="cart__note is-bad" data-payme-error role="alert" hidden></p>
+              <button class="btn btn--full" type="submit" data-payme-submit>${t({ en: 'Show PayMe QR', zh: '顯示 PayMe 二維碼' })}</button>
+            </form>
+          </div>
+
+          <div data-payme-step="qr" hidden>
+            <h2 class="pm-modal__title">${t({ en: 'Scan to pay', zh: '掃描付款' })}</h2>
+            <p class="pm-modal__total" data-payme-total></p>
+            <p class="pm-modal__lede" data-payme-lede></p>
+            <div class="pm-qr" data-payme-qr></div>
+            <a class="btn btn--full pm-applink" data-payme-app href="#" hidden>${t({ en: 'Open PayMe app', zh: '開啟 PayMe 應用程式' })}</a>
+            <p class="pm-modal__status" data-payme-status role="status"></p>
+            <button class="btn btn--ghost btn--full" type="button" data-payme-cancel>${t({ en: 'Cancel payment', zh: '取消付款' })}</button>
+          </div>
+
+          <div data-payme-step="problem" hidden>
+            <h2 class="pm-modal__title" data-payme-problem-title></h2>
+            <p class="pm-modal__lede" data-payme-problem-text></p>
+            <button class="btn btn--full" type="button" data-payme-retry>${t({ en: 'Try again', zh: '重試' })}</button>
+          </div>
+        </div>
       </div>
     </section>`;
 
@@ -1854,8 +1919,8 @@ export function checkoutResult(kind) {
                 'note'
               )
             : blk('p', {
-                en: 'If something went wrong at checkout — a card declined, a code that would not apply — tell us and we will sort it out. If you would rather pay by PayMe or FPS, message us on WhatsApp and we will send you a payment request.',
-                zh: '如結帳時遇到問題——卡片被拒、優惠碼無法套用——請告訴我們，我們會處理。如想使用 PayMe 或轉數快付款，請 WhatsApp 我們，我們會向你發出付款要求。',
+                en: 'If something went wrong at checkout — a card declined, a code that would not apply — tell us and we will sort it out. You can also pay with PayMe from the cart, or message us on WhatsApp if you would rather pay by FPS.',
+                zh: '如結帳時遇到問題——卡片被拒、優惠碼無法套用——請告訴我們，我們會處理。你亦可在購物車選擇 PayMe 付款；如想使用轉數快，請 WhatsApp 我們。',
               }) +
               `<p>${arrow('/cart/', { en: 'Back to the cart', zh: '返回購物車' })}</p>` +
               `<p>${arrow('/contact/', { en: 'Contact us', zh: '聯絡我們' })}</p>`

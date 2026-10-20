@@ -102,17 +102,68 @@
           </button>
           <p class="cart__note" data-checkout-note hidden></p>
           <p class="cart__small">Payment is handled by Stripe — card, Apple Pay and Google Pay. You will be taken to Stripe to pay and returned here afterwards. If you have a discount code, enter it on the Stripe payment page.</p>
+          <div class="pay-or" aria-hidden="true"><span>or</span></div>
+          <button class="btn btn--payme btn--full" type="button" data-payme-open disabled>
+            <span class="pay-alt__payme">PayMe</span>
+            Pay with PayMe
+          </button>
+          <p class="cart__small">Scan a QR code with the PayMe app (or open the app on your phone) to pay. Hong Kong delivery only.</p>
           <a class="pay-alt" href="https://wa.me/85260607593" target="_blank" rel="noopener">
             <span class="pay-alt__marks">
-              <span class="pay-alt__payme">PayMe</span>
+              <span class="pay-alt__payme">FPS</span>
               <svg class="pay-alt__wa" viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             </span>
             <span class="pay-alt__body">
-              <span class="pay-alt__title">Prefer PayMe or FPS?</span>
+              <span class="pay-alt__title">Prefer FPS?</span>
               <span class="pay-alt__text">Message us on WhatsApp and we will send you a payment request.</span>
             </span>
           </a>
         </aside>
+      </div>
+
+      <div class="pm-modal" data-payme-modal hidden role="dialog" aria-modal="true" aria-labelledby="pm-title">
+        <div class="pm-modal__panel">
+          <button class="pm-modal__close" type="button" data-payme-close aria-label="Close">×</button>
+
+          <div data-payme-step="form">
+            <h2 class="pm-modal__title" id="pm-title">Pay with PayMe</h2>
+            <p class="pm-modal__lede">Enter your delivery details. Next you will see a QR code to scan with the PayMe app.</p>
+            <form class="pm-form" data-payme-form novalidate>
+              <div class="field"><label for="pm-name">Full name</label>
+                <input id="pm-name" name="name" type="text" autocomplete="name" required maxlength="100"></div>
+              <div class="field"><label for="pm-email">Email</label>
+                <input id="pm-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+              <div class="field"><label for="pm-phone">Phone</label>
+                <input id="pm-phone" name="phone" type="tel" autocomplete="tel" required maxlength="30"></div>
+              <div class="field"><label for="pm-address1">Delivery address</label>
+                <input id="pm-address1" name="address1" type="text" autocomplete="address-line1" required maxlength="160"></div>
+              <div class="field"><label for="pm-address2">Flat, floor, building (optional)</label>
+                <input id="pm-address2" name="address2" type="text" autocomplete="address-line2" maxlength="160"></div>
+              <div class="field"><label for="pm-district">District (optional)</label>
+                <input id="pm-district" name="district" type="text" maxlength="80"></div>
+              <div class="field"><label for="pm-coupon">Discount code (optional)</label>
+                <input id="pm-coupon" name="coupon" type="text" autocomplete="off" autocapitalize="characters" maxlength="40"></div>
+              <p class="cart__note is-bad" data-payme-error role="alert" hidden></p>
+              <button class="btn btn--full" type="submit" data-payme-submit>Show PayMe QR</button>
+            </form>
+          </div>
+
+          <div data-payme-step="qr" hidden>
+            <h2 class="pm-modal__title">Scan to pay</h2>
+            <p class="pm-modal__total" data-payme-total></p>
+            <p class="pm-modal__lede" data-payme-lede></p>
+            <div class="pm-qr" data-payme-qr></div>
+            <a class="btn btn--full pm-applink" data-payme-app href="#" hidden>Open PayMe app</a>
+            <p class="pm-modal__status" data-payme-status role="status"></p>
+            <button class="btn btn--ghost btn--full" type="button" data-payme-cancel>Cancel payment</button>
+          </div>
+
+          <div data-payme-step="problem" hidden>
+            <h2 class="pm-modal__title" data-payme-problem-title></h2>
+            <p class="pm-modal__lede" data-payme-problem-text></p>
+            <button class="btn btn--full" type="button" data-payme-retry>Try again</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>

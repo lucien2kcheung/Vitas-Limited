@@ -24,6 +24,37 @@
       en: 'Checkout is not connected yet. Add STRIPE_SECRET_KEY in Vercel to enable it (see README).',
       zh: '結帳功能尚未連接。請在 Vercel 設定 STRIPE_SECRET_KEY 以啟用（見 README）。',
     },
+    pmWorking: { en: 'Preparing your PayMe payment…', zh: '正在準備 PayMe 付款…' },
+    pmError: {
+      en: 'Could not start PayMe payment. Please try again or choose another payment method.',
+      zh: '無法開始 PayMe 付款。請重試或選擇其他付款方式。',
+    },
+    pmWaiting: { en: 'Waiting for your payment…', zh: '正在等候付款…' },
+    pmScanLede: {
+      en: 'Open the PayMe app, tap Scan, and scan this code.',
+      zh: '開啟 PayMe 應用程式，點選「掃描」，掃描此二維碼。',
+    },
+    pmPhoneLede: {
+      en: 'Tap the button to open the PayMe app and confirm the payment.',
+      zh: '點擊下方按鈕開啟 PayMe 應用程式，確認付款。',
+    },
+    pmTotal: { en: 'Total to pay', zh: '應付總額' },
+    pmDiscount: { en: 'discount applied', zh: '優惠已套用' },
+    pmExpiredTitle: { en: 'This QR code has expired', zh: '二維碼已過期' },
+    pmExpiredText: {
+      en: 'Nothing was charged. You can start again to get a new code.',
+      zh: '沒有任何扣款。你可以重新開始以取得新的二維碼。',
+    },
+    pmFailedTitle: { en: 'The payment did not go through', zh: '付款未能完成' },
+    pmFailedText: {
+      en: 'Nothing was charged to you. Please try again, or use another payment method.',
+      zh: '你的帳戶沒有被扣款。請重試，或選擇其他付款方式。',
+    },
+    pmLeft: { en: 'Code valid for', zh: '二維碼有效時間' },
+    pmReview: {
+      en: 'Your payment needs a quick check by our team. Please email info@vitas.com.hk with your order details.',
+      zh: '你的付款需由我們檢查。請電郵 info@vitas.com.hk 並提供訂單資料。',
+    },
   };
   var say = function (key) {
     return T[key][lang];
@@ -195,6 +226,8 @@
 
     var checkoutBtn = document.querySelector('[data-checkout]');
     if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+    var paymeBtn = document.querySelector('[data-payme-open]');
+    if (paymeBtn) paymeBtn.disabled = cart.length === 0;
   }
 
   if (itemsEl) {
@@ -259,6 +292,217 @@
           }
         });
     });
+  }
+
+  /* ------------------------------------------------------------------ PayMe */
+
+  /* The server (api/payme/*) re-prices the cart, saves the order and creates
+     the PayMe payment request. This block only collects delivery details,
+     shows the QR code it returns, and polls until the order is paid. */
+
+  var pm = document.querySelector('[data-payme-modal]');
+  if (pm) {
+    var pmOpen = document.querySelector('[data-payme-open]');
+    var pmForm = pm.querySelector('[data-payme-form]');
+    var pmError = pm.querySelector('[data-payme-error]');
+    var pmSubmit = pm.querySelector('[data-payme-submit]');
+    var pmSteps = pm.querySelectorAll('[data-payme-step]');
+    var pmOrder = null; // { id } while a QR is on screen
+    var pmPoll = null;
+    var pmTick = null;
+    var pmLastFocus = null;
+
+    var pmStep = function (name) {
+      pmSteps.forEach(function (el) {
+        el.hidden = el.getAttribute('data-payme-step') !== name;
+      });
+    };
+
+    var pmStop = function () {
+      clearInterval(pmPoll);
+      clearInterval(pmTick);
+      pmPoll = pmTick = null;
+    };
+
+    /* Tell the server so the QR can no longer be paid. */
+    var pmCancelOnServer = function (id) {
+      fetch('/api/payme/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId: id }),
+        keepalive: true,
+      }).catch(function () {});
+    };
+
+    var pmClose = function (cancelOrder) {
+      pmStop();
+      if (cancelOrder && pmOrder) pmCancelOnServer(pmOrder.id);
+      pmOrder = null;
+      pm.hidden = true;
+      document.body.classList.remove('pm-open');
+      if (pmLastFocus) pmLastFocus.focus();
+    };
+
+    var pmProblem = function (title, text) {
+      pmStop();
+      pmOrder = null;
+      pm.querySelector('[data-payme-problem-title]').textContent = title;
+      pm.querySelector('[data-payme-problem-text]').textContent = text;
+      pmStep('problem');
+    };
+
+    var pmPaid = function (id) {
+      pmStop();
+      cart = [];
+      persist();
+      window.location.href = base + '/checkout/success/?payme=' + encodeURIComponent(id);
+    };
+
+    var pmCheck = function () {
+      if (!pmOrder) return;
+      var id = pmOrder.id;
+      fetch('/api/payme/status?orderId=' + encodeURIComponent(id))
+        .then(function (res) {
+          return res.ok ? res.json() : null;
+        })
+        .then(function (data) {
+          if (!data || !pmOrder || pmOrder.id !== id) return;
+          if (data.status === 'paid') pmPaid(id);
+          else if (data.status === 'expired') pmProblem(say('pmExpiredTitle'), say('pmExpiredText'));
+          else if (data.status === 'failed' || data.status === 'cancelled') pmProblem(say('pmFailedTitle'), say('pmFailedText'));
+          else if (data.status === 'needs_review') pmProblem(say('pmFailedTitle'), say('pmReview'));
+        })
+        .catch(function () {});
+    };
+
+    var pmShowQr = function (data) {
+      pmOrder = { id: data.orderId };
+      var s = data.summary || {};
+      var total = say('pmTotal') + ': ' + s.total;
+      if (s.coupon) total += ' (' + s.coupon + ' · ' + say('pmDiscount') + ')';
+      pm.querySelector('[data-payme-total]').textContent = total;
+
+      /* Phones get the deep link; desktops and tablets get the QR code. */
+      var phone = window.matchMedia('(pointer: coarse) and (max-width: 820px)').matches;
+      var qr = pm.querySelector('[data-payme-qr]');
+      var app = pm.querySelector('[data-payme-app]');
+      qr.innerHTML = data.qrSvg; // SVG generated by our own server from the PayMe link
+      qr.hidden = phone;
+      app.href = data.appLink || '#';
+      app.hidden = !phone;
+      pm.querySelector('[data-payme-lede]').textContent = phone ? say('pmPhoneLede') : say('pmScanLede');
+
+      var status = pm.querySelector('[data-payme-status]');
+      var left = data.expiresIn || 600;
+      var paint = function () {
+        var m = Math.floor(left / 60);
+        var sec = ('0' + (left % 60)).slice(-2);
+        status.textContent = say('pmWaiting') + ' · ' + say('pmLeft') + ' ' + m + ':' + sec;
+      };
+      paint();
+      pmTick = setInterval(function () {
+        left -= 1;
+        if (left <= 0) {
+          if (pmOrder) pmCancelOnServer(pmOrder.id);
+          pmProblem(say('pmExpiredTitle'), say('pmExpiredText'));
+          return;
+        }
+        paint();
+      }, 1000);
+      pmPoll = setInterval(pmCheck, 3000);
+      pmStep('qr');
+    };
+
+    pmOpen.addEventListener('click', function () {
+      if (!cart.length) return;
+      pmLastFocus = pmOpen;
+      pmError.hidden = true;
+      pmStep('form');
+      pm.hidden = false;
+      document.body.classList.add('pm-open');
+      var first = pm.querySelector('input');
+      if (first) first.focus();
+    });
+
+    pm.addEventListener('click', function (e) {
+      if (e.target === pm) pmClose(!!pmOrder);
+    });
+    pm.querySelector('[data-payme-close]').addEventListener('click', function () {
+      pmClose(!!pmOrder);
+    });
+    pm.querySelector('[data-payme-cancel]').addEventListener('click', function () {
+      pmClose(true);
+    });
+    pm.querySelector('[data-payme-retry]').addEventListener('click', function () {
+      pmError.hidden = true;
+      pmStep('form');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !pm.hidden) pmClose(!!pmOrder);
+    });
+
+    pmForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      pmError.hidden = true;
+      var field = function (name) {
+        return pmForm.elements[name].value;
+      };
+      pmSubmit.disabled = true;
+      var label = pmSubmit.textContent;
+      pmSubmit.textContent = say('pmWorking');
+
+      fetch('/api/payme/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cart.map(function (l) {
+            return { id: l.id, qty: l.qty };
+          }),
+          customer: {
+            name: field('name'),
+            email: field('email'),
+            phone: field('phone'),
+            address1: field('address1'),
+            address2: field('address2'),
+            district: field('district'),
+          },
+          coupon: field('coupon'),
+          lang: lang,
+        }),
+      })
+        .then(function (res) {
+          return res.json().then(function (body) {
+            if (!res.ok) throw new Error(body && body.error ? body.error : say('pmError'));
+            return body;
+          });
+        })
+        .then(pmShowQr)
+        .catch(function (err) {
+          pmError.textContent = err && err.message ? err.message : say('pmError');
+          pmError.hidden = false;
+        })
+        .then(function () {
+          pmSubmit.disabled = false;
+          pmSubmit.textContent = label;
+        });
+    });
+  }
+
+  /* After a PayMe payment the cart is empty; also covers a customer who paid
+     on their phone and landed on the success page there. */
+  if (/[?&]payme=/.test(window.location.search) && /\/checkout\/success\//.test(window.location.pathname)) {
+    cart = [];
+    persist();
+  }
+
+  /* PayMe sent the customer back after a failed payment. */
+  if (/[?&]payme=failed/.test(window.location.search)) {
+    var failNote = document.querySelector('[data-checkout-note]');
+    if (failNote) {
+      failNote.textContent = say('pmFailedTitle') + '. ' + say('pmFailedText');
+      failNote.className = 'cart__note is-bad';
+      failNote.hidden = false;
+    }
   }
 
   /* ------------------------------------------------------------------ init */
