@@ -472,7 +472,12 @@
       })
         .then(function (res) {
           return res.json().then(function (body) {
-            if (!res.ok) throw new Error(body && body.error ? body.error : say('pmError'));
+            if (!res.ok) {
+              var msg = body && body.error ? body.error : say('pmError');
+              /* Preview deployments include the technical reason after the message. */
+              if (body && body.detail) msg += ' [' + body.detail + ']';
+              throw new Error(msg);
+            }
             return body;
           });
         })

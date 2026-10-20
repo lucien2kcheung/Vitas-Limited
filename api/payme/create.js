@@ -89,6 +89,15 @@ export default async function handler(req, res) {
   } catch (error) {
     if (error instanceof OrderError) return res.status(error.status).json({ error: error.message });
     console.error('payme create failed', error?.message, error?.status, JSON.stringify(error?.body || {}));
-    return res.status(500).json({ error: 'Could not start PayMe payment. Please try again or choose another payment method.' });
+    const failure = { error: 'Could not start PayMe payment. Please try again or choose another payment method.' };
+    /* On preview deployments only, say why — the details hold no secrets (our
+       message, PayMe's HTTP status and PayMe's error body). The live site never
+       sends them. */
+    if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production') {
+      failure.detail = `${error?.message || 'unknown error'}${error?.status ? ` | HTTP ${error.status}` : ''}${
+        error?.body ? ` | ${JSON.stringify(error.body).slice(0, 600)}` : ''
+      }`;
+    }
+    return res.status(500).json(failure);
   }
 }
