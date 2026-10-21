@@ -1747,7 +1747,26 @@ ${freeFromBand()}
   };
 }
 
+/** Products offered on the cart page as "Customers also purchased", in the order
+ *  they are shown. The page script hides whatever is already in the cart. */
+const CART_SUGGESTIONS = ['cream-100', 'capsule-60', 'rollon-50-duo', 'cream-duo'];
+
 export function cart() {
+  const suggestJson = JSON.stringify(
+    CART_SUGGESTIONS.map((id) => PRODUCTS.find((p) => p.id === id))
+      .filter(Boolean)
+      .map((p) => ({
+        id: p.id,
+        name: t(p.name),
+        variant: t(p.variant),
+        price: p.price,
+        priceLabel: p.priceLabel,
+        art: p.art,
+        href: url(p.slug),
+        badge: p.badge ? t(p.badge) : '',
+      }))
+  ).replace(/</g, '\\u003c');
+
   const body = `${pageHero({
     eyebrow: { en: 'Cart', zh: '購物車' },
     title: { en: 'Your cart', zh: '你的購物車' },
@@ -1813,6 +1832,13 @@ export function cart() {
             </span>
           </a>
         </aside>
+
+        <div class="cart-suggest" data-cart-suggest hidden>
+          <h2 class="cart-suggest__title">${t({ en: 'Customers also purchased', zh: '顧客亦有購買' })}</h2>
+          <div class="cart-suggest__list" data-cart-suggest-list></div>
+          <p class="sr-only" data-cart-suggest-status role="status"></p>
+          <script type="application/json" data-cart-suggest-data>${suggestJson}</script>
+        </div>
       </div>
 
       <div class="pm-modal" data-payme-modal hidden role="dialog" aria-modal="true" aria-labelledby="pm-title">
