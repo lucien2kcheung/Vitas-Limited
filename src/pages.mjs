@@ -1860,6 +1860,8 @@ export function cart() {
                 <input id="pm-name" name="name" type="text" autocomplete="name" required maxlength="100"></div>
               <div class="field"><label for="pm-email">${t({ en: 'Email', zh: '電郵' })}</label>
                 <input id="pm-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+              <div class="field"><label for="pm-email2">${t({ en: 'Confirm email', zh: '確認電郵' })}</label>
+                <input id="pm-email2" name="email2" type="email" autocomplete="off" required maxlength="160"></div>
               <div class="field"><label for="pm-phone">${t({ en: 'Phone', zh: '電話' })}</label>
                 <input id="pm-phone" name="phone" type="tel" autocomplete="tel" required maxlength="30"></div>
               <div class="field"><label for="pm-address1">${t({ en: 'Delivery address', zh: '送貨地址' })}</label>
@@ -1943,7 +1945,9 @@ export function checkoutResult(kind) {
                   zh: `對訂單有疑問？請電郵 ${SITE.email}，會有真人回覆。`,
                 },
                 'note'
-              )
+              ) +
+              /* Filled in by assets/js/shop.js for PayMe orders (?payme=ORDER_ID). */
+              `<p class="note" data-payme-sent hidden role="status"></p>`
             : blk('p', {
                 en: 'If something went wrong at checkout — a card declined, a code that would not apply — tell us and we will sort it out. You can also pay with PayMe from the cart, or message us on WhatsApp if you would rather pay by FPS.',
                 zh: '如結帳時遇到問題——卡片被拒、優惠碼無法套用——請告訴我們，我們會處理。你亦可在購物車選擇 PayMe 付款；如想使用轉數快，請 WhatsApp 我們。',

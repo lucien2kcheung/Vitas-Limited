@@ -71,6 +71,10 @@ export function validateCustomer(input = {}) {
   };
   if (customer.name.length < 2) throw new OrderError('Please enter your name.');
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(customer.email)) throw new OrderError('Please enter a valid email address.');
+  /* The form asks twice so a typo cannot silently lose the confirmation email. */
+  if (clean(input.emailConfirm, 160).toLowerCase() !== customer.email) {
+    throw new OrderError('The two email addresses do not match. Please check them.');
+  }
   if (customer.phone.replace(/\D/g, '').length < 8) throw new OrderError('Please enter a phone number we can reach you on.');
   if (customer.address1.length < 3) throw new OrderError('Please enter your delivery address.');
   return customer;

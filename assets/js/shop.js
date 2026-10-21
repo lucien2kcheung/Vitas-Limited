@@ -51,6 +51,14 @@
       zh: '你的帳戶沒有被扣款。請重試，或選擇其他付款方式。',
     },
     pmLeft: { en: 'Code valid for', zh: '二維碼有效時間' },
+    pmEmailMismatch: {
+      en: 'The two email addresses do not match. Please check them so we can send your confirmation.',
+      zh: '兩個電郵地址不一致。請檢查，以便我們寄出訂單確認。',
+    },
+    pmSentTo: {
+      en: 'Your confirmation email is on its way to {email}. If that is not your address, or nothing arrives within a few minutes, email info@vitas.com.hk quoting order {id}.',
+      zh: '訂單確認電郵將寄往 {email}。如該地址不正確，或數分鐘後仍未收到，請電郵 info@vitas.com.hk 並提供訂單編號 {id}。',
+    },
     pmReview: {
       en: 'Your payment needs a quick check by our team. Please email info@vitas.com.hk with your order details.',
       zh: '你的付款需由我們檢查。請電郵 info@vitas.com.hk 並提供訂單資料。',
@@ -451,6 +459,12 @@
       var field = function (name) {
         return pmForm.elements[name].value;
       };
+      if (field('email').trim().toLowerCase() !== field('email2').trim().toLowerCase()) {
+        pmError.textContent = say('pmEmailMismatch');
+        pmError.hidden = false;
+        pmForm.elements.email2.focus();
+        return;
+      }
       pmSubmit.disabled = true;
       var label = pmSubmit.textContent;
       pmSubmit.textContent = say('pmWorking');
@@ -465,6 +479,7 @@
           customer: {
             name: field('name'),
             email: field('email'),
+            emailConfirm: field('email2'),
             phone: field('phone'),
             address1: field('address1'),
             address2: field('address2'),
@@ -502,6 +517,24 @@
   if (/[?&]payme=/.test(window.location.search) && /\/checkout\/success\//.test(window.location.pathname)) {
     cart = [];
     persist();
+
+    /* Say where the confirmation is going (the address is masked by the server),
+       so a customer who mistyped it notices straight away. */
+    var sentNote = document.querySelector('[data-payme-sent]');
+    var orderParam = (window.location.search.match(/[?&]payme=([^&]+)/) || [])[1];
+    if (sentNote && orderParam && orderParam !== 'failed') {
+      var orderRef = decodeURIComponent(orderParam);
+      fetch('/api/payme/status?orderId=' + encodeURIComponent(orderRef))
+        .then(function (res) {
+          return res.ok ? res.json() : null;
+        })
+        .then(function (data) {
+          if (!data || !data.emailHint) return;
+          sentNote.textContent = say('pmSentTo').replace('{email}', data.emailHint).replace('{id}', orderRef);
+          sentNote.hidden = false;
+        })
+        .catch(function () {});
+    }
   }
 
   /* PayMe sent the customer back after a failed payment. */

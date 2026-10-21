@@ -10,6 +10,14 @@ import { markPaid } from '../_lib/fulfil.js';
 import { getPaymentRequest } from '../_lib/payme.js';
 import { getOrder, updateOrder } from '../_lib/store.js';
 
+/** a***z@gmail.com — enough for a customer to spot a typo, not enough to harvest. */
+export function maskEmail(email) {
+  const [local = '', domain = ''] = String(email || '').split('@');
+  if (!local || !domain) return '';
+  const shown = local.length <= 2 ? local[0] : `${local[0]}***${local[local.length - 1]}`;
+  return `${shown}@${domain}`;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
     res.setHeader('Allow', 'GET');
@@ -43,7 +51,7 @@ export default async function handler(req, res) {
       }
     }
 
-    return res.status(200).json({ status: order.status });
+    return res.status(200).json({ status: order.status, emailHint: maskEmail(order.customer?.email) });
   } catch (error) {
     console.error('payme status failed', error);
     return res.status(500).json({ error: 'Could not check status' });
