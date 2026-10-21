@@ -70,8 +70,6 @@ export default async function handler(req, res) {
     const links = extractLinks(pr);
     await updateOrder(id, { paymentRequestId, expiresAt: Date.now() + DURATION * 1000 });
     await linkPaymentRequest(paymentRequestId, id);
-    /* Remembered only on previews, for the test-only /api/payme/simulate link. */
-    if (process.env.VERCEL_ENV === 'preview') await redis().set('payme:last', id, { ex: 3600 });
 
     const qrSvg = await QRCode.toString(links.web, { type: 'svg', margin: 1, errorCorrectionLevel: 'M' });
 
