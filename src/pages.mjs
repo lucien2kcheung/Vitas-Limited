@@ -715,7 +715,7 @@ ${newsletter()}`;
 
 export function howToUse() {
   // Set VIDEO_ID to the YouTube id once the video is ready; empty shows the placeholder.
-  const VIDEO_ID = 's3gSpjQfCus';
+  const VIDEO_ID = getLang() === 'zh' ? 's3gSpjQfCus' : 'b_AQTsdMZOg'; // ZH keeps the original video
 
   const routines = [
     {
