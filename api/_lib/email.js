@@ -7,11 +7,12 @@
  */
 
 import { hkd } from './orders.js';
+import { buildReceipt } from './receipt.js';
 
 const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-async function send({ to, subject, html, replyTo }) {
+async function send({ to, subject, html, replyTo, attachments }) {
   const key = process.env.RESEND_API_KEY;
   if (!key) {
     console.warn(`[email skipped: RESEND_API_KEY not set] ${subject} → ${to}`);
@@ -26,6 +27,7 @@ async function send({ to, subject, html, replyTo }) {
       subject,
       html,
       ...(replyTo ? { reply_to: replyTo } : {}),
+      ...(attachments?.length ? { attachments } : {}),
     }),
   });
   if (!res.ok) throw new Error(`Resend ${res.status}: ${await res.text()}`);
@@ -62,6 +64,20 @@ export async function sendOrderEmails(order) {
   const address = [c.address1, c.address2, c.district, 'Hong Kong'].filter(Boolean).map(esc).join('<br>');
   const zh = order.lang === 'zh';
 
+  /* The receipt PDF (same layout as the Stripe receipt) goes to both emails. If it
+     cannot be built the emails still go out, without it — the order is never held up. */
+  let attachments;
+  try {
+    const pdf = await buildReceipt(order);
+    attachments = [{ filename: `VITAS-Receipt-${order.id}.pdf`, content: pdf.toString('base64') }];
+  } catch (error) {
+    console.error('receipt pdf failed — sending order emails without it', error);
+  }
+  const receiptNote = (zh) =>
+    attachments
+      ? `<p style="margin:0 0 16px">${zh ? '收據（PDF）已附於此電郵。' : 'Your receipt (PDF) is attached to this email.'}</p>`
+      : '';
+
   const merchant = shell(`
     <h2 style="margin:0 0 4px">New PayMe order · ${esc(order.id)}</h2>
     <p style="margin:0 0 16px;color:#555">Paid ${esc(order.paidAt)} · PayMe transaction ${esc(order.transactionId || '—')}</p>
@@ -76,6 +92,7 @@ export async function sendOrderEmails(order) {
         ? `我們已收到你的 PayMe 付款。訂單編號：<strong>${esc(order.id)}</strong>。本地訂單一般 2–4 個工作天送達，發貨後會以電郵通知你。`
         : `We have received your PayMe payment. Order number: <strong>${esc(order.id)}</strong>. Local orders usually arrive within 2–4 working days, and we will email you when yours ships.`
     }</p>
+    ${receiptNote(zh)}
     <table style="width:100%;border-collapse:collapse">${itemRows(order, order.lang)}${totalsRows(order)}</table>
     <h3 style="margin:20px 0 4px">${zh ? '送貨地址' : 'Delivery address'}</h3>
     <p style="margin:0">${esc(c.name)}<br>${address}</p>
@@ -89,12 +106,14 @@ export async function sendOrderEmails(order) {
       subject: `New PayMe order ${order.id} — ${hkd(order.total)}`,
       html: merchant,
       replyTo: c.email,
+      attachments,
     }),
     send({
       to: c.email,
       subject: zh ? `VITAS 訂單確認 ${order.id}` : `Your VITAS order ${order.id}`,
       html: customer,
       replyTo: 'info@vitas.com.hk',
+      attachments,
     }),
   ]);
   results.forEach((r, i) => {
