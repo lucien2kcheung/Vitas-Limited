@@ -7,7 +7,35 @@
  */
 
 import { hkd } from './orders.js';
-import { buildReceipt } from './receipt.js';
+import { buildReceipt, receiptNumber } from './receipt.js';
+
+/* Hands the paid order and its receipt PDF to the n8n invoice automation (Drive + Master Orders).
+   Never throws: a failure here must not affect the customer's order or emails.
+     N8N_INVOICE_WEBHOOK_URL   production webhook URL of the n8n workflow
+     N8N_INVOICE_SECRET        shared key, sent as the x-vitas-key header */
+async function notifyInvoiceAutomation(order, pdfBase64) {
+  const url = process.env.N8N_INVOICE_WEBHOOK_URL;
+  const secret = process.env.N8N_INVOICE_SECRET;
+  if (!url || !secret) {
+    console.warn('[invoice automation skipped: N8N_INVOICE_WEBHOOK_URL / N8N_INVOICE_SECRET not set]', order.id);
+    return;
+  }
+  if (!pdfBase64) {
+    console.error('invoice automation skipped: no receipt PDF for order', order.id);
+    return;
+  }
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-vitas-key': secret },
+      body: JSON.stringify({ source: 'payme', order, receiptNumber: receiptNumber(order), pdfBase64 }),
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!res.ok) console.error('invoice automation webhook failed', res.status, await res.text());
+  } catch (error) {
+    console.error('invoice automation webhook error', order.id, error);
+  }
+}
 
 const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -67,9 +95,11 @@ export async function sendOrderEmails(order) {
   /* The receipt PDF (same layout as the Stripe receipt) goes to both emails. If it
      cannot be built the emails still go out, without it — the order is never held up. */
   let attachments;
+  let pdfBase64;
   try {
     const pdf = await buildReceipt(order);
-    attachments = [{ filename: `VITAS-Receipt-${order.id}.pdf`, content: pdf.toString('base64') }];
+    pdfBase64 = pdf.toString('base64');
+    attachments = [{ filename: `VITAS-Receipt-${order.id}.pdf`, content: pdfBase64 }];
   } catch (error) {
     console.error('receipt pdf failed — sending order emails without it', error);
   }
@@ -119,6 +149,7 @@ export async function sendOrderEmails(order) {
   results.forEach((r, i) => {
     if (r.status === 'rejected') console.error(`order email ${i === 0 ? 'to merchant' : 'to customer'} failed`, r.reason);
   });
+  await notifyInvoiceAutomation(order, pdfBase64);
   return results;
 }
 
