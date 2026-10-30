@@ -12,7 +12,7 @@ import { PRODUCTS, SHOP } from '../../src/data.mjs';
 export const SHIPPING_FEE = 3000; // HK$30 — same as api/checkout.js
 export const MAX_QTY = 20;
 
-/** PayMe discount codes: 10% off the products (delivery is not discounted,
+/** PayMe discount codes: a percentage off the products (10%, or 20% for JPOA20OFF) (delivery is not discounted,
  *  which matches how the same code behaves on the Stripe payment page).
  *  None of them expire. Codes are matched case-insensitively. */
 const COUPONS = {
@@ -22,6 +22,7 @@ const COUPONS = {
   TKXS26RVB: { percentOff: 10 },
   NFRJ59WQZ: { percentOff: 10 },
   WMBQ72KXP: { percentOff: 10 },
+  JPOA20OFF: { percentOff: 20 },
 };
 
 export class OrderError extends Error {
