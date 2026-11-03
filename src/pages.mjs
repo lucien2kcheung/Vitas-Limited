@@ -5,6 +5,7 @@
  * once per language and prefixes the Chinese one with /zh.
  */
 
+import { PRIVACY_TITLE, PRIVACY_INTRO, PRIVACY_SECTIONS } from './privacy.mjs';
 import { WA_ICON_PATH,
   SITE,
   t,
@@ -2177,10 +2178,27 @@ export function contact() {
   };
 }
 
+/** Renders the privacy statement; the email address becomes a mailto link. */
+function privacyBody() {
+  const link = (html) => html.replace(/info@vitas\.com\.hk/g, `<a href="mailto:${SITE.email}">${SITE.email}</a>`);
+  const block = (b) =>
+    b.p
+      ? `<p>${link(t(b.p))}</p>`
+      : b.ul
+      ? `<ul>${b.ul.map((li) => `<li>${link(t(li))}</li>`).join('')}</ul>`
+      : `<p class="prose__address">${b.contact.map((l) => link(t(l))).join('<br>')}</p>`;
+  return (
+    PRIVACY_INTRO.map((p) => `<p>${t(p)}</p>`).join('\n        ') +
+    PRIVACY_SECTIONS.map(
+      (sec) => `\n        ${blk('h2', sec.h)}\n        ${sec.blocks.map(block).join('\n        ')}`
+    ).join('')
+  );
+}
+
 export function legal(kind) {
   const isPrivacy = kind === 'privacy';
   const path = isPrivacy ? '/legal/privacy/' : '/legal/terms/';
-  const title = isPrivacy ? { en: 'Privacy', zh: '私隱政策' } : { en: 'Terms of use', zh: '使用條款' };
+  const title = isPrivacy ? PRIVACY_TITLE : { en: 'Terms of use', zh: '使用條款' };
 
   const body = `${pageHero({
     eyebrow: { en: 'Legal', zh: '條款' },
@@ -2191,14 +2209,7 @@ export function legal(kind) {
       <div class="wrap prose">
         ${
           isPrivacy
-            ? blk('p', {
-                en: 'This site uses the Google tag (Google Ads) to measure how visitors reach and use the site and the effectiveness of our advertising; Google may set cookies for this purpose. If you submit the contact or newsletter form, the details you type are sent to us and used only to reply to you or to send the newsletter you asked for. Ask us to delete them at any time and we will.',
-                zh: '本網站使用 Google 標籤（Google Ads）以衡量訪客如何到達及使用本網站，以及廣告成效；Google 可能為此設定 cookie。如你提交聯絡或訂閱表格，所填資料只會用於回覆你，或發送你要求的通訊。你可隨時要求我們刪除相關資料。',
-              }) +
-              blk('p', {
-                en: 'PLACEHOLDER: before launch, replace this page with a Personal Data (Privacy) Ordinance compliant notice reviewed by your legal adviser, covering data classes collected, purpose, transfer, retention and the data access / correction request channel.',
-                zh: '（待補：發布前，請由法律顧問審閱並替換為符合《個人資料（私隱）條例》的完整聲明，涵蓋收集的資料類別、用途、轉移、保留期及查閱／更正途徑。）',
-              })
+            ? privacyBody()
             : blk('p', {
                 en: 'The information on this site describes a cosmetic massage product. It is general information, not medical advice, and it does not replace an assessment by a doctor or physiotherapist. Product availability, packaging and pricing at third-party retailers are set by those retailers and may differ from what is described here.',
                 zh: '本網站資料描述的是一款按摩護理產品，屬一般資訊，並非醫療建議，亦不能取代醫生或物理治療師的評估。第三方零售商的供應情況、包裝及售價由該零售商決定，可能與本網站所述不同。',

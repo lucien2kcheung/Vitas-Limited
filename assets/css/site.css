@@ -275,6 +275,10 @@ img { max-width: 100%; height: auto; display: block; }
 .prose { max-width: 68ch; }
 .prose h2 { margin-top: 2.6rem; }
 .prose h2:first-child { margin-top: 0; }
+.prose h2 { font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem); }
+.prose ul { margin: 0 0 1.1rem; padding-left: 1.3rem; display: grid; gap: 0.5rem; color: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
+.prose a { color: var(--brand-deep); }
+.prose__address { padding-left: 1rem; border-left: 2px solid var(--brand); }
 .prose p { color: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
 
 /* ------------------------------------------------------------- cards */
