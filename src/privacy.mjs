@@ -198,8 +198,8 @@ export const PRIVACY_SECTIONS = [
     blocks: [
       {
         p: {
-          en: 'We do not use analytics or advertising cookies or third-party tracking tools on this website. Our website and hosting services may nevertheless process technical information needed to operate and secure the site.',
-          zh: '本網站不使用分析或廣告Cookies，亦不使用第三方追蹤工具。然而，本網站及網站寄存服務仍可能處理營運及保障網站安全所需的技術資料。',
+          en: "We use the Google tag (Google Ads) on this website to measure how visitors reach and use the site and how effective our advertising is. Google may set cookies or similar technologies for this purpose, and the information collected is handled under Google's own privacy policy. Our website and hosting services may also process technical information needed to operate and secure the site.",
+          zh: '本網站使用 Google 標籤（Google Ads），以衡量訪客如何到達及使用本網站，以及廣告成效。Google 可能為此設定 Cookies 或類似技術，所收集的資料受 Google 自身的私隱政策規管。本網站及網站寄存服務亦可能處理營運及保障網站安全所需的技術資料。',
         },
       },
       {
