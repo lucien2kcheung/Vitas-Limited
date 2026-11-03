@@ -279,6 +279,14 @@ export function page({ title, description, path, body, active, jsonLd = [], body
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="/assets/css/site.css">
 ${structured}
+  <!-- Google tag (gtag.js) — Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18537536728"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18537536728');
+  </script>
 </head>
 <body class="${bodyClass}${isZh ? ' lang-zh' : ''}" data-lang="${isZh ? 'zh' : 'en'}">
 ${header(active, path)}

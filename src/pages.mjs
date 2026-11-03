@@ -2192,8 +2192,8 @@ export function legal(kind) {
         ${
           isPrivacy
             ? blk('p', {
-                en: 'This site collects no analytics cookies and runs no third-party trackers. If you submit the contact or newsletter form, the details you type are sent to us and used only to reply to you or to send the newsletter you asked for. Ask us to delete them at any time and we will.',
-                zh: '本網站不使用分析 cookie，亦沒有第三方追蹤程式。如你提交聯絡或訂閱表格，所填資料只會用於回覆你，或發送你要求的通訊。你可隨時要求我們刪除相關資料。',
+                en: 'This site uses the Google tag (Google Ads) to measure how visitors reach and use the site and the effectiveness of our advertising; Google may set cookies for this purpose. If you submit the contact or newsletter form, the details you type are sent to us and used only to reply to you or to send the newsletter you asked for. Ask us to delete them at any time and we will.',
+                zh: '本網站使用 Google 標籤（Google Ads）以衡量訪客如何到達及使用本網站，以及廣告成效；Google 可能為此設定 cookie。如你提交聯絡或訂閱表格，所填資料只會用於回覆你，或發送你要求的通訊。你可隨時要求我們刪除相關資料。',
               }) +
               blk('p', {
                 en: 'PLACEHOLDER: before launch, replace this page with a Personal Data (Privacy) Ordinance compliant notice reviewed by your legal adviser, covering data classes collected, purpose, transfer, retention and the data access / correction request channel.',
