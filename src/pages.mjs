@@ -1770,22 +1770,33 @@ ${freeFromBand()}
       {
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        itemListElement: PRODUCTS.map((p, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          item: {
-            '@type': 'Product',
-            name: t(p.name),
-            image: SITE.url + p.art,
-            offers: {
-              '@type': 'Offer',
-              price: (p.price / 100).toFixed(2),
-              priceCurrency: 'HKD',
-              availability: 'https://schema.org/InStock',
-              url: SITE.url + url('/shop/'),
+        // One Product per shop card; a card's option (capsule Monthly package) is a second Offer.
+        itemListElement: PRODUCTS.filter((p) => !OPTION_IDS.has(p.id)).map((p, i) => {
+          const offers = [p, ...PRODUCTS.filter((o) => o.id === OPTION_OF[p.id])].map((o) => ({
+            '@type': 'Offer',
+            ...(OPTION_OF[p.id] ? { name: t(o.variant) } : {}),
+            price: (o.price / 100).toFixed(2),
+            priceCurrency: 'HKD',
+            availability: 'https://schema.org/InStock',
+            url: SITE.url + url('/shop/'),
+            ...offerPolicies(o.price / 100),
+          }));
+          const ident = { 'cream-100': PRODUCT, 'capsule-60': CAPSULE, 'rollon-50-duo': ROLLON }[p.id];
+          return {
+            '@type': 'ListItem',
+            position: i + 1,
+            item: {
+              '@type': 'Product',
+              name: t(p.name),
+              description: t(p.blurb),
+              // The Duo bundle has no SKU/barcode of its own yet: fall back to its cart id.
+              ...(ident ? identifiers(ident) : { sku: p.id }),
+              brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
+              image: SITE.url + p.art,
+              offers: offers.length === 1 ? offers[0] : offers,
             },
-          },
-        })),
+          };
+        }),
       },
       breadcrumb([HOME_CRUMB, { name: { en: 'Shop', zh: '網上商店' }, path: '/shop/' }]),
     ],
