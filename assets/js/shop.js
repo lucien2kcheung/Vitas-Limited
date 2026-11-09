@@ -293,6 +293,11 @@
         })
         .then(function (data) {
           if (!data.url) throw new Error('no session url');
+          /* Remember the order value so the success page can report the purchase (assets/js/track.js).
+             Prices are stored in cents; this is before any discount code applied on Stripe. */
+          try {
+            sessionStorage.setItem('vitas_order', JSON.stringify({ value: subtotal() / 100 }));
+          } catch (e) {}
           window.location.href = data.url;
         })
         .catch(function () {
