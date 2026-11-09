@@ -513,8 +513,8 @@ export const FAQS = [
   {
     q: { en: 'What is the story behind VITAS?', zh: 'VITAS 紓適寧的歷史？' },
     a: {
-      en: 'VITAS was created in Hong Kong to bring a French-made, plant-based recovery cream to a market dominated by strong medicated rubs. The formula — grape seed, niaouli and eucalyptus — comes out of two decades of formulation work in France, and the finished product has been on Hong Kong pharmacy shelves at Watsons and Mannings for over a decade. Today it is still a small, Hong Kong-run brand, and every formula is made in France to the same standard. Read the longer version on our About page.',
-      zh: 'VITAS 紓適寧於香港創立，目的是在以強效藥膏為主的市場中，帶來一支法國製造的植物配方修復啫喱膏。配方以葡萄籽、綠花白千層與尤加利為核心，源自法國二十年的配方研發；成品在香港屈臣氏及萬寧的貨架上已超過十年。時至今日，它仍是一個由香港團隊經營的小品牌，每一款配方都在法國按同一標準生產。詳情請看「關於 VITAS」。',
+      en: 'VITAS was created in Hong Kong to bring a French-made, plant-based recovery cream to a market dominated by strong medicated rubs. The formula — grape seed, niaouli and eucalyptus — comes out of over 20 years of formulation work in France, and VITAS has been trusted in Hong Kong for over 20 years. Today it is still a small, Hong Kong-run brand, and every formula is made in France to the same standard. Read the longer version on our About page.',
+      zh: 'VITAS 紓適寧於香港創立，目的是在以強效藥膏為主的市場中，帶來一支法國製造的植物配方修復啫喱膏。配方以葡萄籽、綠花白千層與尤加利為核心，源自法國逾 20 年的配方研發，VITAS 在香港亦已深受信賴逾 20 年。時至今日，它仍是一個由香港團隊經營的小品牌，每一款配方都在法國按同一標準生產。詳情請看「關於 VITAS」。',
     },
   },
   {
@@ -592,7 +592,7 @@ export const FAQS = [
  *
  * PLACEHOLDER — VERIFY BEFORE LAUNCH: the founding narrative below follows the
  * brand's own account (VITAS Brand Guidelines v1.0, 2026) and the public retail
- * record. Specific dates, the founder's biography and the "two decades of
+ * record. Specific dates, the founder's biography and the "over 20 years of
  * formulation" line are not independently substantiated here. Confirm every
  * factual detail with Rosana Li before this page goes live, and see
  * docs/positioning.md.
