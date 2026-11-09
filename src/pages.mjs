@@ -61,12 +61,53 @@ function sportArt(sport) {
 
 /* --------------------------------------------------------- shared partials */
 
+/**
+ * Product identifiers. VITAS is the brand owner, so our own SKU is the
+ * manufacturer part number (brand + mpn satisfies Google's identifier check).
+ * The GTIN is added only once a real barcode is set in data.mjs.
+ */
+const identifiers = (p) => ({
+  sku: p.sku,
+  mpn: p.sku,
+  ...(p.gtin13 ? { gtin13: p.gtin13 } : {}),
+});
+
+/** Return + shipping terms for an Offer. Mirrors /legal/shipping-returns/ and checkout. */
+const offerPolicies = (priceHkd) => ({
+  hasMerchantReturnPolicy: {
+    '@type': 'MerchantReturnPolicy',
+    applicableCountry: 'HK',
+    returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+    merchantReturnDays: SHOP.returnDays,
+    refundType: 'https://schema.org/FullRefund',
+    merchantReturnLink: SITE.url + url('/legal/shipping-returns/'),
+  },
+  shippingDetails: {
+    '@type': 'OfferShippingDetails',
+    shippingRate: {
+      '@type': 'MonetaryAmount',
+      value: priceHkd * 100 >= SHOP.freeShippingOver ? 0 : SHOP.shippingFee / 100,
+      currency: 'HKD',
+    },
+    shippingDestination: { '@type': 'DefinedRegion', addressCountry: 'HK' },
+    deliveryTime: {
+      '@type': 'ShippingDeliveryTime',
+      transitTime: {
+        '@type': 'QuantitativeValue',
+        minValue: SHOP.deliveryDays.min,
+        maxValue: SHOP.deliveryDays.max,
+        unitCode: 'DAY',
+      },
+    },
+  },
+});
+
 const productJsonLd = () => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'VITAS Soothing Cream Gel 100ml',
   alternateName: 'VITAS 紓適寧 淋巴管理啫喱膏 100毫升',
-  sku: PRODUCT.sku,
+  ...identifiers(PRODUCT),
   brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
   description: plain({
     en: 'A low-odour, non-greasy plant-oil cream gel with eucalyptus, grape seed and niaouli. For warming up before training and massaging tired muscles afterwards. Made in France.',
@@ -84,6 +125,7 @@ const productJsonLd = () => ({
     availability: 'https://schema.org/InStock',
     url: SITE.url + url(PRODUCT.slug),
     seller: { '@type': 'Organization', name: 'VITAS 紓適寧' },
+    ...offerPolicies(PRODUCT.price),
   },
 });
 
@@ -987,7 +1029,7 @@ const capsuleJsonLd = () => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'VITAS Capsule',
-  sku: CAPSULE.sku,
+  ...identifiers(CAPSULE),
   brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
   description: t({
     en: 'A plant-based food supplement: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules, made in France to EEC GMP standard.',
@@ -1004,6 +1046,7 @@ const capsuleJsonLd = () => ({
     priceCurrency: 'HKD',
     availability: 'https://schema.org/InStock',
     url: SITE.url + url('/capsule/'),
+    ...offerPolicies(o.price),
   })),
 });
 
@@ -1180,7 +1223,7 @@ const rollOnJsonLd = () => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: 'VITAS Soothing Cream Gel Roll-On, 2 × 50ml',
-  sku: ROLLON.sku,
+  ...identifiers(ROLLON),
   brand: { '@type': 'Brand', name: 'VITAS 紓適寧' },
   description: t({
     en: 'Grape seed, niaouli and eucalyptus with menthol, in a 50ml roll-on. Two-pack, made in France to EEC GMP standard.',
@@ -1193,6 +1236,7 @@ const rollOnJsonLd = () => ({
     priceCurrency: 'HKD',
     availability: 'https://schema.org/InStock',
     url: SITE.url + url('/roll-on/'),
+    ...offerPolicies(ROLLON.price),
   },
 });
 
