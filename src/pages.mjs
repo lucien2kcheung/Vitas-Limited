@@ -134,7 +134,7 @@ const orgJsonLd = {
   '@type': 'Organization',
   name: 'VITAS 紓適寧',
   url: SITE.url,
-  logo: SITE.url + '/assets/img/favicon.svg',
+  logo: SITE.url + '/assets/img/logo/logo_horizontal.png',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Unit 411, Lippo Sun Plaza, 28 Canton Road',
@@ -279,7 +279,7 @@ function newsletter() {
 function plantCard(p, { role = true } = {}) {
   return `<article class="card card--plant">
             <a class="card__link" href="${url('/ingredients/' + p.id + '/')}">
-              <span class="card__art card__art--tint"><img src="${p.art}" alt="" width="1000" height="1000" loading="lazy" decoding="async"></span>
+              <span class="card__art card__art--tint"><img src="${p.art}" alt="${attr(t({ en: `${p.nameEn} (${p.latin}) illustration`, zh: `${p.nameZh}插圖` }))}" width="1000" height="1000" loading="lazy" decoding="async"></span>
               ${role ? `<span class="card__meta">${t(p.role)}</span>` : ''}
               ${blk('span', { en: p.nameEn, zh: p.nameZh }, 'card__title')}
               <span class="card__latin">${p.latin}</span>
@@ -291,9 +291,9 @@ function plantCard(p, { role = true } = {}) {
 
 
 /** The master slogan, always paired with its compliance sub-copy. */
-function sloganBlock(className = '') {
+function sloganBlock(className = '', tag = 'h1') {
   const [line1, line2] = t(BRAND.slogan);
-  return `<h1 class="slogan ${className}"><span>${line1}</span><span>${line2}</span></h1>`;
+  return `<${tag} class="slogan ${className}"><span>${line1}</span><span>${line2}</span></${tag}>`;
 }
 
 /** Prime · Perform · Recover. */
@@ -312,7 +312,7 @@ function triptych() {
 function sportCard(sport) {
   return `<article class="sport-card">
             <a class="sport-card__link" href="${url('/for/' + sport.id + '/')}">
-              <span class="sport-card__art"><img src="${sportArt(sport).src}"${sportArt(sport).srcset ? ` srcset="${sportArt(sport).srcset}" sizes="(max-width: 900px) 92vw, 30vw"` : ''} alt="" width="${sportArt(sport).w}" height="${sportArt(sport).h}" loading="lazy" decoding="async"></span>
+              <span class="sport-card__art"><img src="${sportArt(sport).src}"${sportArt(sport).srcset ? ` srcset="${sportArt(sport).srcset}" sizes="(max-width: 900px) 92vw, 30vw"` : ''} alt="${attr(t({ en: `${sport.name.en} training illustration`, zh: `${sport.name.zh}訓練插圖` }))}" width="${sportArt(sport).w}" height="${sportArt(sport).h}" loading="lazy" decoding="async"></span>
               <span class="sport-card__who">${t(sport.who)}</span>
               ${blk('span', sport.name, 'sport-card__name')}
               ${blk('span', sport.hook, 'sport-card__hook')}
@@ -531,7 +531,7 @@ ${puritySection()}
           )}
           ${cta('/how-to-use/#finder', { en: 'Start the three questions', zh: '開始三條問題' })}
         </div>
-        <img class="finder-teaser__art" src="/assets/img/art-desk.svg" alt="" width="1200" height="800" loading="lazy" decoding="async">
+        <img class="finder-teaser__art" src="/assets/img/art-desk.svg" alt="${attr(t({ en: 'Illustration of a desk with a VITAS tube', zh: '放有 VITAS 啫喱膏的辦公桌插圖' }))}" width="1200" height="800" loading="lazy" decoding="async">
       </div>
     </section>
 
@@ -545,7 +545,7 @@ ${newsletter()}`;
       zh: '運動前後適用的低氣味肌肉按摩膏',
     },
     description: {
-      en: 'VITAS 紓適寧 Soothing Cream Gel: a low-odour, non-greasy plant-oil cream gel with eucalyptus, grape seed and niaouli. 100ml, HK$250, at Watsons and Mannings in Hong Kong.',
+      en: 'VITAS 紓適寧 Soothing Cream Gel: a low-odour, non-greasy plant-oil cream gel with eucalyptus, grape seed and niaouli. 100ml, HK$250, at Watsons and Mannings.',
       zh: 'VITAS 紓適寧淋巴管理啫喱膏：含尤加利、葡萄籽及綠花白千層的低氣味、不油膩植物油啫喱膏。100毫升，HK$250，香港屈臣氏及萬寧有售。',
     },
     path: '/',
@@ -558,13 +558,13 @@ ${newsletter()}`;
 
 export function product() {
   const body = `${pageHero({
-    eyebrow: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' },
+    eyebrow: { en: 'VITAS Soothing Cream Gel', zh: 'VITAS 淋巴管理啫喱膏' },
     title: { en: 'One tube, three plants, two moments', zh: '一支啫喱膏，三種植物，兩個時刻' },
     lede: {
-      en: 'A clean, French-made cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it feels like, where it fits in your day, and what is inside.',
+      en: 'VITAS Soothing Cream Gel is a clean, French-made cosmetic cream gel for warming up before effort and cooling down after it. 100ml, HK$250. Here is what it feels like, where it fits in your day, and what is inside.',
       zh: '一支純淨、法國製造的啫喱膏，陪伴你度過運動前的熱身與運動後的放鬆。100 毫升，HK$250。以下，將為你完整介紹它的奇妙膚感、如何自然融入你的日常，以及它的成分。',
     },
-    trail: [HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' }, path: '/product/' }],
+    trail: [HOME_CRUMB, { name: { en: 'VITAS Soothing Cream Gel', zh: 'VITAS 淋巴管理啫喱膏' }, path: '/product/' }],
   })}
 
     <section class="section product-main">
@@ -741,7 +741,7 @@ ${sectionHead({
 ${newsletter()}`;
 
   return {
-    title: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' },
+    title: { en: 'VITAS Soothing Cream Gel 100ml: low-odour cream', zh: 'VITAS 淋巴管理啫喱膏' },
     description: {
       en: 'VITAS Soothing Cream Gel (100ml, HK$250): warming before training, cooling after, absorbed in under a minute, no medicated smell. Made in France.',
       zh: 'VITAS 淋巴管理啫喱膏（100毫升，HK$250）：運動前溫熱、運動後清涼，一分鐘內吸收，沒有藥油味。法國製造。',
@@ -751,7 +751,7 @@ ${newsletter()}`;
     body,
     jsonLd: [
       productJsonLd(),
-      breadcrumb([HOME_CRUMB, { name: { en: 'VITAS Soothing Cream', zh: 'VITAS 淋巴管理啫喱膏' }, path: '/product/' }]),
+      breadcrumb([HOME_CRUMB, { name: { en: 'VITAS Soothing Cream Gel', zh: 'VITAS 淋巴管理啫喱膏' }, path: '/product/' }]),
     ],
   };
 }
@@ -1009,7 +1009,7 @@ ${sectionHead({
     </section>`;
 
   return {
-    title: { en: 'How to use', zh: '使用方法' },
+    title: { en: 'How to use VITAS before and after training', zh: '使用方法' },
     description: {
       en: 'How to use VITAS Soothing Cream Gel: a pre-training warm-up, a post-training wind-down, a three-minute desk reset, plus routines for Hyrox, padel and running.',
       zh: 'VITAS 淋巴管理啫喱膏的使用方法：訓練前熱身、訓練後放鬆、辦公桌前三分鐘重設，以及 Hyrox、板式網球與跑步的專屬用法。',
@@ -1019,6 +1019,15 @@ ${sectionHead({
     body,
     jsonLd: [
       breadcrumb([HOME_CRUMB, { name: { en: 'How to use', zh: '使用方法' }, path: '/how-to-use/' }]),
+      // One HowTo per routine (helps AI engines parse the numbered steps).
+      ...routines.map((r) => ({
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: `${plain(r.title)} · VITAS`,
+        description: plain(r.eyebrow),
+        inLanguage: getLang() === 'zh' ? 'zh-Hant-HK' : 'en-HK',
+        step: r.steps.map((s, i) => ({ '@type': 'HowToStep', position: i + 1, text: plain(s) })),
+      })),
     ],
   };
 }
@@ -1205,9 +1214,9 @@ ${buyStrip({ whereToBuy: false })}
 ${newsletter()}`;
 
   return {
-    title: { en: 'VITAS Capsule', zh: 'VITAS 淋巴管理膠囊' },
+    title: { en: 'VITAS Capsule: plant-based food supplement', zh: 'VITAS 淋巴管理膠囊' },
     description: {
-      en: 'VITAS Capsule: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules HK$298, or the Monthly package of 3 boxes (180 capsules) HK$800. Made in France to EEC GMP standard. A plant-based food supplement.',
+      en: 'VITAS Capsule: red grape leaf, bilberry, soy lecithin and garlic. 60 capsules HK$298, or the 3-box Monthly package HK$800. A plant-based food supplement.',
       zh: 'VITAS 淋巴管理膠囊：紅葡萄葉、北歐藍莓、大豆卵磷脂與大蒜。60 粒 HK$298，或月度套裝 3 盒（共 180 粒）HK$800。法國製造，按 EEC GMP 標準生產。植物配方食品補充品。',
     },
     path: '/capsule/',
@@ -1429,9 +1438,9 @@ ${freeFromBand()}
 ${buyStrip()}`;
 
   return {
-    title: { en: 'Ingredients', zh: '成分' },
+    title: { en: 'Ingredients: grape seed, niaouli, eucalyptus', zh: '成分' },
     description: {
-      en: 'Eucalyptus globulus, Vitis vinifera grape seed and Melaleuca viridiflora niaouli — the three plants in VITAS Soothing Cream Gel, and what each one actually does.',
+      en: 'The three plants in VITAS Soothing Cream Gel — eucalyptus, grape seed and niaouli — and what each one actually does.',
       zh: '尤加利、葡萄籽與綠花白千層——VITAS 淋巴管理啫喱膏中的三種植物，以及它們各自的實際作用。',
     },
     path: '/ingredients/',
@@ -1565,7 +1574,7 @@ export function stockists() {
     </section>`;
 
   return {
-    title: { en: 'Where to buy', zh: '購買地點' },
+    title: { en: 'Where to buy VITAS in Hong Kong and online', zh: '購買地點' },
     description: {
       en: 'Buy VITAS Soothing Cream Gel 100ml (HK$250) at Watsons and Mannings across Hong Kong, or online through Gogo Herbs and HK Medical Store.',
       zh: '於全港屈臣氏及萬寧選購 VITAS 淋巴管理啫喱膏 100毫升（HK$250），或經 Gogo Herbs 及網上藥房購買。',
@@ -1631,7 +1640,7 @@ export function sport(sp) {
       <div class="wrap sport-hero">
         ${figure(sportArt(sp).src, sp.name, 'tint', { w: sportArt(sp).w, h: sportArt(sp).h })}
         <div class="sport-hero__body">
-${sloganBlock('sport-hero__slogan')}
+${sloganBlock('sport-hero__slogan', 'p')}
           ${sensoryNote('sensory-note')}
           <div class="hero__actions">
             ${cta('/shop/', { en: 'Shop performance', zh: '選購' })}
@@ -1676,7 +1685,7 @@ ${sectionHead({
 ${buyStrip()}`;
 
   return {
-    title: { en: `VITAS for ${sp.name.en}`, zh: `VITAS × ${sp.name.zh}` },
+    title: { en: `VITAS for ${sp.name.en}: warm up and wind down`, zh: `VITAS × ${sp.name.zh}` },
     description: {
       en: `${sp.hook.en} How Hong Kong ${sp.name.en.toLowerCase()} athletes use VITAS before and after a session.`,
       zh: `${sp.hook.zh} 香港${sp.name.zh}運動者在訓練前後如何使用 VITAS。`,
@@ -1758,9 +1767,9 @@ ${freeFromBand()}
     </section>`;
 
   return {
-    title: { en: 'Shop', zh: '網上商店' },
+    title: { en: 'Shop VITAS cream gel, roll-on and capsules', zh: '網上商店' },
     description: {
-      en: 'Buy VITAS Soothing Cream Gel online — one 100ml tube at HK$250, the Recovery Duo (gel + roll-on) at HK$388, or the capsule Monthly package at HK$800. Free Hong Kong delivery from HK$250, secure Stripe checkout.',
+      en: 'Buy VITAS Soothing Cream Gel online: 100ml HK$250, Recovery Duo (gel + roll-on) HK$388 or capsule Monthly package HK$800. Free Hong Kong delivery from HK$250.',
       zh: '網上選購 VITAS 淋巴管理啫喱膏——100毫升 HK$250，雙效組合（啫喱膏＋走珠裝）HK$388，淋巴管理膠囊月度套裝 HK$800。滿 HK$250 免香港運費，Stripe 安全結帳。',
     },
     path: '/shop/',
@@ -2064,7 +2073,7 @@ export function about() {
 ${buyStrip()}`;
 
   return {
-    title: { en: 'About VITAS', zh: '關於 VITAS' },
+    title: { en: 'About VITAS: our story and French-made formula', zh: '關於 VITAS' },
     description: {
       en: 'The story behind VITAS 紓適寧: why it was created in Hong Kong, why the cream is made in France, and a note from founder Rosana Li.',
       zh: 'VITAS 紓適寧的故事：為何在香港創立、為何於法國生產，以及創辦人 Rosana Li 的話。',
@@ -2125,7 +2134,7 @@ export function faq() {
     </section>`;
 
   return {
-    title: { en: 'FAQ', zh: '常見問題' },
+    title: { en: 'Muscle cream FAQ: smell, use and safety', zh: '常見問題' },
     description: {
       en: 'Does it smell? Is it hot or cold? Can I use it before exercise? Straight answers about VITAS Soothing Cream Gel.',
       zh: '有氣味嗎？是熱還是涼？運動前可以用嗎？關於 VITAS 淋巴管理啫喱膏的直接答案。',
@@ -2221,9 +2230,9 @@ export function contact() {
     </section>`;
 
   return {
-    title: { en: 'Contact', zh: '聯絡我們' },
+    title: { en: 'Contact VITAS: WhatsApp, email and address', zh: '聯絡我們' },
     description: {
-      en: 'Contact VITAS 紓適寧 — product questions, trade enquiries and press.',
+      en: 'Contact VITAS 紓適寧 by WhatsApp or email for product questions, trade enquiries and press. Lippo Sun Plaza, Tsimshatsui, Hong Kong.',
       zh: '聯絡 VITAS 紓適寧——產品查詢、批發合作及傳媒。',
     },
     path: '/contact/',

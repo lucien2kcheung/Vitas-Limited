@@ -31,7 +31,7 @@ export const BRAND = {
     { en: 'Recover', zh: '修復' },
   ],
   heroLede: {
-    en: 'A fast-absorbing, non-greasy cream gel with three plant-based actives, made in France for your pre- and post-training ritual.',
+    en: 'VITAS Soothing Cream Gel is a fast-absorbing, non-greasy cosmetic cream gel with three plant-based actives, made in France for your pre- and post-training ritual.',
     zh: '蘊含三大植物活性成分的快速吸收啫喱膏，質地清爽不黏膩。法國製造，完美融入你每一次運動前後的按摩流程。',
   },
   proof: {
@@ -493,8 +493,8 @@ export const FAQS = [
         zh: '不少傳統肌肉按摩膏含有水楊酸甲酯、樟腦或類固醇。這些成分合法，亦被廣泛使用——但它們屬於具藥理活性的物質，使用時有已知的注意事項。',
       },
       {
-        en: 'Methyl salicylate (wintergreen oil) is chemically related to aspirin. Medical sources warn that too much absorption — through ingestion, large-area use, broken skin or heat — can cause salicylate toxicity.',
-        zh: '水楊酸甲酯（冬青油）在化學結構上與阿士匹靈相近。醫學資料提醒，如吸收過量——例如誤服、大面積塗抹、塗於破損皮膚或配合熱敷——可引致水楊酸中毒。',
+        en: 'Methyl salicylate (wintergreen oil) is chemically related to aspirin, and <a href="https://medlineplus.gov/ency/article/002683.htm" target="_blank" rel="noopener">MedlinePlus (US National Library of Medicine)</a> notes it can be poisonous in large amounts. Medical sources also warn that too much absorption — through ingestion, large-area use, broken skin or heat — can cause salicylate toxicity.',
+        zh: '水楊酸甲酯（冬青油）在化學結構上與阿士匹靈相近，美國國家醫學圖書館的 <a href="https://medlineplus.gov/ency/article/002683.htm" target="_blank" rel="noopener">MedlinePlus</a> 亦指出大量接觸可具毒性。醫學資料亦提醒，如吸收過量——例如誤服、大面積塗抹、塗於破損皮膚或配合熱敷——可引致水楊酸中毒。',
       },
       {
         en: 'Camphor is allowed in low concentrations, but accidental ingestion — especially by children — can cause seizures and poisoning. The US FDA limits camphor in over-the-counter products to 11% for this reason.',
