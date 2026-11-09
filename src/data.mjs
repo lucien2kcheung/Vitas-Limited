@@ -48,9 +48,9 @@ export const BRAND = {
     en: 'VITAS provides a warming sensation when massaged into muscles before training, and a cooling sensation afterwards. These sensory experiences are part of your active warm-up and wind-down routine.',
     zh: 'VITAS 於按摩時帶來溫熱觸感（賽前）與清涼觸感（賽後），融入你的熱身與放鬆步驟。',
   },
-  // Mandatory safety caution (compliance guide §10). Kept at "under 6" to match
-  // the fuller cautions on /how-to-use/ — stricter than the guide's "under 3",
-  // which is allowed.
+  // Mandatory safety caution (compliance guide §10). Set to "under 5" sitewide for the
+  // topical products (owner decision, 9 Nov 2026) — stricter than the guide's
+  // "under 3", which is allowed. The capsule (oral) keeps its own limit.
   safety: {
     en: 'For external use only. Avoid contact with eyes. Discontinue use if irritation occurs. Not suitable for children under 5, pregnant or breastfeeding women.',
     zh: '僅供外用。避免接觸眼睛。如出現刺激或不適，請停止使用。不適合 5 歲以下兒童、孕婦或哺乳期婦女使用。',
