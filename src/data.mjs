@@ -304,7 +304,7 @@ export const PURITY = {
     { en: 'Artificial fragrance — hidden allergens', zh: '人造香料——隱藏致敏原' },
   ],
   in: [
-    { en: 'Grape seed extract — a light, fast-absorbing base', zh: '葡萄籽萃取——輕盈快吸的基底' },
+    { en: 'Grape seed oil — a light, fast-absorbing base', zh: '葡萄籽油——輕盈快吸的基底' },
     { en: 'Niaouli oil — an aromatic plant from the tea-tree family, with a gentle warming note', zh: '綠花白千層油——與茶樹同科的芳香植物，帶來溫和暖感' },
     { en: 'Eucalyptus oil — a fresh, cooling note', zh: '尤加利油——清新的清涼感' },
     { en: 'Water-based gel — fast absorption, no residue', zh: '水基啫喱——快速吸收，不留殘膜' },
@@ -399,8 +399,8 @@ export const PLANTS = [
       {
         h: { en: 'An honest note', zh: '誠實的補充' },
         p: {
-          en: 'Grape seed extract is often sold on its antioxidant content. That evidence is for oral and cosmetic-skin use — we make no claim that it does anything for circulation or recovery from the outside.',
-          zh: '葡萄籽萃取常以抗氧化作賣點，但相關證據多來自口服或護膚用途。我們不會宣稱它由外用途徑改善循環或恢復。',
+          en: 'Grape seed is often marketed on its antioxidant content. That is usually said of grape seed extract, taken orally or studied in skincare. VITAS uses grape seed as a carrier oil, and we make no claim that it does anything for circulation or recovery from the outside.',
+          zh: '葡萄籽常以抗氧化作賣點，但這通常是針對葡萄籽萃取物的口服或護膚研究。VITAS 使用的是葡萄籽油，作為基底油；我們不會宣稱它由外用途徑改善循環或恢復。',
         },
       },
     ],
@@ -533,8 +533,8 @@ export const FAQS = [
       zh: 'VITAS 紓適寧淋巴管理啫喱膏成分？',
     },
     a: {
-      en: 'Three plant actives in a light water- and oil-based cream gel: grape seed (Vitis vinifera) as the carrier, eucalyptus (Eucalyptus globulus) for the cooling note, and niaouli (Melaleuca viridiflora) to round the scent. No hormones, no steroids, no methyl salicylate, no camphor. The full INCI list is printed on the carton — if you have a known essential-oil sensitivity, read it before you buy and patch test on the inner forearm.',
-      zh: '三種植物成分，配於輕盈的水油啫喱基底：葡萄籽（Vitis vinifera）作基底、尤加利（Eucalyptus globulus）帶來清涼感、綠花白千層（Melaleuca viridiflora）平衡氣味。不含激素、類固醇、水楊酸甲酯或樟腦。完整 INCI 成分表印於外盒——如你對精油有已知敏感，請先閱讀成分並於前臂內側試用。',
+      en: 'Three plant actives in a light water- and oil-based cream gel: grape seed oil (Vitis vinifera) as the carrier, eucalyptus (Eucalyptus globulus) for the cooling note, and niaouli (Melaleuca viridiflora) to round the scent. No hormones, no steroids, no methyl salicylate, no camphor. The full INCI list is printed on the carton — if you have a known essential-oil sensitivity, read it before you buy and patch test on the inner forearm.',
+      zh: '三種植物成分，配於輕盈的水油啫喱基底：葡萄籽油（Vitis vinifera）作基底、尤加利（Eucalyptus globulus）帶來清涼感、綠花白千層（Melaleuca viridiflora）平衡氣味。不含激素、類固醇、水楊酸甲酯或樟腦。完整 INCI 成分表印於外盒——如你對精油有已知敏感，請先閱讀成分並於前臂內側試用。',
     },
   },
   {

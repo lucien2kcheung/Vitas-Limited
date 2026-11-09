@@ -169,7 +169,7 @@ function footer() {
         <p class="footer__slogan">${t(BRAND.slogan)[0]}<br>${t(BRAND.slogan)[1]}</p>
         ${blk('p', {
           en: 'The clean performance cream gel — grape seed, niaouli and eucalyptus, made in France for your pre- and post-training ritual. Trusted in Hong Kong for over 20 years.',
-          zh: '源自法國的乾淨表現啫喱膏，結合葡萄籽、綠花白千層與尤加利精華，完美融入你的運動前後保養流程。逾 20 年深得香港信賴。',
+          zh: '源自法國的乾淨表現啫喱膏，結合葡萄籽油、綠花白千層與尤加利精油，完美融入你的運動前後保養流程。逾 20 年深得香港信賴。',
         })}
         <div class="footer__social">
           <a class="social-icon" href="${SITE.facebook}" target="_blank" rel="noopener" aria-label="Facebook">

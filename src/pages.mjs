@@ -330,7 +330,7 @@ ${sectionHead({
   heading: { en: "What's inside matters.", zh: '成分，才是真正的重點。' },
   lede: {
     en: 'Grape seed. Niaouli. Eucalyptus. Three plant-based actives, formulated in France — and a list of things we left out.',
-    zh: '葡萄籽、綠花白千層、尤加利：三大植物精華，法國精心研製-以及一張我們選擇不加入的清單。',
+    zh: '葡萄籽、綠花白千層、尤加利：三大植物成分，法國精心研製-以及一張我們選擇不加入的清單。',
   },
 })}
         <div class="purity__grid">
@@ -1359,6 +1359,7 @@ ${sectionHead({
           zh: '以下為瓶身上的完整 INCI 成分表。請留意，此配方與 100 毫升啫喱膏並不相同：它額外加入薄荷腦帶來清涼感，以及防腐劑與色素。',
         })}
         <p class="inci">${ROLLON.inci}</p>
+        ${blk('p', { en: 'In this list, “Vitis Vinifera” is grape seed oil.', zh: '成分表中的「Vitis Vinifera」即葡萄籽油。' }, 'note')}
       </div>
     </section>
 
@@ -1424,8 +1425,8 @@ ${freeFromBand()}
       <div class="wrap prose">
         ${blk('h2', { en: 'On "natural"', zh: '關於「天然」' })}
         ${blk('p', {
-          en: '"Natural" is not a regulated word and it is not, by itself, a benefit — poison ivy is natural. What we mean by it is narrower and checkable: the active character of this cream comes from three plant extracts rather than from methyl salicylate or camphor, the formula is made in France — produced with EEC GMP standard, and the full INCI list is printed on the carton rather than hidden behind a marketing word.',
-          zh: '「天然」並非受規管的字眼，本身也不等於好處——毒藤同樣天然。我們所指的意思更狹窄、也可以查證：這支啫喱膏的感受來自三種植物萃取，而非水楊酸甲酯或樟腦；配方法國製造，按 EEC GMP 標準生產；完整 INCI 成分表印在外盒上，而不是躲在一個營銷字眼背後。',
+          en: '"Natural" is not a regulated word and it is not, by itself, a benefit — poison ivy is natural. What we mean by it is narrower and checkable: the active character of this cream comes from three plant oils rather than from methyl salicylate or camphor, the formula is made in France — produced with EEC GMP standard, and the full INCI list is printed on the carton rather than hidden behind a marketing word.',
+          zh: '「天然」並非受規管的字眼，本身也不等於好處——毒藤同樣天然。我們所指的意思更狹窄、也可以查證：這支啫喱膏的感受來自三種植物油，而非水楊酸甲酯或樟腦；配方法國製造，按 EEC GMP 標準生產；完整 INCI 成分表印在外盒上，而不是躲在一個營銷字眼背後。',
         })}
         ${blk('h2', { en: 'Sourcing and manufacture', zh: '來源與生產' })}
         ${blk('p', {
