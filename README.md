@@ -257,7 +257,7 @@ not get missed:
       the site, add the specific video IDs; nothing is embedded blind.
 - [ ] **About page facts** — `ABOUT` in `src/data.mjs` follows the brand's own
       account and the public retail record. The founding dates, the founder's
-      biography and the "two decades of formulation" line are **not**
+      biography and the "over 20 years of formulation" line are **not**
       independently verified here. Rosana Li should read and correct that page
       before it goes live, and the quotation attributed to her must be approved
       by her (it was written as a draft, not transcribed from an interview).

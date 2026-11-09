@@ -61,3 +61,10 @@ removes lactic acid or cures muscle pain."
 
 Sponsored content must be clearly identified as advertising / collaboration
 where required.
+
+## Decisions confirmed by the owner (9 Nov 2026)
+
+- **"EEC GMP"** is the exact wording on the manufacturing certificate. Keep "produced with EEC GMP standard" as written.
+- **"Over 20 years"** is the one time-span used for both the brand ("Trusted for over 20 years") and the formulation ("over 20 years of formulation work in France"). Do not introduce other spans such as "two decades" or "over a decade".
+- **The contract manufacturer is deliberately not named** (competitive reasons). Copy says "a contract manufacturer in France" and nothing more specific.
+
