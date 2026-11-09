@@ -21,11 +21,11 @@ Lives in the footer of every page (`BRAND.disclaimer` in `src/data.mjs`).
 ## Safety / caution
 
 > For external use only. Avoid contact with eyes. Discontinue use if irritation
-> occurs. Not suitable for children under 6, pregnant or breastfeeding women.
+> occurs. Not suitable for children under 5, pregnant or breastfeeding women.
 
-Note: the source document says "children under 3". This site uses "under 6" to
-stay consistent with the fuller cautions on `/how-to-use/` and to be more
-conservative, which is permitted. Pick one number sitewide if you change it.
+Note: the source document says "children under 3". This site uses "under 5"
+for the topical products (owner decision, 9 Nov 2026), which is stricter and
+permitted. The capsule is an oral supplement and keeps its own limit ("under 7").
 
 ## Claims language guide
 

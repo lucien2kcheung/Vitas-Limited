@@ -26,7 +26,7 @@ The social-share PNG still shows the OLD slogan until you regenerate it:
 
 ## Three decisions still open (outstanding list)
 1. EU GMP -> EEC GMP: CONFIRMED by owner (9 Nov 2026) — "EEC GMP" is the certificate wording.
-2. Kept "children under 6" (stricter than the doc's "under 3"). Change if you want.
+2. Children's age limit: RESOLVED — "under 5" on all topical products (owner, 9 Nov 2026).
 3. "Trusted for over 20 years": owner chose this as the single time-span, now used consistently (incl. FAQ and footer). Still worth having a date on paper.
 
 The regenerated HTML pages (EN + /zh/) and sitemap.xml are included so you can
