@@ -67,4 +67,4 @@ where required.
 - **"EEC GMP"** is the exact wording on the manufacturing certificate. Keep "produced with EEC GMP standard" as written.
 - **"Over 20 years"** is the one time-span used for both the brand ("Trusted for over 20 years") and the formulation ("over 20 years of formulation work in France"). Do not introduce other spans such as "two decades" or "over a decade".
 - **The contract manufacturer is deliberately not named** (competitive reasons). Copy says "a contract manufacturer in France" and nothing more specific.
-
+- **Grape seed is an oil, not an extract** (confirmed by the owner, 9 Nov 2026). Say "grape seed oil" when describing the ingredient; keep the approved brand line GRAPE SEED · NIAOULI · EUCALYPTUS as is. The printed INCI entry reads only "Vitis Vinifera" and is shown verbatim, with a note that it is grape seed oil.
