@@ -163,6 +163,7 @@ export const PRODUCT = {
   currency: 'HKD',
   priceLabel: 'HK$250',
   sku: 'VTS001',
+  gtin13: '', // EAN-13 barcode digits from the carton; leave empty until known (never invent one)
   origin: { en: 'Made in France', zh: '法國製造' },
   gmp: {
     en: 'Made in France, produced to EEC GMP standard.',
@@ -318,6 +319,11 @@ export const PURITY = {
 export const SHOP = {
   freeShippingOver: 25000,
   currency: 'hkd',
+  /* Used for the Product structured data (shippingDetails / hasMerchantReturnPolicy);
+   * keep in step with /legal/shipping-returns/ and api/checkout.js (HK$30, 2–4 working days). */
+  shippingFee: 3000, // cents, charged below freeShippingOver
+  deliveryDays: { min: 2, max: 4 },
+  returnDays: 14,
 };
 
 export const PLANTS = [
@@ -678,6 +684,7 @@ export const CAPSULE = {
     },
   ],
   sku: 'VTS002',
+  gtin13: '', // EAN-13 of the 60-capsule box; leave empty until known
   gmp: {
     en: 'Made in France, produced to EEC GMP standard.',
     zh: '法國製造，並嚴格遵循 EEC GMP 標準生產。',
@@ -777,6 +784,7 @@ export const ROLLON = {
   price: 320,
   priceLabel: 'HK$320',
   sku: 'VTS003',
+  gtin13: '', // EAN-13 of the 2 × 50ml roll-on pack; leave empty until known
   photos: [
     {
       id: 'set',
