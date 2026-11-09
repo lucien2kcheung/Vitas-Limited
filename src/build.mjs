@@ -14,7 +14,8 @@
  * commit the output and Vercel serves it as-is.
  */
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -55,6 +56,7 @@ const fileFor = (path) =>
 
 const written = [];
 const canonicalPaths = [];
+const htmlByPath = new Map(); // output path -> rendered HTML, used for per-page <lastmod>
 
 for (const lang of LANGS) {
   setLang(lang);
@@ -62,28 +64,50 @@ for (const lang of LANGS) {
     const path = urlIn(spec.path, lang);
     const file = join(root, fileFor(path));
     await mkdir(dirname(file), { recursive: true });
-    await writeFile(file, page(spec), 'utf8');
+    const html = page(spec);
+    await writeFile(file, html, 'utf8');
+    htmlByPath.set(path, html);
     written.push(path);
-    const indexable = !spec.path.endsWith('.html') && !spec.path.startsWith('/checkout/');
+    // /cart/ is disallowed in robots.txt, so it does not belong in the sitemap either.
+    const indexable = !spec.path.endsWith('.html') && !spec.path.startsWith('/checkout/') && spec.path !== '/cart/';
     if (lang === 'en' && indexable) canonicalPaths.push(spec.path);
   }
 }
 
 /* -------------------------------------------------------------- sitemap.xml */
 
+/* <lastmod> is the date a page's rendered HTML (English + Chinese) last changed. A hash of each
+   page is kept in src/lastmod.json; the date only moves when the hash does, so a rebuild that
+   changes nothing leaves the sitemap untouched. */
 const today = new Date().toISOString().slice(0, 10);
+const lastmodFile = join(root, 'src', 'lastmod.json');
+let lastmodStore = {};
+try { lastmodStore = JSON.parse(await readFile(lastmodFile, 'utf8')); } catch { /* first run */ }
+const lastmodOf = (path) => {
+  const hash = createHash('sha1')
+    .update(htmlByPath.get(urlIn(path, 'en')) ?? '')
+    .update(htmlByPath.get(urlIn(path, 'zh')) ?? '')
+    .digest('hex')
+    .slice(0, 16);
+  const prev = lastmodStore[path];
+  lastmodStore[path] = prev && prev.hash === hash ? prev : { hash, date: today };
+  return lastmodStore[path].date;
+};
 
 const entry = (path, lang) => `  <url>
     <loc>${SITE.url}${urlIn(path, lang)}</loc>
     <xhtml:link rel="alternate" hreflang="en-HK" href="${SITE.url}${urlIn(path, 'en')}"/>
     <xhtml:link rel="alternate" hreflang="zh-Hant-HK" href="${SITE.url}${urlIn(path, 'zh')}"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="${SITE.url}${urlIn(path, 'en')}"/>
-    <lastmod>${today}</lastmod>
+    <lastmod>${lastmodOf(path)}</lastmod>
     <changefreq>${path === '/' ? 'weekly' : 'monthly'}</changefreq>
     <priority>${path === '/' ? '1.0' : path === '/product/' ? '0.9' : '0.7'}</priority>
   </url>`;
 
 const urls = LANGS.flatMap((lang) => canonicalPaths.map((path) => entry(path, lang))).join('\n');
+
+const pruned = Object.fromEntries(Object.entries(lastmodStore).filter(([p]) => canonicalPaths.includes(p)).sort(([a], [b]) => a.localeCompare(b)));
+await writeFile(lastmodFile, JSON.stringify(pruned, null, 2) + '\n', 'utf8');
 
 await writeFile(
   join(root, 'sitemap.xml'),

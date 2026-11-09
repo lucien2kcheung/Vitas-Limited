@@ -750,6 +750,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 .slogan {
   display: grid; gap: 0.1em;
+  font-family: var(--font-display);
   font-size: clamp(2.1rem, 1.3rem + 3.4vw, 4.1rem);
   font-weight: 800; line-height: 1.02; letter-spacing: -0.03em;
   text-transform: none; margin: 0 0 1.2rem;
